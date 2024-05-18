@@ -2,6 +2,6 @@
 </script>
 
 <template>
-  <main class="h-screen bg-primary">
+  <main class="h-screen">
   </main>
 </template>
