@@ -1,1 +1,7 @@
-{}
+{
+  "new": "nuevo",
+  "$announcement": "Nos complace anunciar Lorem ipsum dolor sit amet consectetur adipiscing.",
+  "learn more": "aprende más",
+  "immigration": "inmigración",
+  "$dps": "servicios de preparación de documentos"
+}

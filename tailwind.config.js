@@ -13,15 +13,15 @@ export default {
         red: '#D2092D'
       },
       width: {
-        page: '1280px'
+        page: '1300px'
       },
       borderRadius: {
         DEFAULT: '24px'
       },
       fontFamily: {
-        sans: ['Helvetica Neue', 'sans-serif']
+        sans: ['Helvetica Neue Regular', 'sans-serif']
       }
     }
   },
-  plugins: []
+  plugins: [require('tailwind-scrollbar')]
 }
