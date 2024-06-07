@@ -180,7 +180,7 @@ onClickOutside(menuTarget, () => {
         </div>
         <div
           class="bg-white hidden md:w-page md:flex md:!flex-nowrap items-stretch gap-2 text-black"
-          :class="{ '!flex flex-col px-5 absolute top-[50px] left-0 right-0 shadow': menu }"
+          :class="{ '!flex flex-col px-5 absolute z-[9] top-[50px] left-0 right-0 shadow': menu }"
         >
           <router-link
             to="about"
