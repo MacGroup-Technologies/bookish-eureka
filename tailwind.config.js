@@ -8,6 +8,7 @@ export default {
         link: '#1847ED',
         primary: '#001E87',
         'primary-10': '#F0F2F6',
+        'primary-light': '#1847ED',
         slate: '#F0F2F6',
         grey: '#5B6178',
         red: '#D2092D'

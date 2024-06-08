@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import AppButton from '@/components/Button.vue'
+import AppBox from '@/components/Box.vue'
 </script>
 
 <template>
   <main>
     <div class="flex flex-col items-center">
-      <div class="md:h-[90vh] px-5 py-10 md:w-page flex flex-col md:flex-row gap-16 md:gap-48 justify-between items-center bg-white">
+      <div
+        class="md:h-[90vh] px-5 py-10 md:w-page flex flex-col md:flex-row gap-16 md:gap-48 justify-between items-center bg-white"
+      >
         <div class="md:w-2/3">
           <h1 class="capitalize text-3xl md:text-5xl font-bold text-primary md:w-[70%]">
             Your <span class="text-red">Immigration Journey</span> starts here
@@ -34,6 +37,118 @@ import AppButton from '@/components/Button.vue'
         </div>
         <div class="md:w-1/3">
           <img src="@/assets/imgs/black_lady_with_a_microphone.webp" class="md:w-full h-auto" />
+        </div>
+      </div>
+      <div class="bg-slate w-full flex flex-col items-center">
+        <div class="md:w-page px-5 py-10 md:py-20">
+          <div class="md:w-2/3 my-0 mx-auto text-center">
+            <h2 class="font-bold text-3xl">Popular Preparation Services</h2>
+            <p class="mt-3 mb-5 opacity-85">
+              Discover our top services for smooth immigration. From Green Card renewal to U.S.
+              citizenship, we've got you covered. Simplify your journey with us.
+            </p>
+            <router-link to="/uscis-forms" class="inline-block">
+              <AppButton
+                type="outline"
+                size="small"
+                color=""
+                class="bg-white flex gap-3 mx-auto my-0 border-[3px] border-primary-light text-primary-light"
+              >
+                <svg
+                  width="24"
+                  height="26"
+                  viewBox="0 0 24 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M14.5722 17.8399C13.1362 18.7337 11.4409 19.25 9.625 19.25C4.44733 19.25 0.25 15.0527 0.25 9.875C0.25 4.69733 4.44733 0.5 9.625 0.5C14.8027 0.5 19 4.69733 19 9.875C19 12.3321 18.0547 14.5685 16.508 16.2402L23.6339 23.3661C24.122 23.8543 24.122 24.6457 23.6339 25.1339C23.1457 25.622 22.3543 25.622 21.8661 25.1339L14.5722 17.8399ZM16.5 9.875C16.5 13.672 13.422 16.75 9.625 16.75C5.82804 16.75 2.75 13.672 2.75 9.875C2.75 6.07804 5.82804 3 9.625 3C13.422 3 16.5 6.07804 16.5 9.875Z"
+                    fill="currentColor"
+                  />
+                </svg>
+                Search Immigration Form
+              </AppButton>
+            </router-link>
+          </div>
+          <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
+            <router-link to="/green-card-renewal">
+              <AppBox>
+                <template #heading> Green Card Renewal or Replacement </template>
+                <template #body>
+                  <p class="opacity-75">Form I-90 Preparation Service</p>
+                </template>
+              </AppBox>
+            </router-link>
+
+            <router-link to="">
+              <AppBox>
+                <template #heading> U.S. Citizenship Form </template>
+                <template #body>
+                  <p class="opacity-75">N-400 Preparation Service</p>
+                </template>
+              </AppBox>
+            </router-link>
+
+            <router-link to="">
+              <AppBox>
+                <template #heading> Replace Certificate of Citizenship </template>
+                <template #body>
+                  <p class="opacity-75">Form N-565 Preparation Service</p>
+                </template>
+              </AppBox>
+            </router-link>
+
+            <router-link to="">
+              <AppBox>
+                <template #heading> B-2 Tourist Visa </template>
+                <template #body>
+                  <p class="opacity-75">Application Guide Package</p>
+                </template>
+              </AppBox>
+            </router-link>
+
+            <router-link to="">
+              <AppBox>
+                <template #heading> Employment Authorization Document (EAD) </template>
+                <template #body>
+                  <p class="opacity-75">Form I-765 Preparation Service</p>
+                </template>
+              </AppBox>
+            </router-link>
+
+            <router-link to="">
+              <AppBox>
+                <template #heading> Petition for Alien Relative (Green Card) </template>
+                <template #body>
+                  <p class="opacity-75">Form I-130 Preparation Service</p>
+                </template>
+              </AppBox>
+            </router-link>
+          </div>
+        </div>
+      </div>
+      <div class="md:w-page px-5 py-10 md:py-20">
+        <div class="md:w-2/3 my-0 mx-auto text-center">
+          <h2 class="font-bold text-3xl">Other Immigration Form Packages and Services</h2>
+          <p class="mt-3 mb-5 opacity-85">
+            Discover tailored solutions for your immigration needs. From travel documents to family
+            sponsorship, we're here to help. Simplify your journey with us.
+          </p>
+            <router-link to="/immigration-form-packages-and-services" class="inline-block w-1/2 md:w-1/4">
+              <AppButton
+                type="outline"
+                size="small"
+                color=""
+                class="bg-white flex gap-3 mx-auto my-0 border-[3px] border-primary-light text-primary-light w-full"
+              >
+                View All
+              </AppButton>
+            </router-link>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2">
+          <div class=""></div>
         </div>
       </div>
     </div>
