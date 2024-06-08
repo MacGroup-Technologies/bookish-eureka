@@ -9,6 +9,21 @@ const router = createRouter({
       name: 'home',
       component: HomeView
     },
+    // {
+    //   path: '/uscis-forms',
+    //   name: '',
+    //   component: import()
+    // },
+    // {
+    //   path: '/green-card-renewal',
+    //   name: '',
+    //   component: import()
+    // },
+    // {
+    //   path: '/immigration-form-packages-and-services',
+    //   name: '',
+    //   component: import()
+    // },
     {
       path: '/about',
       name: 'about',
