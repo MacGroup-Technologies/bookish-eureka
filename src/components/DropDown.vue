@@ -41,7 +41,7 @@ onClickOutside(target, () => {
       </svg>
     </div>
     <div
-      class="absolute z-10 top-[60px] left-0 md:-right-10 bg-white text-primary shadow flex flex-col p-[1px] max-h-[50vh] md:w-[270px] overflow-y-auto scrollbar-thin"
+      class="absolute z-10 top-[60px] left-auto right-0 bg-white text-primary shadow flex flex-col p-[1px] max-h-[50vh] md:w-[270px] overflow-y-auto scrollbar-thin"
       v-show="show"
     >
       <div

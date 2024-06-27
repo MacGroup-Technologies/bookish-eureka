@@ -1,13 +1,39 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
 import HomeView from '../views/HomeView.vue'
+import defaultLayout from '@/layouts/default.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView
+      name: 'defaultLayout',
+      component: defaultLayout,
+      children: [
+        {
+          path: '',
+          name: 'HomeView',
+          component: HomeView
+        }
+      ]
+    },
+    {
+      path: '/auth/',
+      name: 'AuthLayout',
+      component: () => import('../layouts/AuthLayout.vue'),
+      children: [
+        {
+          path: '',
+          name: 'AuthMain',
+          redirect: { name: 'LoginView' }
+        },
+        {
+          path: 'login',
+          name: 'LoginView',
+          component: () => import('../views/auth/LoginView.vue')
+        }
+      ]
     },
     // {
     //   path: '/uscis-forms',
