@@ -91,6 +91,10 @@ const logUserIn = async function () {
       </div>
 
       <AppButton type="solid" mode="submit" class="bg-primary-light text-white w-full" size="medium" :loading="loading">Login</AppButton>
+
+      <div class="text-center mt-5">
+        Don't have an account? <router-link to="/auth/signup" class="text-primary-light">Sign Up</router-link>
+      </div>
     </form>
   </section>
 </template>
