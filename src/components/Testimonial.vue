@@ -10,13 +10,13 @@ const splide = ref()
   <Splide
     ref="splide"
     :has-track="false"
-    class="bg-primary mt-16 md:h-[50vh] rounded relative"
+    class="bg-primary mt-16 md:h-[50vh] rounded relative max-w-[100%]"
     :options="{ rewind: true, autoplay: true }"
     aria-label="Testimonials"
   >
     <SplideTrack>
       <SplideSlide>
-        <div class="md:h-[50vh] w-5/6 pt-16 pb-[20px] px-10 text-left text-white flex flex-col justify-between">
+        <div class="md:h-[50vh] md:w-5/6 pt-16 pb-[100px] md:pb-[20px] px-10 text-left text-white flex flex-col justify-between">
           <p class="font-[300]">
             I was overwhelmed by the complexity of the U.S. citizenship process, but Immigration
             Document Preparation Services made it feel manageable. From helping me fill out the
@@ -27,40 +27,6 @@ const splide = ref()
           <div class="flex gap-3">
             <img src="@/assets/imgs/avataaars.png" class="w-[70px] rounded-full" />
             <h3 class="text-[24px] opacity-75">Jane Doe</h3>
-          </div>
-        </div>
-      </SplideSlide>
-
-      
-      <SplideSlide>
-        <div class="md:h-[50vh] w-5/6 pt-16 pb-[20px] px-10 text-left text-white flex flex-col justify-between">
-          <p class="font-[300]">
-            I was overwhelmed by the complexity of the U.S. citizenship process, but Immigration
-            Document Preparation Services made it feel manageable. From helping me fill out the
-            N-400 form to providing study materials for the citizenship test, they were with me
-            every step of the way. I'm thrilled to say that I am now a proud U.S. citizen, and I
-            couldn't have done it without their support.
-          </p>
-          <div class="flex gap-3">
-            <img src="@/assets/imgs/avataaars.png" class="w-[70px] rounded-full" />
-            <h3 class="text-[24px] opacity-75">John Doe</h3>
-          </div>
-        </div>
-      </SplideSlide>
-
-      
-      <SplideSlide>
-        <div class="md:h-[50vh] w-5/6 pt-16 pb-[20px] px-10 text-left text-white flex flex-col justify-between">
-          <p class="font-[300]">
-            I was overwhelmed by the complexity of the U.S. citizenship process, but Immigration
-            Document Preparation Services made it feel manageable. From helping me fill out the
-            N-400 form to providing study materials for the citizenship test, they were with me
-            every step of the way. I'm thrilled to say that I am now a proud U.S. citizen, and I
-            couldn't have done it without their support.
-          </p>
-          <div class="flex gap-3">
-            <img src="@/assets/imgs/avataaars.png" class="w-[70px] rounded-full" />
-            <h3 class="text-[24px] opacity-75">Mandor Doe</h3>
           </div>
         </div>
       </SplideSlide>
