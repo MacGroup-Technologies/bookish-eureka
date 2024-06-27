@@ -67,7 +67,7 @@ onClickOutside(menuTarget, () => {
 </script>
 
 <template>
-  <section class="bg-white text-black overflow-x-hidden" translate="no">
+  <section class="bg-white text-black overflow-x-hidden min-h-[100vh]" translate="no">
     <div
       class="bg-black text-slate text-center p-3 relative flex md:justify-center items-start md:items-center"
       v-if="announcement"
@@ -104,7 +104,7 @@ onClickOutside(menuTarget, () => {
           class="md:w-page flex justify-between items-center gap-3 py-5 px-5 sticky top-0 z-10 bg-primary"
           :class="{ '!fixed top-0 right-0 left-0 z-[20]': hamburger }"
         >
-          <div class="flex items-center gap-3">
+          <router-link to="/" class="flex items-center gap-3">
             <AppLogo class="w-[32px] md:w-[70px]" />
             <div class="uppercase">
               <div class="text-base md:text-[32px] font-bold">
@@ -112,7 +112,7 @@ onClickOutside(menuTarget, () => {
               </div>
               <div class="text-[8px] md:text-base md:font-bold">{{ useTranslate('$dps') }}</div>
             </div>
-          </div>
+          </router-link>
           <div class="text-white flex justify-between items-center gap-5">
             <DropDown :title="selectedLang" :options="lang" @select="setLang" />
             <div class="hidden md:flex items-center justify-between gap-3">

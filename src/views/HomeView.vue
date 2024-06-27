@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AppButton from '@/components/Button.vue'
 import AppBox from '@/components/Box.vue'
+import TestimonialSection from '@/components/Testimonial.vue'
 </script>
 
 <template>
@@ -39,6 +40,7 @@ import AppBox from '@/components/Box.vue'
           <img src="@/assets/imgs/black_lady_with_a_microphone.webp" class="md:w-full h-auto" />
         </div>
       </div>
+
       <div class="bg-slate w-full flex flex-col items-center">
         <div class="md:w-page px-5 py-10 md:py-20">
           <div class="md:w-2/3 my-0 mx-auto text-center">
@@ -129,6 +131,7 @@ import AppBox from '@/components/Box.vue'
           </div>
         </div>
       </div>
+
       <div class="md:w-page px-5 py-10 md:py-20">
         <div class="md:w-2/3 my-0 mx-auto text-center">
           <h2 class="font-bold text-3xl">Other Immigration Form Packages and Services</h2>
@@ -136,7 +139,314 @@ import AppBox from '@/components/Box.vue'
             Discover tailored solutions for your immigration needs. From travel documents to family
             sponsorship, we're here to help. Simplify your journey with us.
           </p>
-            <router-link to="/immigration-form-packages-and-services" class="inline-block w-1/2 md:w-1/4">
+          <router-link
+            to="/immigration-form-packages-and-services"
+            class="inline-block w-1/2 md:w-1/4"
+          >
+            <AppButton
+              type="outline"
+              size="small"
+              color=""
+              class="bg-white flex gap-3 mx-auto my-0 border-[3px] border-primary-light text-primary-light w-full"
+            >
+              View All
+            </AppButton>
+          </router-link>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-28 my-10">
+          <div class="">
+            <div class="bg-slate rounded-[30px] flex items-center justify-center p-10">
+              <img
+                src="@/assets/imgs/USA_permanent_resident_card.webp"
+                class="w-[450px]"
+                width="450px"
+              />
+            </div>
+            <div class="my-10 text-center">
+              <h3 class="text-2xl font-bold">
+                <span class="text-primary">I-90</span>
+                Green Card Renewal / Replacement
+              </h3>
+              <p class="opacity-85 my-3">
+                Renew or replace your Green Card effortlessly with our I-90 service. Stay on track
+                with your permanent resident status.
+              </p>
+            </div>
+            <div class="flex items-center justify-center">
+              <router-link to="/green-card-renewal" class="md:w-1/3">
+                <AppButton
+                  size="large"
+                  type="solid"
+                  color=""
+                  class="bg-primary-light text-white w-full"
+                >
+                  Start Now
+                </AppButton>
+              </router-link>
+            </div>
+          </div>
+
+          <div class="">
+            <div class="bg-slate rounded-[30px] flex items-center justify-center p-10">
+              <img
+                src="@/assets/imgs/Immigration_documents_and_USA_flag.webp"
+                class="w-[350px]"
+                width="350px"
+              />
+            </div>
+            <div class="my-10 text-center">
+              <h3 class="text-2xl font-bold">
+                <span class="text-primary">N-400</span>
+                U.S Citizenship (Naturalization)
+              </h3>
+              <p class="opacity-85 my-3">
+                Achieve your dream of U.S. citizenship with our N-400 preparation service. From
+                eligibility assessment to interview preparation, we're here to support you.
+              </p>
+            </div>
+            <div class="flex items-center justify-center">
+              <router-link to="/us-citizenship-naturalization" class="md:w-1/3">
+                <AppButton
+                  size="large"
+                  type="solid"
+                  color=""
+                  class="bg-primary-light text-white w-full"
+                >
+                  Start Now
+                </AppButton>
+              </router-link>
+            </div>
+          </div>
+
+          <div class="">
+            <div class="bg-slate rounded-[30px] flex items-center justify-center p-10">
+              <img
+                src="@/assets/imgs/Immigration_documents_and_USA_flag.webp"
+                class="w-[350px]"
+                width="350px"
+              />
+            </div>
+            <div class="my-10 text-center">
+              <h3 class="text-2xl font-bold">
+                <span class="text-primary">I-821D</span>
+                Deferred Action Renewal (DACA)
+              </h3>
+              <p class="opacity-85 my-3">
+                Renew your DACA status smoothly with our I-821D preparation service. We'll assist
+                you through the renewal process, ensuring your continued eligibility for Deferred
+                Action.
+              </p>
+            </div>
+            <div class="flex items-center justify-center">
+              <router-link to="/deferref-action-renewal" class="md:w-1/3">
+                <AppButton
+                  size="large"
+                  type="solid"
+                  color=""
+                  class="bg-primary-light text-white w-full"
+                >
+                  Start Now
+                </AppButton>
+              </router-link>
+            </div>
+          </div>
+
+          <div class="">
+            <div class="bg-slate rounded-[30px] flex items-center justify-center p-10">
+              <img
+                src="@/assets/imgs/USA_employment_authorization_card.webp"
+                class="w-[550px]"
+                width="550px"
+              />
+            </div>
+            <div class="my-10 text-center">
+              <h3 class="text-2xl font-bold">
+                <span class="text-primary">I-765</span>
+                Employment Authorisation
+              </h3>
+              <p class="opacity-85 my-3">
+                Secure your employment authorisation with our I-765 preparation service. We'll guide
+                you through the application process, ensuring timely submission and accuracy.
+              </p>
+            </div>
+            <div class="flex items-center justify-center">
+              <router-link to="/employment-authorisation" class="md:w-1/3">
+                <AppButton
+                  size="large"
+                  type="solid"
+                  color=""
+                  class="bg-primary-light text-white w-full"
+                >
+                  Start Now
+                </AppButton>
+              </router-link>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center justify-center mt-32">
+          <router-link
+            to="/immigration-form-packages-and-services"
+            class="inline-block w-1/2 md:w-1/4"
+          >
+            <AppButton
+              type="outline"
+              size="small"
+              color=""
+              class="bg-white flex gap-3 mx-auto my-0 border-[3px] border-primary-light text-primary-light w-full"
+            >
+              View All
+            </AppButton>
+          </router-link>
+        </div>
+      </div>
+
+      <div class="bg-slate w-full flex flex-col items-center">
+        <div class="md:w-page py-10 md:py-20 px-5">
+          <div class="md:w-2/3 my-0 mx-auto text-center">
+            <h2 class="font-bold text-3xl">Immigration Resources</h2>
+            <p class="mt-3 mb-5 opacity-85">
+              We understand that navigating the immigration process can be daunting. That's why
+              we're committed to providing you with the resources you need to make informed
+              decisions and progress confidently toward your immigration goals.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-28 my-10">
+            <div class="">
+              <div class="bg-[#EDEDEE] rounded-[30px] flex items-center justify-center p-10">
+                <img
+                  src="@/assets/imgs/form_placeholder.webp"
+                  class="w-[450px] rounded-3xl"
+                  width="450px"
+                />
+              </div>
+              <div class="my-10 text-center">
+                <h3 class="text-2xl font-bold">Understanding Visa Types</h3>
+                <p class="opacity-85 my-3">
+                  Deciding which visa best suits your needs is a crucial step in your immigration
+                  journey. Our comprehensive guide to visa types provides detailed information on
+                  the various categories available, from work visas and student visas to
+                  family-based visas and more. Gain insights into eligibility criteria, application
+                  processes, and key considerations to ensure you select the visa that aligns with
+                  your goals and aspirations.
+                </p>
+              </div>
+              <div class="flex items-center justify-center">
+                <router-link to="/resources/understanding-visa-types" class="md:w-1/3">
+                  <AppButton
+                    size="large"
+                    type="solid"
+                    color=""
+                    class="bg-primary-light text-white w-full"
+                  >
+                    Learn More
+                  </AppButton>
+                </router-link>
+              </div>
+            </div>
+
+            <div class="">
+              <div class="bg-[#EDEDEE] rounded-[30px] flex items-center justify-center p-10">
+                <img
+                  src="@/assets/imgs/form_placeholder.webp"
+                  class="w-[450px] rounded-3xl"
+                  width="450px"
+                />
+              </div>
+              <div class="my-10 text-center">
+                <h3 class="text-2xl font-bold">Navigating the Citizenship Process</h3>
+                <p class="opacity-85 my-3">
+                  Becoming a U.S. citizen is a significant milestone that offers numerous benefits
+                  and opportunities. Our detailed guide to the citizenship process walks you through
+                  each stage, from obtaining your Green Card to applying for naturalization. Learn
+                  about eligibility requirements, the citizenship test and interview, and the rights
+                  and responsibilities of U.S. citizens. With our guidance, you'll be well-prepared
+                  to embark on this transformative journey toward citizenship.
+                </p>
+              </div>
+              <div class="flex items-center justify-center">
+                <router-link to="/resources/navigating-the-citizenship-process" class="md:w-1/3">
+                  <AppButton
+                    size="large"
+                    type="solid"
+                    color=""
+                    class="bg-primary-light text-white w-full"
+                  >
+                    Learn More
+                  </AppButton>
+                </router-link>
+              </div>
+            </div>
+
+            <div class="">
+              <div class="bg-[#EDEDEE] rounded-[30px] flex items-center justify-center p-10">
+                <img
+                  src="@/assets/imgs/form_placeholder.webp"
+                  class="w-[450px] rounded-3xl"
+                  width="450px"
+                />
+              </div>
+              <div class="my-10 text-center">
+                <h3 class="text-2xl font-bold">Adjustment of Status Made Simple</h3>
+                <p class="opacity-85 my-3">
+                  For individuals already residing in the United States, adjusting your status to
+                  obtain permanent residency is a crucial step toward building a stable and secure
+                  future. Our comprehensive resource on adjustment of status outlines the process in
+                  clear, easy-to-understand terms. Discover the necessary forms, supporting
+                  documents, and procedural steps involved in applying for lawful permanent
+                  residence. With our guidance, you can navigate this process with confidence and
+                  peace of mind.
+                </p>
+              </div>
+              <div class="flex items-center justify-center">
+                <router-link to="/resources/adjustment-of-status" class="md:w-1/3">
+                  <AppButton
+                    size="large"
+                    type="solid"
+                    color=""
+                    class="bg-primary-light text-white w-full"
+                  >
+                    Learn More
+                  </AppButton>
+                </router-link>
+              </div>
+            </div>
+
+            <div class="">
+              <div class="bg-[#EDEDEE] rounded-[30px] flex items-center justify-center p-10">
+                <img
+                  src="@/assets/imgs/form_placeholder.webp"
+                  class="w-[450px] rounded-3xl"
+                  width="450px"
+                />
+              </div>
+              <div class="my-10 text-center">
+                <h3 class="text-2xl font-bold">Adjustment of Status Made Simple</h3>
+                <p class="opacity-85 my-3">
+                  For individuals already residing in the United States, adjusting your status to
+                  obtain permanent residency is a crucial step toward building a stable and secure
+                  future. Our comprehensive resource on adjustment of status outlines the process in
+                  clear, easy-to-understand terms. Discover the necessary forms, supporting
+                  documents, and procedural steps involved in applying for lawful permanent
+                  residence. With our guidance, you can navigate this process with confidence and
+                  peace of mind.
+                </p>
+              </div>
+              <div class="flex items-center justify-center">
+                <router-link to="/resources/adjustment-of-status" class="md:w-1/3">
+                  <AppButton
+                    size="large"
+                    type="solid"
+                    color=""
+                    class="bg-primary-light text-white w-full"
+                  >
+                    Learn More
+                  </AppButton>
+                </router-link>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center justify-center mt-32">
+            <router-link to="/resources" class="inline-block w-1/2 md:w-1/4">
               <AppButton
                 type="outline"
                 size="small"
@@ -146,9 +456,21 @@ import AppBox from '@/components/Box.vue'
                 View All
               </AppButton>
             </router-link>
+          </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2">
-          <div class=""></div>
+      </div>
+
+      <div class="md:w-page px-5 py-10 md:py-20">
+        <div class="md:w-2/3 my-0 mx-auto text-center">
+          <h2 class="font-bold text-3xl">Trusted by Our Clients</h2>
+          <p class="mt-3 mb-5 opacity-85">
+            We take pride in helping individuals and families achieve their immigration goals. But
+            don't just take our word for it—here's what some of our satisfied clients have to say
+            about their experience with us:
+          </p>
+          <div class="px-5 w-full">
+            <TestimonialSection />
+          </div>
         </div>
       </div>
     </div>
