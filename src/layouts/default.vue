@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, type Component } from 'vue'
+import { useRoute } from 'vue-router'
 import { useAppStore } from '@/stores/app'
 import { useTranslate } from '@/composables/useTranslate'
 import { onClickOutside } from '@vueuse/core'
@@ -10,6 +11,8 @@ import SpainFlag from '@/components/icons/Spain.vue'
 
 import DropDown from '@/components/DropDown.vue'
 import AppButton from '@/components/Button.vue'
+
+const route = useRoute()
 
 const announcement = ref(true)
 const hamburger = ref(false)
@@ -158,7 +161,7 @@ onClickOutside(menuTarget, () => {
         </div>
       </div>
       <div
-        class="flex items-stretch justify-center border-b-[1.5px] border-grey/50 relative"
+        class="flex items-stretch justify-center border-b-[1.5px] border-grey/10 relative"
         ref="menuTarget"
       >
         <div
@@ -187,7 +190,8 @@ onClickOutside(menuTarget, () => {
           :class="{ '!flex flex-col px-5 absolute z-[9] top-[50px] left-0 right-0 shadow': menu }"
         >
           <router-link
-            to="about"
+            to="about-us"
+            :class="{ 'bg-primary text-white' : route.path === '/about-us' }"
             class="md:flex-shrink-0 flex items-center p-3 text-sm md:text-base text-black hover:bg-primary hover:text-white transition ease-in-out"
           >
             About Us
