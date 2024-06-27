@@ -121,9 +121,11 @@ onClickOutside(menuTarget, () => {
                   Login
                 </AppButton>
               </router-link>
-              <AppButton type="solid" size="large" color="primary" class="bg-slate text-grey">
-                Get Started
-              </AppButton>
+              <router-link to="/auth/signup">
+                <AppButton type="solid" size="large" color="primary" class="bg-slate text-grey">
+                  Get Started
+                </AppButton>
+              </router-link>
             </div>
           </div>
           <div class="md:hidden" ref="hamburgerTarget">
