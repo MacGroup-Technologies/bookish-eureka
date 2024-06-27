@@ -1,7 +1,20 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
 import AppButton from '@/components/Button.vue'
 import AppBox from '@/components/Box.vue'
 import TestimonialSection from '@/components/Testimonial.vue'
+import FqaSection from '@/components/fqa.vue'
+
+const email = ref('');
+
+const submitEmail = async function () {
+  try {
+    console.log(email.value)    
+  } catch (error) {
+    console.log(error)
+  }
+}
 </script>
 
 <template>
@@ -471,6 +484,44 @@ import TestimonialSection from '@/components/Testimonial.vue'
           <div class="px-5 w-full">
             <TestimonialSection />
           </div>
+        </div>
+      </div>
+
+      <div class="md:w-page px-5 py-10 md:py-20">
+        <div class="md:w-2/3 my-0 mx-auto text-center">
+          <h2 class="font-bold text-3xl">Frequently asked questions</h2>
+          <p class="mt-3 mb-5 opacity-85">Your Immigration Questions Answered</p>
+          <div class="px-5 w-full">
+            <FqaSection />
+          </div>
+        </div>
+      </div>
+
+      <div class="md:w-page px-5 py-10 md:py-20">
+        <div class="bg-black text-white rounded text-center p-10 md:p-20">
+          <h3 class="font-bold text-3xl">Stay Informed with Our Newsletter</h3>
+          <p class="md:w-2/3 my-10 mx-auto">
+            Sign up for our newsletter to receive the latest updates, news, and insights on
+            immigration trends, policy changes, and helpful tips for navigating the immigration
+            process. Join our community of subscribers today and stay informed every step of the
+            way.
+          </p>
+          <form @submit.prevent="submitEmail()" class="md:w-2/3 my-0 mx-auto">
+            <div
+              class="w-full bg-white rounded-[8px] overflow-hidden flex p-2 border-2 border-transparent focus-within:border-primary-light"
+            >
+              <input
+                v-model="email"
+                type="email"
+                class="text-lg w-full focus:outline-none px-2 text-black"
+                placeholder="Enter your email"
+                required
+              />
+              <AppButton type="solid" color="" size="medium" class="bg-primary-light" mode="submit"
+                >Subscribe</AppButton
+              >
+            </div>
+          </form>
         </div>
       </div>
     </div>
