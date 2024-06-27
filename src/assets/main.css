@@ -1,5 +1,7 @@
 /* @import url('https://fonts.cdnfonts.com/css/helvetica-neue-55'); */
-@import url(https://db.onlinewebfonts.com/c/0d49fc455f4a8951a42daf952412a713?family=Helvetica+Neue+Regular);
+/* @import url(https://db.onlinewebfonts.com/c/0d49fc455f4a8951a42daf952412a713?family=Helvetica+Neue+Regular); */
+
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 
 @tailwind base;
 @tailwind components;

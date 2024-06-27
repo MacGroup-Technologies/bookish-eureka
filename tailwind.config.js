@@ -20,7 +20,7 @@ export default {
         DEFAULT: '24px'
       },
       fontFamily: {
-        sans: ['Helvetica Neue Regular', 'sans-serif']
+        sans: ['Figtree', 'Helvetica Neue Regular', 'sans-serif']
       }
     }
   },
