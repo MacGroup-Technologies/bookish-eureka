@@ -32,9 +32,11 @@ const submitEmail = async function () {
             Solutions and Expert Guidance.
           </p>
           <div class="flex flex-col md:flex-row gap-5 md:gap-10">
-            <AppButton type="solid" color="" size="large" class="bg-link text-white">
-              Get Started Now
-            </AppButton>
+            <router-link to="/auth/signup">
+              <AppButton type="solid" color="" size="large" class="bg-link text-white">
+                Get Started Now
+              </AppButton>
+            </router-link>
             <AppButton
               type="outline"
               color=""
