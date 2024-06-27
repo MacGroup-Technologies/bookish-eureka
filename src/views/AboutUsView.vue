@@ -50,7 +50,7 @@ const route = useRoute()
           <h2 class="text-2xl md:text-4xl font-bold bg-[#f0f2f6]">Our Values</h2>
           <div class="bg-[#C1C7DE] pt-[2px] absolute top-5 left-[200px] right-0"></div>
         </div>
-        <div class="py-10 grid grid-cols-1 md:grid-cols-4">
+        <div class="py-10 grid gap-5 grid-cols-1 md:grid-cols-4">
           <div class="text-center">
             <svg
               class="inline h-[60px]"
