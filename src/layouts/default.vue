@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, type Component } from 'vue'
+import { computed, ref, watch, type Component } from 'vue'
 import { useRoute } from 'vue-router'
 import { useAppStore } from '@/stores/app'
 import { useTranslate } from '@/composables/useTranslate'
@@ -65,6 +65,11 @@ onClickOutside(hamburgerTarget, () => {
 })
 
 onClickOutside(menuTarget, () => {
+  menu.value = false
+})
+
+watch(route, () => {
+  hamburger.value  = false
   menu.value = false
 })
 </script>
@@ -150,12 +155,16 @@ onClickOutside(menuTarget, () => {
               class="hidden md:hidden bg-primary fixed top-[85px] bottom-0 right-0 left-0 z-[15] p-5"
               :class="{ '!flex flex-col gap-5': hamburger }"
             >
-              <AppButton type="outline" size="large" color="primary" class="!border text-white">
-                Login
-              </AppButton>
-              <AppButton type="solid" size="large" color="primary" class="bg-slate text-grey">
-                Get Started
-              </AppButton>
+              <router-link to="/auth/login" class="w-full block">
+                <AppButton type="outline" size="large" color="primary" class="w-full !border">
+                  Login
+                </AppButton>
+              </router-link>
+              <router-link to="/auth/signup" class="w-full block">
+                <AppButton type="solid" size="large" color="primary" class="w-full bg-slate text-grey">
+                  Get Started
+                </AppButton>
+              </router-link>
             </div>
           </div>
         </div>
