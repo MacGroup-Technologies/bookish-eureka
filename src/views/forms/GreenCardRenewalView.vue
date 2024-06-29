@@ -1,5 +1,17 @@
 <script lang="ts" setup>
+import { ref } from 'vue'
+
 import AppButton from '@/components/Button.vue'
+
+const email = ref('');
+
+const submitEmail = async function () {
+  try {
+    console.log(email.value)    
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 const services = [
   {
@@ -459,11 +471,400 @@ const services = [
             </div>
             <p class="my-2 opacity-85">
               Our software checks the information you provide against the eligibility requirements
-              for the immigration benefit you’re seeking, and notifies you if those requirements are
+              for the immigration benefit you're seeking, and notifies you if those requirements are
               not met.
             </p>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="bg-slate w-full flex flex-col items-center">
+      <div class="md:w-page py-10 md:py-20 px-5">
+        <h2 class="font-bold text-3xl">Application Package Assembly Service</h2>
+        <div class="my-10 grid gap-x-5 gap-y-10 grid-cols-1 md:grid-cols-2">
+          <div class="text-center">
+            <svg
+              class="inline"
+              width="100"
+              height="100"
+              viewBox="0 0 100 100"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M24.9998 75H74.9998V100H24.9998V75ZM84.9998 90V65H14.9998V90H4.99976C3.67367 90 2.4019 89.4732 1.46422 88.5355C0.52654 87.5979 -0.000244141 86.3261 -0.000244141 85V35C-0.000244141 33.6739 0.52654 32.4021 1.46422 31.4645C2.4019 30.5268 3.67367 30 4.99976 30H94.9998C96.3258 30 97.5976 30.5268 98.5353 31.4645C99.473 32.4021 99.9998 33.6739 99.9998 35V85C99.9998 86.3261 99.473 87.5979 98.5353 88.5355C97.5976 89.4732 96.3258 90 94.9998 90H84.9998ZM14.9998 40V50H29.9998V40H14.9998ZM24.9998 0H74.9998C76.3258 0 77.5976 0.526784 78.5353 1.46447C79.473 2.40215 79.9998 3.67392 79.9998 5V20H19.9998V5C19.9998 3.67392 20.5265 2.40215 21.4642 1.46447C22.4019 0.526784 23.6737 0 24.9998 0Z"
+                fill="#1847ED"
+              />
+            </svg>
+            <h3 class="text-xl font-bold opacity-75 my-3">
+              Once you complete your application, we print, assemble and mail out your application
+              package to you.
+            </h3>
+          </div>
+
+          <div class="text-center">
+            <svg
+              class="inline"
+              width="100"
+              height="100"
+              viewBox="0 0 100 100"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip0_3263_1390)">
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M0 10C0 4.47715 4.47715 0 10 0H90C95.5227 0 100 4.47715 100 10V60H63.3333C61.4924 60 60 61.4924 60 63.3333V100H10C4.47715 100 0 95.5227 0 90V10ZM80 26.6667H20V20H80V26.6667Z"
+                  fill="#1847ED"
+                />
+                <path
+                  d="M66.6666 99.9993H67.2386C69.8906 99.9993 72.434 98.946 74.3093 97.0707L97.0713 74.3087C98.9466 72.4334 100 69.89 100 67.238V66.666H66.6666V99.9993Z"
+                  fill="#1847ED"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_3263_1390">
+                  <rect width="100" height="100" fill="white" />
+                </clipPath>
+              </defs>
+            </svg>
+
+            <h3 class="text-xl font-bold opacity-75 my-3">
+              Once you complete your application, we print, assemble and mail out your application
+              package to you.
+            </h3>
+          </div>
+
+          <div class="text-center">
+            <svg
+              class="inline"
+              width="100"
+              height="101"
+              viewBox="0 0 100 101"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g clip-path="url(#clip0_3263_1393)">
+                <path
+                  d="M45.0396 2.74726C48.1139 0.990497 51.8881 0.990499 54.9624 2.74726L94.9626 25.6044C96.0126 26.2045 96.9272 26.9787 97.6786 27.8789L50.0006 53.3069L2.32349 27.8791C3.07469 26.9788 3.98938 26.2045 5.0396 25.6044L45.0396 2.74726Z"
+                  fill="#1847ED"
+                />
+                <path
+                  d="M0.000408699 34.1938C0.000136378 34.224 0 34.2542 0 34.2844V90.4155C0 95.9382 4.47716 100.415 9.99999 100.415H90.0003C95.5229 100.415 100 95.9382 100 90.4155V34.2844C100 34.254 99.9996 34.2237 99.9996 34.1934L49.9996 60.86L0.000408699 34.1938Z"
+                  fill="#1847ED"
+                />
+              </g>
+              <defs>
+                <clipPath id="clip0_3263_1393">
+                  <rect width="100" height="100" fill="white" transform="translate(0 0.416016)" />
+                </clipPath>
+              </defs>
+            </svg>
+
+            <h3 class="text-xl font-bold opacity-75 my-3">
+              Service includes a pre-paid envelope for you to mail your completed package directly
+              to the USCIS for processing.
+            </h3>
+          </div>
+
+          <div class="text-center">
+            <svg
+              class="inline"
+              width="100"
+              height="100"
+              viewBox="0 0 100 100"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1.01931 35.8462C-1.5635 34.9853 -1.58823 33.5949 1.06878 32.7092L95.5093 1.23073C98.1267 0.3599 99.6259 1.82448 98.8936 4.38749L71.9078 98.823C71.1656 101.44 69.6565 101.53 68.5482 99.0457L50.7654 59.0271L80.4528 19.4439L40.8697 49.1313L1.01931 35.8462Z"
+                fill="#1847ED"
+              />
+            </svg>
+
+            <h3 class="text-xl font-bold opacity-75 my-3">
+              We mail your application package via USPS
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="md:w-page py-10 md:py-20 px-5">
+      <div class="md:w-2/3 my-0 mx-auto text-center">
+        <h2 class="font-bold text-3xl">Reminder Service (applied too early)</h2>
+      </div>
+      <div class="mt-20 flex flex-col md:flex-row items-start justify-between gap-10 md:gap-20">
+        <img src="@/assets/imgs/notification_bell.webp" class="w-full md:w-1/3 h-auto" />
+        <div class="md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-x-5 gap-y-10">
+          <div class="text-center">
+            <div
+              class="inline-flex py-5 px-8 rounded-full font-bold text-primary-light text-3xl bg-primary-10"
+            >
+              1
+            </div>
+            <p class="my-2 opacity-85">
+              Some applications have time restrictions before they'll accept your application.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="inline-flex py-5 px-8 rounded-full font-bold text-primary-light text-3xl bg-primary-10"
+            >
+              2
+            </div>
+            <p class="my-2 opacity-85">
+              At times, customers prepare their application sooner than allowed by the USCIS.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="inline-flex py-5 px-8 rounded-full font-bold text-primary-light text-3xl bg-primary-10"
+            >
+              3
+            </div>
+            <p class="my-2 opacity-85">
+              Our software will allow you to complete your application but will remind you when you
+              can send your application to the USCIS for processing.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-slate w-full flex flex-col items-center">
+      <div class="md:w-page py-10 md:py-20 px-5">
+        <h2 class="font-bold text-3xl text-center">More Information</h2>
+        <div class="md:w-2/3 mb-10">
+          <div class="mt-10">
+            <h3 class="font-bold">
+              What are the government fees to renew or replace a Green Card?
+            </h3>
+            <p class="opacity-85 mt-2">
+              The following is a breakdown of the government fees typically associated with Form
+              I-90:<br />
+              USCIS filing fee: $455<br />
+              Biometrics fee: $85
+            </p>
+          </div>
+
+          <div class="mt-10">
+            <h3 class="font-bold">Green Card Renewal</h3>
+            <p class="opacity-85 mt-2">
+              While Permanent Resident status itself does not expire, Green Cards (the official
+              documentation of Permanent Resident status) must be renewed every 10 years. Neglecting
+              to <a href="https://www.immigrationdirect.com/green-card-guide/" target="_blank" class="underline">renew your Green Card</a> may make it difficult to travel internationally or to prove
+              your eligibility for employment in the U.S. Permanent Residents renew their Green
+              Cards every 10 years by using the Form I-90, Application to Replace Permanent Resident
+              Card. Form I-90 can also be used to replace a non-expired Green Card.
+            </p>
+          </div>
+
+          <div class="mt-10">
+            <h3 class="font-bold">
+              When should a Green Card Renewal/Replacement application (Form I-90) be filed?
+            </h3>
+            <p class="opacity-85 mt-2">
+              <ul class="list-disc list-inside opacity-85">
+                <li>Within six months of the expiration date listed on your Green Card. I-90 cannot be filed more than six months in advance.</li>
+                <li>If your Green Card has already expired, you should file Form I-90 immediately</li>
+                <li>If you have an older version of a Green Card without an expiration date, the USCIS strongly recommends that you apply for a replacement using Form I-90</li>
+              </ul>
+            </p>
+          </div>
+
+          <div class="mt-10">
+            <h3 class="font-bold">
+              Replacing your Green Card using Form I-90
+            </h3>
+            <p class="opacity-85 mt-2">
+              In addition to renewals, Form I-90 can also be used to replace a current Green Card in the following situations:
+              <ul class="list-disc list-inside opacity-85">
+                <li>Your card was lost or stolen</li>
+                <li>Your card was mutilated or destroyed</li>
+                <li>Your card has a mistake on it (like a spelling error)</li>
+                <li>Your card was never received</li>
+                <li>Your name has changed</li>
+                <li>If you became a Permanent Resident before you were 14 years old, you are required to replace your card after your 14th birthday</li>
+              </ul>
+            </p>
+          </div>
+
+          <div class="mt-10">
+            <h3 class="font-bold">
+              What if I am a Conditional Permanent Resident?
+            </h3>
+            <p class="opacity-85 mt-2">
+              Conditional Permanent Residents are given a Green Card that is only valid for two years. Form I-90 should NOT be used to renew a Conditional Permanent Resident status.<br />
+              Within 90 days of the two-year expiration date, Conditional Permanent Residents are required to file a petition to “remove the conditions” from their Green Card. If your conditional status was based on a marriage, you must file Form I-751, Petition to Remove Conditions on Residence. If your conditional status was based on being an investor, you must file Form I-829, Petition by Entrepreneur to Remove Conditions on Permanent Resident Status.<br />
+              Once your petition is approved, you will receive a new Green Card, valid for 10 years. After that point, the typical renewal process (including Form I-90) should be used.
+            </p>
+          </div>
+
+          <div class="mt-10">
+            <h3 class="font-bold">Green Card Renewal/Replacement Appeal</h3>
+            <p class="opacity-85 mt-2">
+              Applications for Green Card Renewal/Replacement may be denied for various reasons. Two of the most common reasons would be criminal activity and adjustment of immigrant category.<br />
+              Criminal activity means that you committed a crime and are therefore no longer seen as a valuable asset to American society. However, this is really only applicable to major crimes such as felonies. Minor crimes such as speeding tickets would probably not result in a denial of a Green Card Renewal/Replacement application.<br />
+              Adjustment of immigrant category means that your circumstance has changed in such a way that the reason you were granted a green card is no longer applicable. For example, if you were granted a Green Card through marriage to a US citizen but have since gotten divorced, your application for a Green Card may be denied.<br />
+              If your Green Card Renewal/Replacement application was denied, you do have an opportunity to ask USCIS to rethink their decision. You may submit a motion to reopen or a motion to reconsider with the same office that denied your application. This will cause USCIS to reexamine your case and reconsider their decision.<br />
+              In the motion to reopen, be sure to clearly state and provide evidence for why your application was wrongly denied and why USCIS should reconsider.
+            </p>
+          </div>
+
+          <div class="mt-10">
+            <h3 class="font-bold">Green Card INA</h3>
+            <p class="opacity-85 mt-2">
+              All modern U.S. immigration law is filed under the Immigration and Nationality Act (INA). Section 264 of the INA is about Green Cards. It reads as such:<br />
+              “Every alien in the United States . . . shall be issued a certificate of alien registration or an alien registration receipt card in such form and manner and at such time as shall be prescribed under regulations . . ..”<br />
+              This means that every U.S. immigrant shall be granted a Green Card. The INA also reads:<br />
+              “Every alien, eighteen years of age and over, shall at all times carry with him and have in his personal possession any certificate of alien registration or alien registration receipt card issued to him . . .. Any alien who fails to comply with [these provisions] shall be guilty of a misdemeanor …”<br />
+              This means that if you are an immigrant, you must always carry your Green Card with you.
+            </p>
+          </div>
+        </div>
+
+        <router-link to="/applications?form=green-card-renewal" class="inline-block">
+          <AppButton type="solid" color="" size="large" class="w-full bg-link text-white">
+            Start My Application
+            <svg
+              width="21"
+              height="20"
+              viewBox="0 0 21 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M13.3288 4.62847C13.0034 4.29051 12.4758 4.29051 12.1503 4.62847C11.8249 4.96642 11.8249 5.51435 12.1503 5.8523L15.3921 9.21875L3.15625 9.21875C2.72478 9.21875 2.375 9.56853 2.375 10C2.375 10.4315 2.72478 10.7812 3.15625 10.7812L15.3921 10.7813L12.1503 14.1477C11.8249 14.4857 11.8249 15.0336 12.1503 15.3715C12.4758 15.7095 13.0034 15.7095 13.3288 15.3715L17.9122 10.6119C18.2376 10.274 18.2376 9.72603 17.9122 9.38808L13.3288 4.62847Z"
+                fill="white"
+              />
+            </svg>
+          </AppButton>
+        </router-link>
+      </div>
+    </div>
+
+    <div class="md:w-page py-10 md:py-20 px-5">
+      <div class="md:w-2/3 my-0 mx-auto text-center">
+        <h2 class="font-bold text-3xl">Immigration Resources</h2>
+        <p class="mt-3 mb-5 opacity-85">
+          We understand that navigating the immigration process can be daunting. That's why we're committed to providing you with the resources you need to make informed decisions and progress confidently toward your immigration goals.
+        </p>
+      </div>
+      <div class="mt-20 flex overflow-x-auto items-start justify-between gap-10 pb-10">
+        <div class="md:w-1/3 flex-shrink-0 text-center">
+          <div class="bg-[#EDEDEE] rounded-xl flex items-center justify-center p-10">
+            <img
+              src="@/assets/imgs/form_placeholder.webp"
+              class="w-[450px] rounded-lg"
+              width="450px"
+            />
+          </div>
+          <h3 class="font-bold my-5">Understanding Visa Types</h3>
+          <router-link to="" class="inline-block">
+            <AppButton type="solid" color="" size="large" class="w-full bg-link text-white">
+              Learn More
+            </AppButton>
+          </router-link>
+        </div>
+
+        <div class="md:w-1/3 flex-shrink-0 text-center">
+          <div class="bg-[#EDEDEE] rounded-xl flex items-center justify-center p-10">
+            <img
+              src="@/assets/imgs/form_placeholder.webp"
+              class="w-[450px] rounded-lg"
+              width="450px"
+            />
+          </div>
+          <h3 class="font-bold my-5">Navigating the Citizenship Process</h3>
+          <router-link to="" class="inline-block">
+            <AppButton type="solid" color="" size="large" class="w-full bg-link text-white">
+              Learn More
+            </AppButton>
+          </router-link>
+        </div>
+
+        <div class="md:w-1/3 flex-shrink-0 text-center">
+          <div class="bg-[#EDEDEE] rounded-xl flex items-center justify-center p-10">
+            <img
+              src="@/assets/imgs/form_placeholder.webp"
+              class="w-[450px] rounded-lg"
+              width="450px"
+            />
+          </div>
+          <h3 class="font-bold my-5">Navigating the Citizenship Process</h3>
+          <router-link to="" class="inline-block">
+            <AppButton type="solid" color="" size="large" class="w-full bg-link text-white">
+              Learn More
+            </AppButton>
+          </router-link>
+        </div>
+
+        <div class="md:w-1/3 flex-shrink-0 text-center">
+          <div class="bg-[#EDEDEE] rounded-xl flex items-center justify-center p-10">
+            <img
+              src="@/assets/imgs/form_placeholder.webp"
+              class="w-[450px] rounded-lg"
+              width="450px"
+            />
+          </div>
+          <h3 class="font-bold my-5">Adjustment of Status Made Simple</h3>
+          <router-link to="" class="inline-block">
+            <AppButton type="solid" color="" size="large" class="w-full bg-link text-white">
+              Learn More
+            </AppButton>
+          </router-link>
+        </div>
+
+        <div class="md:w-1/3 flex-shrink-0 text-center">
+          <div class="bg-[#EDEDEE] rounded-xl flex items-center justify-center p-10">
+            <img
+              src="@/assets/imgs/form_placeholder.webp"
+              class="w-[450px] rounded-lg"
+              width="450px"
+            />
+          </div>
+          <h3 class="font-bold my-5">Lorem ipsum dolor sit amet</h3>
+          <router-link to="" class="inline-block">
+            <AppButton type="solid" color="" size="large" class="w-full bg-link text-white">
+              Learn More
+            </AppButton>
+          </router-link>
+        </div>
+      </div>
+    </div>
+
+    <div class="md:w-page px-5 py-10 md:py-20">
+      <div class="bg-black text-white rounded text-center p-10 md:p-20">
+        <h3 class="font-bold text-3xl">Stay Informed with Our Newsletter</h3>
+        <p class="md:w-2/3 my-10 mx-auto">
+          Sign up for our newsletter to receive the latest updates, news, and insights on
+          immigration trends, policy changes, and helpful tips for navigating the immigration
+          process. Join our community of subscribers today and stay informed every step of the
+          way.
+        </p>
+        <form @submit.prevent="submitEmail()" class="md:w-2/3 my-0 mx-auto">
+          <div
+            class="w-full bg-white rounded-[8px] overflow-hidden flex p-2 border-2 border-transparent focus-within:border-primary-light"
+          >
+            <input
+              v-model="email"
+              type="email"
+              class="text-lg w-full focus:outline-none px-2 text-black"
+              placeholder="Enter your email"
+              required
+            />
+            <AppButton type="solid" color="" size="medium" class="bg-primary-light" mode="submit"
+              >Subscribe</AppButton
+            >
+          </div>
+        </form>
       </div>
     </div>
   </section>
