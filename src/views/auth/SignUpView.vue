@@ -1,33 +1,71 @@
 <script lang="ts" setup>
-import { ref, reactive } from 'vue';
+import { ref, reactive } from 'vue'
+import { useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/userStore'
 
-import AppButton from '@/components/Button.vue';
+import { useNotification } from '@kyvg/vue3-notification'
+import { signUserUp as signupService } from './services/auth'
+
+import AppButton from '@/components/Button.vue'
+
+const router = useRouter()
+const { notify } = useNotification()
+const { setAuth, setUser } = useUserStore()
 
 const loading = ref(false)
 const isPassword = ref(true)
 const acceptPolicy = ref(false)
-const auth = reactive({ email: '', password: '', fullname: '' })
+const auth = reactive({ email: '', password: '', first_name: '', last_name: '' })
 
 const signUserUp = async function () {
   loading.value = true
-}
 
+  try {
+    const response = await signupService(auth)
+    setAuth({ access_token: response.data.data.access, refresh_token: response.data.data.refresh })
+    setUser({ ...response.data.data.user })
+
+    router.push('/')
+  } catch (error) {
+    notify({
+      title: 'An Error Occurred',
+      text: error.message,
+      type: 'error'
+    })
+  }
+
+  loading.value = false
+}
 </script>
 
 <template>
-  <section class="md:w-1/2 md:min-h-[70vh] p-5 my-10 mx-5 md:mx-auto border-2 rounded-[20px] bg-[#fff]">
+  <section
+    class="md:w-1/2 md:min-h-[70vh] p-5 my-10 mx-5 md:mx-auto border-2 rounded-[20px] bg-[#fff]"
+  >
     <h1 class="font-bold text-3xl text-center mb-7">Create your account</h1>
-    <form @submit.prevent="signUserUp()" class="md:w-2/3 my-0 mx-auto">
-      
-      <div class="text-black flex flex-col gap-1 mb-5">
-        <label for="email" class="font-[600]">Full Name</label>
-        <input
-          v-model="auth.fullname"
-          type="text"
-          placeholder="John Doe"
-          class="border bg-[#fff] text-lg p-2 rounded-[5px] w-full focus:outline-primary-light"
-          required
-        />
+    <form @submit.prevent="signUserUp()" class="md:w-5/6 my-0 mx-auto">
+      <div class="flex flex-col md:flex-row md:gap-5">
+        <div class="text-black flex flex-col gap-1 mb-5 md:w-1/2">
+          <label for="email" class="font-[600]">First Name</label>
+          <input
+            v-model="auth.first_name"
+            type="text"
+            placeholder="John"
+            class="border bg-[#fff] text-lg p-2 rounded-[5px] w-full focus:outline-primary-light"
+            required
+          />
+        </div>
+
+        <div class="text-black flex flex-col gap-1 mb-5 md:w-1/2">
+          <label for="email" class="font-[600]">Last Name</label>
+          <input
+            v-model="auth.last_name"
+            type="text"
+            placeholder="Doe"
+            class="border bg-[#fff] text-lg p-2 rounded-[5px] w-full focus:outline-primary-light"
+            required
+          />
+        </div>
       </div>
 
       <div class="text-black flex flex-col gap-1 mb-5">
@@ -51,7 +89,10 @@ const signUserUp = async function () {
             class="border bg-[#fff] text-lg p-2 rounded-[5px] w-full focus:outline-primary-light"
             required
           />
-          <div class="absolute top-0 bottom-0 right-0 flex items-center pr-2 cursor-pointer" @click="isPassword = !isPassword">
+          <div
+            class="absolute top-0 bottom-0 right-0 flex items-center pr-2 cursor-pointer"
+            @click="isPassword = !isPassword"
+          >
             <svg
               v-if="!isPassword"
               class="w-[24px]"
@@ -108,17 +149,28 @@ const signUserUp = async function () {
           By checking this box, you confirm that you've read and accepted our
           <router-link to="/terms-of-service" class="text-primary-light underline">
             Terms of Service
-          </router-link> and 
+          </router-link>
+          and
           <router-link to="/privacy-policy" class="text-primary-light underline">
-            Privacy Policy
-          </router-link>.
+            Privacy Policy </router-link
+          >.
         </label>
       </div>
 
-      <AppButton type="solid" mode="submit" class="bg-primary-light text-white w-full" size="medium" :loading="loading">Sign Up</AppButton>
+      <AppButton
+        type="solid"
+        mode="submit"
+        class="bg-primary-light text-white w-full"
+        size="medium"
+        :loading="loading"
+        :disabled="!acceptPolicy"
+      >
+        Sign Up
+      </AppButton>
 
       <div class="text-center mt-5">
-        Already have an account? <router-link to="/auth/login" class="text-primary-light">Login</router-link>
+        Already have an account?
+        <router-link to="/auth/login" class="text-primary-light">Login</router-link>
       </div>
     </form>
   </section>

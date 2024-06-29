@@ -20,6 +20,17 @@ const router = createRouter({
           path: 'about-us',
           name: 'AboutUsView',
           component: () => import('../views/AboutUsView.vue'),
+        },
+        {
+          path: 'forms/',
+          name: 'ApplicationForms',
+          children: [
+            {
+              path: 'green-card-renewal',
+              name: 'GreenCardRenewwal',
+              component: () => import('../views/forms/GreenCardRenewalView.vue')
+            },
+          ]
         }
       ]
     },

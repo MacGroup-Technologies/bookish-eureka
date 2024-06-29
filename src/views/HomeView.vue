@@ -19,7 +19,7 @@ const submitEmail = async function () {
 
 <template>
   <main>
-    <div class="flex flex-col items-center">
+    <section class="flex flex-col items-center">
       <div
         class="md:h-[90vh] px-5 py-10 md:w-page flex flex-col md:flex-row gap-16 md:gap-48 justify-between items-center bg-white"
       >
@@ -526,6 +526,6 @@ const submitEmail = async function () {
           </form>
         </div>
       </div>
-    </div>
+    </section>
   </main>
 </template>
