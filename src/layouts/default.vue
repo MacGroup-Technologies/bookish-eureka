@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { computed, ref, watch, type Component } from 'vue'
-import { useRoute } from 'vue-router'
-import { useAppStore } from '@/stores/app'
-import { useTranslate } from '@/composables/useTranslate'
+import { useRoute, useRouter } from 'vue-router'
 import { onClickOutside } from '@vueuse/core'
+import { isEmpty } from 'lodash'
+
+import { useAppStore } from '@/stores/app'
+import { useUserStore } from '@/stores/userStore'
+import { useTranslate } from '@/composables/useTranslate'
+import { logOutUser as logoutService } from '@/views/auth/services/auth'
+import { useNotification } from '@kyvg/vue3-notification'
 
 import AppLogo from '@/components/icons/AppLogo.vue'
 import USAFlag from '@/components/icons/USA.vue'
@@ -13,6 +18,9 @@ import DropDown from '@/components/DropDown.vue'
 import AppButton from '@/components/Button.vue'
 
 const route = useRoute()
+const router = useRouter()
+const { user, logUserOut } = useUserStore()
+const { notify } = useNotification()
 
 const announcement = ref(true)
 const hamburger = ref(false)
@@ -57,7 +65,31 @@ const handleDropDown = function (
     | { label: string; slot: any }[]
     | { label: string; slot: any; subtext: string }[]
 ) {
-  console.log(option)
+  if (typeof option === 'string') {
+    router.push('/forms/' + (option as string).toLocaleLowerCase().replace(/ /g, '-'))
+  }
+}
+
+const logOutUser = async function () {
+  try {
+    await logoutService()
+    logUserOut()
+    notify({
+      title: 'You are logged out',
+      text: 'Please sign in to continue',
+      type: 'success'
+    })
+
+    router.push('/')
+  } catch (error) {
+    console.log(error)
+
+    notify({
+      title: 'An Error Occurred',
+      text: error.message,
+      type: 'error'
+    })
+  }
 }
 
 onClickOutside(hamburgerTarget, () => {
@@ -69,7 +101,7 @@ onClickOutside(menuTarget, () => {
 })
 
 watch(route, () => {
-  hamburger.value  = false
+  hamburger.value = false
   menu.value = false
 })
 </script>
@@ -123,7 +155,7 @@ watch(route, () => {
           </router-link>
           <div class="text-white flex justify-between items-center gap-5">
             <DropDown :title="selectedLang" :options="lang" @select="setLang" />
-            <div class="hidden md:flex items-center justify-between gap-3">
+            <div class="hidden md:flex items-center justify-between gap-3" v-if="isEmpty(user.email)">
               <router-link to="/auth/login">
                 <AppButton type="outline" size="large" color="primary" class="!border">
                   Login
@@ -134,6 +166,47 @@ watch(route, () => {
                   Get Started
                 </AppButton>
               </router-link>
+            </div>
+            <div class="hidden md:flex items-center justify-between gap-3" v-else>
+              <router-link to="/application">
+                <AppButton type="solid" size="large" class="bg-slate text-[#1E202C] text-sm">
+                  <svg
+                    width="20"
+                    height="21"
+                    viewBox="0 0 20 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M10.0003 3.92448C6.3228 3.92448 3.33366 6.92364 3.33366 10.6331C3.33366 11.685 3.57367 12.6781 4.00068 13.562C4.20089 13.9764 4.02724 14.4746 3.61282 14.6748C3.19841 14.875 2.70017 14.7014 2.49997 14.287C1.96599 13.1817 1.66699 11.9412 1.66699 10.6331C1.66699 6.01194 5.39358 2.25781 10.0003 2.25781C14.6071 2.25781 18.3337 6.01194 18.3337 10.6331C18.3337 11.9412 18.0347 13.1817 17.5007 14.287C17.3005 14.7014 16.8022 14.875 16.3878 14.6748C15.9734 14.4746 15.7998 13.9764 16 13.562C16.427 12.6781 16.667 11.685 16.667 10.6331C16.667 6.92364 13.6778 3.92448 10.0003 3.92448Z"
+                      fill="#1E202C"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M12.0932 14.1948C13.3334 13.473 14.167 12.1294 14.167 10.5911C14.167 8.28996 12.3015 6.42448 10.0003 6.42448C7.69914 6.42448 5.83366 8.28996 5.83366 10.5911C5.83366 12.1294 6.66728 13.473 7.90741 14.1948C6.63187 14.5405 5.65604 15.1703 4.94825 15.8033C4.42506 16.2713 4.04925 16.7395 3.80227 17.0939C3.67847 17.2716 3.58606 17.4221 3.52286 17.5318C3.49123 17.5866 3.46682 17.6314 3.44937 17.6645C3.44065 17.681 3.43365 17.6946 3.42835 17.705L3.42168 17.7184L3.41929 17.7232L3.41832 17.7252L3.4179 17.726C3.41771 17.7264 3.41752 17.7268 4.16699 18.0911L3.41752 17.7268C3.21631 18.1407 3.38874 18.6394 3.80266 18.8406C4.21546 19.0413 4.71254 18.8703 4.91482 18.4588L4.91529 18.4579L4.92306 18.4429C4.93141 18.4271 4.94593 18.4003 4.96683 18.3641C5.0087 18.2914 5.0758 18.1815 5.16974 18.0467C5.35823 17.7762 5.65082 17.411 6.05935 17.0456C6.86843 16.322 8.13596 15.5911 10.0003 15.5911C11.8647 15.5911 13.1322 16.322 13.9413 17.0456C14.3498 17.411 14.6424 17.7762 14.8309 18.0467C14.9249 18.1815 14.992 18.2914 15.0338 18.3641C15.0547 18.4003 15.0692 18.4271 15.0776 18.4429L15.0854 18.4579L15.0858 18.4588C15.2881 18.8703 15.7852 19.0413 16.198 18.8406C16.6119 18.6394 16.7843 18.1407 16.5831 17.7268L15.8337 18.0911C16.5831 17.7268 16.5829 17.7264 16.5828 17.726L16.5814 17.7232L16.579 17.7184L16.5723 17.705C16.567 17.6946 16.56 17.681 16.5513 17.6645C16.5338 17.6314 16.5094 17.5866 16.4778 17.5318C16.4146 17.4221 16.3222 17.2716 16.1984 17.0939C15.9514 16.7395 15.5756 16.2713 15.0524 15.8033C14.3446 15.1703 13.3688 14.5405 12.0932 14.1948ZM10.0003 13.0911C11.381 13.0911 12.5003 11.9719 12.5003 10.5911C12.5003 9.21043 11.381 8.09115 10.0003 8.09115C8.61961 8.09115 7.50033 9.21043 7.50033 10.5911C7.50033 11.9719 8.61961 13.0911 10.0003 13.0911Z"
+                      fill="#1E202C"
+                    />
+                  </svg>
+
+                  My Application
+                </AppButton>
+              </router-link>
+              <router-link to="/forms">
+                <AppButton type="solid" size="large" class="bg-slate text-[#1E202C] text-sm">
+                  New Application
+                </AppButton>
+              </router-link>
+              <a href="logout" @click.prevent="logOutUser()">
+                <AppButton
+                  type="outline"
+                  size="large"
+                  class="border border-slate text-slate text-sm"
+                >
+                  Sign Out
+                </AppButton>
+              </a>
+              <div class="">Welcome, {{ user.first_name }}</div>
             </div>
           </div>
           <div class="md:hidden" ref="hamburgerTarget">
@@ -155,16 +228,64 @@ watch(route, () => {
               class="hidden md:hidden bg-primary fixed top-[85px] bottom-0 right-0 left-0 z-[15] p-5"
               :class="{ '!flex flex-col gap-5': hamburger }"
             >
-              <router-link to="/auth/login" class="w-full block">
-                <AppButton type="outline" size="large" color="primary" class="w-full !border">
-                  Login
-                </AppButton>
-              </router-link>
-              <router-link to="/auth/signup" class="w-full block">
-                <AppButton type="solid" size="large" color="primary" class="w-full bg-slate text-grey">
-                  Get Started
-                </AppButton>
-              </router-link>
+              <template v-if="isEmpty(user.email)">
+                <router-link to="/auth/login" class="w-full block">
+                  <AppButton type="outline" size="large" color="primary" class="w-full !border">
+                    Login
+                  </AppButton>
+                </router-link>
+                <router-link to="/auth/signup" class="w-full block">
+                  <AppButton
+                    type="solid"
+                    size="large"
+                    color="primary"
+                    class="w-full bg-slate text-grey"
+                  >
+                    Get Started
+                  </AppButton>
+                </router-link>
+              </template>
+              <div class="flex flex-col justify-between gap-5" v-else>
+                <router-link to="/application" class="w-full">
+                  <AppButton type="solid" size="large" class="bg-slate text-[#1E202C] text-sm w-full">
+                    <svg
+                      width="20"
+                      height="21"
+                      viewBox="0 0 20 21"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M10.0003 3.92448C6.3228 3.92448 3.33366 6.92364 3.33366 10.6331C3.33366 11.685 3.57367 12.6781 4.00068 13.562C4.20089 13.9764 4.02724 14.4746 3.61282 14.6748C3.19841 14.875 2.70017 14.7014 2.49997 14.287C1.96599 13.1817 1.66699 11.9412 1.66699 10.6331C1.66699 6.01194 5.39358 2.25781 10.0003 2.25781C14.6071 2.25781 18.3337 6.01194 18.3337 10.6331C18.3337 11.9412 18.0347 13.1817 17.5007 14.287C17.3005 14.7014 16.8022 14.875 16.3878 14.6748C15.9734 14.4746 15.7998 13.9764 16 13.562C16.427 12.6781 16.667 11.685 16.667 10.6331C16.667 6.92364 13.6778 3.92448 10.0003 3.92448Z"
+                        fill="#1E202C"
+                      />
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M12.0932 14.1948C13.3334 13.473 14.167 12.1294 14.167 10.5911C14.167 8.28996 12.3015 6.42448 10.0003 6.42448C7.69914 6.42448 5.83366 8.28996 5.83366 10.5911C5.83366 12.1294 6.66728 13.473 7.90741 14.1948C6.63187 14.5405 5.65604 15.1703 4.94825 15.8033C4.42506 16.2713 4.04925 16.7395 3.80227 17.0939C3.67847 17.2716 3.58606 17.4221 3.52286 17.5318C3.49123 17.5866 3.46682 17.6314 3.44937 17.6645C3.44065 17.681 3.43365 17.6946 3.42835 17.705L3.42168 17.7184L3.41929 17.7232L3.41832 17.7252L3.4179 17.726C3.41771 17.7264 3.41752 17.7268 4.16699 18.0911L3.41752 17.7268C3.21631 18.1407 3.38874 18.6394 3.80266 18.8406C4.21546 19.0413 4.71254 18.8703 4.91482 18.4588L4.91529 18.4579L4.92306 18.4429C4.93141 18.4271 4.94593 18.4003 4.96683 18.3641C5.0087 18.2914 5.0758 18.1815 5.16974 18.0467C5.35823 17.7762 5.65082 17.411 6.05935 17.0456C6.86843 16.322 8.13596 15.5911 10.0003 15.5911C11.8647 15.5911 13.1322 16.322 13.9413 17.0456C14.3498 17.411 14.6424 17.7762 14.8309 18.0467C14.9249 18.1815 14.992 18.2914 15.0338 18.3641C15.0547 18.4003 15.0692 18.4271 15.0776 18.4429L15.0854 18.4579L15.0858 18.4588C15.2881 18.8703 15.7852 19.0413 16.198 18.8406C16.6119 18.6394 16.7843 18.1407 16.5831 17.7268L15.8337 18.0911C16.5831 17.7268 16.5829 17.7264 16.5828 17.726L16.5814 17.7232L16.579 17.7184L16.5723 17.705C16.567 17.6946 16.56 17.681 16.5513 17.6645C16.5338 17.6314 16.5094 17.5866 16.4778 17.5318C16.4146 17.4221 16.3222 17.2716 16.1984 17.0939C15.9514 16.7395 15.5756 16.2713 15.0524 15.8033C14.3446 15.1703 13.3688 14.5405 12.0932 14.1948ZM10.0003 13.0911C11.381 13.0911 12.5003 11.9719 12.5003 10.5911C12.5003 9.21043 11.381 8.09115 10.0003 8.09115C8.61961 8.09115 7.50033 9.21043 7.50033 10.5911C7.50033 11.9719 8.61961 13.0911 10.0003 13.0911Z"
+                        fill="#1E202C"
+                      />
+                    </svg>
+
+                    My Application
+                  </AppButton>
+                </router-link>
+                <router-link to="/forms" class="w-full">
+                  <AppButton type="solid" size="large" class="bg-slate text-[#1E202C] text-sm w-full">
+                    New Application
+                  </AppButton>
+                </router-link>
+                <a href="logout" @click.prevent="logOutUser()" class="w-full">
+                  <AppButton
+                    type="outline"
+                    size="large"
+                    class="border border-slate text-slate text-sm w-full"
+                  >
+                    Sign Out
+                  </AppButton>
+                </a>
+                <div class="">Welcome, {{ user.first_name }}</div>
+              </div>
             </div>
           </div>
         </div>
@@ -199,8 +320,8 @@ watch(route, () => {
           :class="{ '!flex flex-col px-5 absolute z-[9] top-[50px] left-0 right-0 shadow': menu }"
         >
           <router-link
-            to="about-us"
-            :class="{ 'bg-primary text-white' : route.path === '/about-us' }"
+            to="/about-us"
+            :class="{ 'bg-primary text-white': route.path === '/about-us' }"
             class="md:flex-shrink-0 flex items-center p-3 text-sm md:text-base text-black hover:bg-primary hover:text-white transition ease-in-out"
           >
             About Us
@@ -374,7 +495,7 @@ watch(route, () => {
             </svg>
           </router-link>
           <router-link
-            to="contact-us"
+            to="/contact-us"
             class="md:flex-shrink-0 flex items-center p-3 text-sm md:text-base text-black hover:bg-primary hover:text-white transition ease-in-out"
           >
             Contatct Us

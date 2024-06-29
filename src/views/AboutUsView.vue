@@ -1,14 +1,27 @@
 <script lang="ts" setup>
-import { useRoute } from 'vue-router'
+import { ref } from 'vue'
 
-const route = useRoute()
+import AppButton from '@/components/Button.vue'
+import AppBox from '@/components/Box.vue'
+import TestimonialSection from '@/components/Testimonial.vue'
+import FqaSection from '@/components/fqa.vue'
+
+const email = ref('');
+
+const submitEmail = async function () {
+  try {
+    console.log(email.value)    
+  } catch (error) {
+    console.log(error)
+  }
+}
 </script>
 
 <template>
   <main class="flex flex-col items-center">
     <section class="md:w-page px-5">
       <div class="py-10">
-        <h1 class="capitalize text-3xl md:text-5xl font-bold text-primary mb-3">
+        <h1 class="capitalize text-3xl md:text-4xl font-bold text-primary mb-3">
           About <span class="text-red">Us</span>
         </h1>
         <p class="md:w-1/2">
@@ -20,7 +33,7 @@ const route = useRoute()
 
       <div class="flex flex-col md:flex-row items-center justify-between">
         <div class="md:w-1/2">
-          <h3 class="text-2xl md:text-4xl text-black font-bold mb-2">Our Mission</h3>
+          <h3 class="text-3xl text-black font-bold mb-2">Our Mission</h3>
           <p class="">
             Our mission is to provide accessible, accurate, and reliable immigration assistance. We
             strive to empower our clients by offering the tools and support needed to successfully
@@ -32,7 +45,7 @@ const route = useRoute()
 
       <div class="flex flex-col md:flex-row items-center justify-between">
         <div class="md:w-1/2 md:order-2">
-          <h3 class="text-2xl md:text-4xl text-black font-bold mb-2">Our Vision</h3>
+          <h3 class="text-3xl text-black font-bold mb-2">Our Vision</h3>
           <p class="">
             We envision a world where everyone has the opportunity to live, work, and thrive in
             their country of choice. At Temu Immigration Document Preparation Services, we commit to
@@ -44,10 +57,10 @@ const route = useRoute()
       </div>
     </section>
 
-    <section class="bg-[#F0F2F6] flex items-center justify-center w-full">
+    <section class="bg-slate flex items-center justify-center w-full">
       <div class="md:w-page px-5 py-20">
         <div class="relative">
-          <h2 class="text-2xl md:text-4xl font-bold bg-[#f0f2f6]">Our Values</h2>
+          <h2 class="text-3xl font-bold bg-[#f0f2f6]">Our Values</h2>
           <div class="bg-[#C1C7DE] pt-[2px] absolute top-5 left-[200px] right-0"></div>
         </div>
         <div class="py-10 grid gap-5 grid-cols-1 md:grid-cols-4">
@@ -65,7 +78,7 @@ const route = useRoute()
                 fill="#1847ED"
               />
             </svg>
-            <h3 class="font-bold text-2xl my-3">Compassion</h3>
+            <h3 class="font-bold text-xl my-3">Compassion</h3>
             <p class="opacity-85">
               We treat every client with respect and understanding, recognizing the personal nature
               of immigration.
@@ -85,7 +98,7 @@ const route = useRoute()
               />
             </svg>
 
-            <h3 class="font-bold text-2xl my-3">Integrity</h3>
+            <h3 class="font-bold text-xl my-3">Integrity</h3>
             <p class="opacity-85">
               We render our services with unwavering honesty, transparency, and fairness in all our
               interactions.
@@ -107,7 +120,7 @@ const route = useRoute()
               />
             </svg>
 
-            <h3 class="font-bold text-2xl my-3">Excellence</h3>
+            <h3 class="font-bold text-xl my-3">Excellence</h3>
             <p class="opacity-85">
               We aim for the highest quality in all our services, ensuring that our tools and
               resources are the best available.
@@ -151,7 +164,7 @@ const route = useRoute()
               />
             </svg>
 
-            <h3 class="font-bold text-2xl my-3">Innovation</h3>
+            <h3 class="font-bold text-xl my-3">Innovation</h3>
             <p class="opacity-85">
               We continually improve our services and software to meet the evolving needs of our
               clients.
@@ -160,5 +173,145 @@ const route = useRoute()
         </div>
       </div>
     </section>
+
+    <section class="md:w-page px-5 py-10 md:py-20 bg-white">
+      <div class="md:w-2/3 my-0 mx-auto text-center">
+        <h2 class="font-bold text-3xl">Popular Preparation Services</h2>
+        <p class="mt-3 mb-5 opacity-85">
+          Discover our top services for smooth immigration. From Green Card renewal to U.S.
+          citizenship, we've got you covered. Simplify your journey with us.
+        </p>
+        <router-link to="/uscis-forms" class="inline-block">
+          <AppButton
+            type="outline"
+            size="small"
+            color=""
+            class="bg-white flex gap-3 mx-auto my-0 border-[3px] border-primary-light text-primary-light"
+          >
+            <svg
+              width="24"
+              height="26"
+              viewBox="0 0 24 26"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M14.5722 17.8399C13.1362 18.7337 11.4409 19.25 9.625 19.25C4.44733 19.25 0.25 15.0527 0.25 9.875C0.25 4.69733 4.44733 0.5 9.625 0.5C14.8027 0.5 19 4.69733 19 9.875C19 12.3321 18.0547 14.5685 16.508 16.2402L23.6339 23.3661C24.122 23.8543 24.122 24.6457 23.6339 25.1339C23.1457 25.622 22.3543 25.622 21.8661 25.1339L14.5722 17.8399ZM16.5 9.875C16.5 13.672 13.422 16.75 9.625 16.75C5.82804 16.75 2.75 13.672 2.75 9.875C2.75 6.07804 5.82804 3 9.625 3C13.422 3 16.5 6.07804 16.5 9.875Z"
+                fill="currentColor"
+              />
+            </svg>
+            Search Immigration Form
+          </AppButton>
+        </router-link>
+      </div>
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-5">
+        <router-link to="/green-card-renewal">
+          <AppBox>
+            <template #heading> Green Card Renewal or Replacement </template>
+            <template #body>
+              <p class="opacity-75">Form I-90 Preparation Service</p>
+            </template>
+          </AppBox>
+        </router-link>
+
+        <router-link to="">
+          <AppBox>
+            <template #heading> U.S. Citizenship Form </template>
+            <template #body>
+              <p class="opacity-75">N-400 Preparation Service</p>
+            </template>
+          </AppBox>
+        </router-link>
+
+        <router-link to="">
+          <AppBox>
+            <template #heading> Replace Certificate of Citizenship </template>
+            <template #body>
+              <p class="opacity-75">Form N-565 Preparation Service</p>
+            </template>
+          </AppBox>
+        </router-link>
+
+        <router-link to="">
+          <AppBox>
+            <template #heading> B-2 Tourist Visa </template>
+            <template #body>
+              <p class="opacity-75">Application Guide Package</p>
+            </template>
+          </AppBox>
+        </router-link>
+
+        <router-link to="">
+          <AppBox>
+            <template #heading> Employment Authorization Document (EAD) </template>
+            <template #body>
+              <p class="opacity-75">Form I-765 Preparation Service</p>
+            </template>
+          </AppBox>
+        </router-link>
+
+        <router-link to="">
+          <AppBox>
+            <template #heading> Petition for Alien Relative (Green Card) </template>
+            <template #body>
+              <p class="opacity-75">Form I-130 Preparation Service</p>
+            </template>
+          </AppBox>
+        </router-link>
+      </div>
+    </section>
+
+    <div class="md:w-page px-5 py-10 md:py-20">
+      <div class="md:w-2/3 my-0 mx-auto text-center">
+        <h2 class="font-bold text-3xl">Trusted by Our Clients</h2>
+        <p class="mt-3 mb-5 opacity-85">
+          We take pride in helping individuals and families achieve their immigration goals. But
+          don't just take our word for it—here's what some of our satisfied clients have to say
+          about their experience with us:
+        </p>
+        <div class="px-5 w-full">
+          <TestimonialSection />
+        </div>
+      </div>
+    </div>
+
+    <div class="md:w-page px-5 py-10 md:py-20">
+      <div class="md:w-2/3 my-0 mx-auto text-center">
+        <h2 class="font-bold text-3xl">Frequently asked questions</h2>
+        <p class="mt-3 mb-5 opacity-85">Your Immigration Questions Answered</p>
+        <div class="px-5 w-full">
+          <FqaSection />
+        </div>
+      </div>
+    </div>
+
+    <div class="md:w-page px-5 py-10 md:py-20">
+      <div class="bg-black text-white rounded text-center p-10 md:p-20">
+        <h3 class="font-bold text-3xl">Stay Informed with Our Newsletter</h3>
+        <p class="md:w-2/3 my-10 mx-auto">
+          Sign up for our newsletter to receive the latest updates, news, and insights on
+          immigration trends, policy changes, and helpful tips for navigating the immigration
+          process. Join our community of subscribers today and stay informed every step of the way.
+        </p>
+        <form @submit.prevent="submitEmail()" class="md:w-2/3 my-0 mx-auto">
+          <div
+            class="w-full bg-white rounded-[8px] overflow-hidden flex p-2 border-2 border-transparent focus-within:border-primary-light"
+          >
+            <input
+              v-model="email"
+              type="email"
+              class="text-lg w-full focus:outline-none px-2 text-black"
+              placeholder="Enter your email"
+              required
+            />
+            <AppButton type="solid" color="" size="medium" class="bg-primary-light" mode="submit"
+              >Subscribe</AppButton
+            >
+          </div>
+        </form>
+      </div>
+    </div>
   </main>
 </template>

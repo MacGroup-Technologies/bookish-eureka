@@ -1,7 +1,17 @@
 <script lang="ts" setup>
 import { ref, reactive } from 'vue';
+import { useRouter } from 'vue-router'
+import { useUserStore } from '@/stores/userStore';
+
+import { useNotification } from '@kyvg/vue3-notification';
+import { logUserIn as loginService } from './services/auth';
+import { getUserProfile } from '@/services/user';
 
 import AppButton from '@/components/Button.vue';
+
+const { notify } = useNotification()
+const { setAuth, setUser } = useUserStore()
+const router = useRouter()
 
 const loading = ref(false)
 const isPassword = ref(true)
@@ -9,6 +19,25 @@ const auth = reactive({ email: '', password: '' })
 
 const logUserIn = async function () {
   loading.value = true
+
+  try {
+    const response = await loginService(auth);
+    setAuth({ refresh_token: response.data.data.refresh, access_token: response.data.data.access })
+
+    const user = await getUserProfile()
+    setUser(user.data.data)
+
+    router.push('/')
+  } catch (error) {
+    console.log(error)
+    notify({
+      title: 'An Error Occurred',
+      text: error.response.data.message ?? error.message,
+      type: 'error'
+    })
+  }
+
+  loading.value = false
 }
 
 </script>

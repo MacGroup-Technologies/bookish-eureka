@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center justify-between p-5 rounded-[20px] bg-white border border-slate group">
+  <div class="flex items-center justify-between p-5 rounded-[20px] bg-[#fff] border border-slate group">
     <div class="">
       <h3 class="md:text-2xl text-primary font-semibold mb-1"><slot name="heading"></slot></h3>
       <slot name="body"></slot>
