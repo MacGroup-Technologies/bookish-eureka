@@ -687,6 +687,5 @@ const sendData = function () {
         </AppButton>
       </form>
     </div>
-    {{ tab }}
   </section>
 </template>
