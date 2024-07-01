@@ -15,6 +15,7 @@ export const useUserStore = defineStore('userStore', () => {
 
   const logUserOut = function () {
     auth.value = { access_token: '', refresh_token: '' }
+    user.value = { email: '', first_name: '', last_name: '' }
   }
 
   return { auth, user, setAuth, setUser, logUserOut };
