@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { ref, type Ref, computed } from 'vue'
+import { ref, type Ref } from 'vue'
+import { useRoute } from 'vue-router'
 import { isEmpty, omit } from 'lodash'
 
 import AppButton from '@/components/Button.vue'
@@ -8,6 +9,7 @@ const props = defineProps<{
   tab: string
 }>()
 
+const route = useRoute()
 const emit = defineEmits(['update-tab', 'next'])
 const data: Ref<any> = ref({})
 
@@ -283,9 +285,11 @@ const sendData = function () {
               </span>
             </label>
 
+            <a name="2f" id="2f"></a>
             <label
               for="expired"
               class="flex items-center gap-2 border p-3 rounded-md cursor-pointer"
+              :class="{ 'border-primary/50' : route.hash === '#2f' }"
             >
               <input
                 type="radio"
@@ -411,9 +415,11 @@ const sendData = function () {
               </span>
             </label>
 
+            <a name="2j" id="2j"></a>
             <label
               for="alien_reg"
               class="flex items-center gap-2 border p-3 rounded-md cursor-pointer"
+              :class="{ 'border-primary/50' : route.hash === '#2j' }"
             >
               <input
                 type="radio"
