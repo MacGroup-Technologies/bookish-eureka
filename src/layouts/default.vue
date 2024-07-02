@@ -80,9 +80,21 @@ const logOutUser = async function () {
       type: 'success'
     })
 
-    router.push('/')
+    // router.push('/')
   } catch (error) {
     console.log(error)
+    if (error.response.data.statusCode === 401) {
+      logUserOut()
+      notify({
+        title: 'You are logged out',
+        text: 'Please sign in to continue',
+        type: 'success'
+      })
+
+      // router.push('/')
+      router.go(0)
+      return
+    }
 
     notify({
       title: 'An Error Occurred',
@@ -155,7 +167,10 @@ watch(route, () => {
           </router-link>
           <div class="text-white flex justify-between items-center gap-5">
             <DropDown :title="selectedLang" :options="lang" @select="setLang" />
-            <div class="hidden md:flex items-center justify-between gap-3" v-if="isEmpty(user.email)">
+            <div
+              class="hidden md:flex items-center justify-between gap-3"
+              v-if="isEmpty(user.email)"
+            >
               <router-link to="/auth/login">
                 <AppButton type="outline" size="large" color="primary" class="!border">
                   Login
@@ -247,7 +262,11 @@ watch(route, () => {
               </template>
               <div class="flex flex-col justify-between gap-5" v-else>
                 <router-link to="/application" class="w-full">
-                  <AppButton type="solid" size="large" class="bg-slate text-[#1E202C] text-sm w-full">
+                  <AppButton
+                    type="solid"
+                    size="large"
+                    class="bg-slate text-[#1E202C] text-sm w-full"
+                  >
                     <svg
                       width="20"
                       height="21"
@@ -271,7 +290,11 @@ watch(route, () => {
                   </AppButton>
                 </router-link>
                 <router-link to="/forms" class="w-full">
-                  <AppButton type="solid" size="large" class="bg-slate text-[#1E202C] text-sm w-full">
+                  <AppButton
+                    type="solid"
+                    size="large"
+                    class="bg-slate text-[#1E202C] text-sm w-full"
+                  >
                     New Application
                   </AppButton>
                 </router-link>

@@ -485,9 +485,7 @@ const services = [
         <div class="my-10 grid gap-x-5 gap-y-10 grid-cols-1 md:grid-cols-2">
           <div class="text-center">
             <svg
-              class="inline"
-              width="100"
-              height="100"
+              class="inline w-[60px]"
               viewBox="0 0 100 100"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -505,9 +503,7 @@ const services = [
 
           <div class="text-center">
             <svg
-              class="inline"
-              width="100"
-              height="100"
+              class="inline w-[60px]"
               viewBox="0 0 100 100"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -539,9 +535,7 @@ const services = [
 
           <div class="text-center">
             <svg
-              class="inline"
-              width="100"
-              height="101"
+              class="inline w-[60px]"
               viewBox="0 0 100 101"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -571,9 +565,7 @@ const services = [
 
           <div class="text-center">
             <svg
-              class="inline"
-              width="100"
-              height="100"
+              class="inline w-[60px]"
               viewBox="0 0 100 100"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"

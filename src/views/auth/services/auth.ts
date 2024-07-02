@@ -19,5 +19,5 @@ export const signUserUp = async function (payload: { email: string, password: ''
 
 export const logOutUser = async function () {
   const { auth } = useUserStore()
-  return await axiosHttp.post('/logout/', { refresh: auth.refresh_token }, { headers: { Authorization: `Bearer ${auth.access_token}` } })
+  return await axiosHttp.post('/logout/', { refresh: auth.access_token }, { headers: { Authorization: `Bearer ${auth.access_token}` } })
 }

@@ -1,7 +1,18 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, type RouteLocationNormalized, type NavigationGuardNext } from 'vue-router'
+import { useUserStore } from '@/stores/userStore';
+import { isEmpty } from 'lodash';
 
-import HomeView from '../views/HomeView.vue'
+import HomeView from '@/views/HomeView.vue'
 import defaultLayout from '@/layouts/default.vue'
+
+const authGuard = function (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) {
+  const { user } = useUserStore()
+
+  if (isEmpty(user.email)) {
+    return next('/auth/login')
+  }
+  return next()
+}
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,6 +42,12 @@ const router = createRouter({
               component: () => import('../views/forms/GreenCardRenewalView.vue')
             },
           ]
+        },
+        {
+          path: 'applications',
+          name: 'ApplicationView',
+          component: () => import('../views/ApplicationsView.vue'),
+          beforeEnter: authGuard
         }
       ]
     },
