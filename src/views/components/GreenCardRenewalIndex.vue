@@ -4,6 +4,8 @@ import { ref, watch, computed, type Ref } from 'vue';
 import InformationAboutYouForm from './forms/greenCardRenewal/InformationAboutYou.vue'
 import ApplicationType from './forms/greenCardRenewal/ApplicationType.vue'
 import ProcessingInformation from './forms/greenCardRenewal/ProcessingInformation.vue'
+import Accomodations from './forms/greenCardRenewal/Accomodations.vue'
+import ApplicantStatement from './forms/greenCardRenewal/ApplicantStatement.vue'
 
 const accordion = ref(1)
 const tab = ref('name')
@@ -17,6 +19,10 @@ const component = computed(() => {
       return ApplicationType;
     case 3:
       return ProcessingInformation;
+    case 4:
+      return Accomodations;
+    case 5:
+      return ApplicantStatement;
     default:
       return '';
   }
