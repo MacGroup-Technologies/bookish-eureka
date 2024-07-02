@@ -41,13 +41,21 @@ const router = createRouter({
               name: 'GreenCardRenewwal',
               component: () => import('../views/forms/GreenCardRenewalView.vue')
             },
+            {
+              path: '*',
+              redirect: { name: 'ApplicationsView' }
+            }
           ]
         },
         {
           path: 'applications',
-          name: 'ApplicationView',
+          name: 'ApplicationsView',
           component: () => import('../views/ApplicationsView.vue'),
           beforeEnter: authGuard
+        },
+        {
+          path: 'application',
+          redirect: { name: 'ApplicationsView' }
         },
         {
           path:"immigration-questions",
@@ -77,6 +85,11 @@ const router = createRouter({
           component: () => import('../views/auth/SignUpView.vue')
         }
       ]
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'ErrorView',
+      component: () => import('../views/ApplicationsView.vue'),
     },
     // {
     //   path: '/uscis-forms',
