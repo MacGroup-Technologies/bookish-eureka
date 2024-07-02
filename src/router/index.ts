@@ -48,7 +48,12 @@ const router = createRouter({
           name: 'ApplicationView',
           component: () => import('../views/ApplicationsView.vue'),
           beforeEnter: authGuard
-        }
+        },
+        {
+          path:"immigration-questions",
+          name:"immigrationQuestion",
+          component: ()=> import('../views/immigrationQuestions.vue'),
+        },
       ]
     },
     {
