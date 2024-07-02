@@ -17,8 +17,11 @@ const form = computed(() => {
 </script>
 <template>
   <section class="flex flex-col items-center">
-    <div class="md:w-page px-5 py-10">
+    <div class="md:w-page px-5 py-10" v-if="form">
       <component :is="form" />
+    </div>
+    <div class="md:page h-[60vh] flex items-center text-2xl">
+      We are working on this page, give us a minute
     </div>
   </section>
 </template>
