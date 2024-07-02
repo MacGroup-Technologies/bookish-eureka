@@ -56,7 +56,12 @@ const router = createRouter({
         {
           path: 'application',
           redirect: { name: 'ApplicationsView' }
-        }
+        },
+        {
+          path:"immigration-questions",
+          name:"immigrationQuestion",
+          component: ()=> import('../views/immigrationQuestions.vue'),
+        },
       ]
     },
     {
