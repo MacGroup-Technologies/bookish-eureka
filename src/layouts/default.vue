@@ -452,7 +452,8 @@ watch(route, () => {
             ]"
           />
           <router-link
-            to=""
+            to="immigration-questions"
+            :class="{ 'bg-primary text-white': route.path === '/immigration-questions' }"
             class="md:flex-shrink-0 flex items-center gap-3 p-3 text-sm md:text-base text-black hover:bg-primary hover:text-white transition ease-in-out"
           >
             Immigration Questions
