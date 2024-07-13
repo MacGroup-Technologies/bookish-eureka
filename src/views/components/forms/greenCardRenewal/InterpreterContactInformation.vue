@@ -99,40 +99,47 @@ const sendData = function () {
         </label>
 
         <div class="flex gap-5 mb-5">
-          <label for="apt" class="flex flex-col gap-2 w-1/3">
-            <span>Apt.</span>
+          <label
+            for="apt"
+            class="flex items-center gap-2 border p-3 rounded-md cursor-pointer w-2/6"
+          >
             <input
-              type="text"
+              type="checkbox"
               id="apt"
+              :value="true"
+              name="apt"
               v-model="data.interpreter_apt"
-              class="p-2 border focus:outline-primary rounded-md"
-              placeholder="Apt."
-              required
             />
+            <span>Apt.</span>
           </label>
 
-          <label for="ste" class="flex flex-col gap-2 w-1/3">
-            <span>Ste.</span>
+          <label
+            for="street"
+            class="flex items-center gap-2 border p-3 rounded-md cursor-pointer w-2/6"
+          >
             <input
-              type="text"
-              id="ste"
+              type="checkbox"
+              id="street"
+              :value="true"
+              name="street"
               v-model="data.interpreter_ste"
-              class="p-2 border focus:outline-primary rounded-md"
-              placeholder="Ste."
-              required
             />
+            <span>Ste.</span>
           </label>
 
-          <label for="flr" class="flex flex-col gap-2 w-1/3">
-            <span>Flr.</span>
+          <label
+            for="flr"
+            class="flex items-center gap-2 border p-3 rounded-md cursor-pointer w-2/6"
+          >
             <input
-              type="text"
-              id="ste"
+              type="checkbox"
+              id="flr"
+              :value="true"
+              name="floor"
               v-model="data.interpreter_flr"
-              class="p-2 border focus:outline-primary rounded-md"
-              placeholder="Flr."
               required
             />
+            <span>Flr.</span>
           </label>
         </div>
 
