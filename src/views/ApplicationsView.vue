@@ -1,19 +1,28 @@
 <script lang="ts" setup>
-import { useRoute } from 'vue-router';
-import { computed } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { computed, watch } from 'vue';
 
 import GreenCardIndex from './components/GreenCardRenewalIndex.vue'
+import USCitizenshipView from './components/USCitizenshipView.vue';
 
 const { query } = useRoute()
+const route = useRoute()
+const router = useRouter()
 
 const form = computed(() => {
   switch(query.form) {
     case 'green-card-renewal':
       return GreenCardIndex
+    case 'u.s-citizenship':
+      return USCitizenshipView
     default:
       return ''
   }
 })
+
+watch(route, () => {
+  router.go()
+}, { deep: true })
 </script>
 <template>
   <section class="flex flex-col items-center">
