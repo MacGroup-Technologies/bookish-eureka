@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, ref, watch, type Component } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { onClickOutside } from '@vueuse/core'
 import { isEmpty } from 'lodash'
 
 import { useAppStore } from '@/stores/app'
@@ -27,7 +26,6 @@ const hamburger = ref(false)
 const menu = ref(false)
 
 const hamburgerTarget = ref(null)
-const menuTarget = ref(null)
 
 const lang: { label: string; slot: Component; abbr: 'en' | 'es' }[] = [
   {
@@ -71,7 +69,7 @@ const handleDropDown = function (
   } else {
     router.push('/forms/' + (option.label as string).toLocaleLowerCase().replace(/ /g, '-'))
   }
-  
+
 }
 
 const logOutUser = async function () {
@@ -85,7 +83,7 @@ const logOutUser = async function () {
     })
 
     // router.push('/')
-  } catch (error) {
+  } catch (error: any) {
     console.log(error)
     if (error.response.data.statusCode === 401) {
       logUserOut()
