@@ -89,26 +89,11 @@ const router = createRouter({
         }
       ]
     },
-    // {
-    //   path: '/:pathMatch(.*)*',
-    //   name: 'ErrorView',
-    //   component: () => import('../views/ApplicationsView.vue'),
-    // },
-    // {
-    //   path: '/uscis-forms',
-    //   name: '',
-    //   component: import()
-    // },
-    // {
-    //   path: '/green-card-renewal',
-    //   name: '',
-    //   component: import()
-    // },
-    // {
-    //   path: '/immigration-form-packages-and-services',
-    //   name: '',
-    //   component: import()
-    // },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'ErrorView',
+      component: () => import('../views/ApplicationsView.vue'),
+    },
   ]
 })
 

@@ -74,6 +74,8 @@ const sendData = function () {
             v-model="data.a_number"
             class="p-2 border focus:outline-primary rounded-md"
             placeholder="9 Character long Alien Number"
+            maxlength="9"
+            minlength="9"
             required
           />
         </label>
