@@ -3,7 +3,7 @@ import { useUserStore } from '@/stores/userStore';
 import { isEmpty } from 'lodash';
 
 import HomeView from '@/views/HomeView.vue'
-import defaultLayout from '@/layouts/default.vue'
+import defaultLayout from '@/layouts/defaultLayout.vue'
 
 const authGuard = function (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) {
   const { user } = useUserStore()
@@ -63,7 +63,7 @@ const router = createRouter({
         {
           path:"immigration-questions",
           name:"immigrationQuestion",
-          component: ()=> import('../views/immigrationQuestions.vue'),
+          component: () => import('../views/immigrationQuestions.vue'),
         },
       ]
     },
