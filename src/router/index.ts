@@ -3,7 +3,7 @@ import { useUserStore } from '@/stores/userStore';
 import { isEmpty } from 'lodash';
 
 import HomeView from '@/views/HomeView.vue'
-import defaultLayout from '@/layouts/default.vue'
+import defaultLayout from '@/layouts/defaultLayout.vue'
 
 const authGuard = function (to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) {
   const { user } = useUserStore()
@@ -41,18 +41,29 @@ const router = createRouter({
               name: 'GreenCardRenewwal',
               component: () => import('../views/forms/GreenCardRenewalView.vue')
             },
+            {
+              path: ':pathMatch(.*)*',
+              redirect: to => ({
+                name: 'ApplicationsView',
+                query: { form: to.params.pathMatch[0] } // Redirect to the matched path as query params
+              })
+            }
           ]
         },
         {
           path: 'applications',
-          name: 'ApplicationView',
+          name: 'ApplicationsView',
           component: () => import('../views/ApplicationsView.vue'),
           beforeEnter: authGuard
         },
         {
+          path: 'application',
+          redirect: { name: 'ApplicationsView' }
+        },
+        {
           path:"immigration-questions",
           name:"immigrationQuestion",
-          component: ()=> import('../views/immigrationQuestions.vue'),
+          component: () => import('../views/immigrationQuestions.vue'),
         },
       ]
     },
@@ -78,6 +89,11 @@ const router = createRouter({
         }
       ]
     },
+    // {
+    //   path: '/:pathMatch(.*)*',
+    //   name: 'ErrorView',
+    //   component: () => import('../views/ApplicationsView.vue'),
+    // },
     // {
     //   path: '/uscis-forms',
     //   name: '',

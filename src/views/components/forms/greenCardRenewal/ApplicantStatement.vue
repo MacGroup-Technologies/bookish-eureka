@@ -49,7 +49,6 @@ const sendData = function () {
 </script>
 <template>
   <section>
-    {{ tab }}
     <div class="" v-if="tab === 'statement'">
       <h2 class="border-b font-bold text-2xl text-primary pb-2">Applicant Statement</h2>
       <form @submit.prevent="emit('update-tab', 'contact')" class="py-5 md:w-2/3">
