@@ -20,7 +20,7 @@ const form = computed(() => {
     <div class="md:w-page px-5 py-10" v-if="form">
       <component :is="form" />
     </div>
-    <div class="md:page h-[60vh] flex items-center text-2xl">
+    <div class="md:page h-[60vh] flex items-center text-2xl" v-else>
       We are working on this page, give us a minute
     </div>
   </section>
