@@ -41,7 +41,7 @@
             </span>
             Send
         </button>
-    </form>oi
+    </form>
             
         </div>
     </section>
