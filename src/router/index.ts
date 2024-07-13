@@ -42,8 +42,11 @@ const router = createRouter({
               component: () => import('../views/forms/GreenCardRenewalView.vue')
             },
             {
-              path: '*',
-              redirect: { name: 'ApplicationsView' }
+              path: ':pathMatch(.*)*',
+              redirect: to => ({
+                name: 'ApplicationsView',
+                query: { form: to.params.pathMatch[0] } // Redirect to the matched path as query params
+              })
             }
           ]
         },
@@ -86,11 +89,11 @@ const router = createRouter({
         }
       ]
     },
-    {
-      path: '/:pathMatch(.*)*',
-      name: 'ErrorView',
-      component: () => import('../views/ApplicationsView.vue'),
-    },
+    // {
+    //   path: '/:pathMatch(.*)*',
+    //   name: 'ErrorView',
+    //   component: () => import('../views/ApplicationsView.vue'),
+    // },
     // {
     //   path: '/uscis-forms',
     //   name: '',

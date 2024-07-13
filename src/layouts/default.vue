@@ -61,13 +61,17 @@ const setLang = function (option: { label: string; slot: Component; abbr: 'en' |
 
 const handleDropDown = function (
   option:
-    | string[]
-    | { label: string; slot: any }[]
-    | { label: string; slot: any; subtext: string }[]
+    | string
+    | { label: string; slot: any }
+    | { label: string; slot: any; subtext: string }
 ) {
+
   if (typeof option === 'string') {
     router.push('/forms/' + (option as string).toLocaleLowerCase().replace(/ /g, '-'))
+  } else {
+    router.push('/forms/' + (option.label as string).toLocaleLowerCase().replace(/ /g, '-'))
   }
+  
 }
 
 const logOutUser = async function () {
