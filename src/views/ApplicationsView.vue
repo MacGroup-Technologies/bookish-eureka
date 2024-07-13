@@ -5,7 +5,6 @@ import { computed } from 'vue';
 import GreenCardIndex from './components/GreenCardRenewalIndex.vue'
 
 const { query } = useRoute()
-const route = useRoute()
 
 const form = computed(() => {
   switch(query.form) {
