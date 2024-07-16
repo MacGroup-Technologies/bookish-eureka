@@ -21,7 +21,7 @@ const sendData = function () {
         <!------------heading text  -------->
         <h2 class="border-b font-bold text-2xl text-primary pb-2">
          Information From Current Certificate or Declaration
-    </h2>
+       </h2>
 
     <!------------------------------FORM  ------------------------>
     <form @submit.prevent="sendData" class="py-5 md:w-2/3">
