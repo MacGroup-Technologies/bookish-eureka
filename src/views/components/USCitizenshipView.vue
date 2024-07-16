@@ -30,7 +30,7 @@ const component = computed(() => {
       return ApplicationType
     case 3:
       return ProcessingInformation
-    case 4:0
+    case 4:
       return Accomodations
     case 5:
       return ApplicantStatement
