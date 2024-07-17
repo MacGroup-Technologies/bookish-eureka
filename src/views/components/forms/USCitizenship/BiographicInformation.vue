@@ -9,7 +9,7 @@ import AppButton from '@/components/Button.vue'
 const { currentForm } = useUserStore()
 
 const emit = defineEmits(['update-tab', 'next'])
-const data: Ref<any> = ref({ ...currentForm.value })
+const data: Ref<any> = ref({ ...currentForm })
 
 const sendData = function () {
   

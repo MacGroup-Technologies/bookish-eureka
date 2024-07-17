@@ -72,7 +72,7 @@ const sendData = function () {
                 v-model="data.deaf_more"
                 class="p-2 border w-full mt-2 focus:outline-primary rounded-md"
                 placeholder="More text"
-              />
+              ></textarea>
             </div>
           </label>
         </div>
