@@ -4,6 +4,7 @@ import { computed, watch } from 'vue';
 
 import GreenCardIndex from './components/GreenCardRenewalIndex.vue'
 import USCitizenshipView from './components/USCitizenshipView.vue';
+import RenewCertificateOfCitizenship from './components/RenewCertificateOfCitizenship.vue';
 
 const { query } = useRoute()
 const route = useRoute()
@@ -14,7 +15,9 @@ const form = computed(() => {
     case 'green-card-renewal':
       return GreenCardIndex
     case 'u.s-citizenship':
-      return USCitizenshipView
+      return USCitizenshipView;
+    case 'renew-certificate-of-citizenship':
+      return RenewCertificateOfCitizenship
     default:
       return ''
   }
