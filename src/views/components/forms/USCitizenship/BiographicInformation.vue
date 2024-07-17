@@ -2,10 +2,14 @@
 import { ref, type Ref } from 'vue'
 import { omit } from 'lodash'
 
+import { useUserStore } from '@/stores/userStore';
+
 import AppButton from '@/components/Button.vue'
 
+const { currentForm } = useUserStore()
+
 const emit = defineEmits(['update-tab', 'next'])
-const data: Ref<any> = ref({})
+const data: Ref<any> = ref({ ...currentForm.value })
 
 const sendData = function () {
   

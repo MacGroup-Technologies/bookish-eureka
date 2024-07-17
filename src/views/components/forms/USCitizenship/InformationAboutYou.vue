@@ -2,15 +2,15 @@
 import { ref, type Ref } from 'vue'
 
 import { COUNTRIES_AND_STATES as COUNTRIES } from '@/utils/countries_and_state'
+import { useUserStore } from '@/stores/userStore';
 
 import AppButton from '@/components/Button.vue'
 
-defineProps<{
-  tab: string
-}>()
+defineProps<{ tab: string }>()
 
+const { currentForm } = useUserStore()
 const emit = defineEmits(['update-tab', 'next'])
-const data: Ref<any> = ref({})
+const data: Ref<any> = ref({ ...currentForm.value })
 
 const sendData = function () {
   emit('next', data.value)

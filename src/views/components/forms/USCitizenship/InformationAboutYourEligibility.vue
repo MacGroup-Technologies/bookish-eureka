@@ -1,10 +1,13 @@
 <script lang="ts" setup>
 import { ref, type Ref } from 'vue'
 
+import { useUserStore } from '@/stores/userStore';
+
 import AppButton from '@/components/Button.vue'
 
+const { currentForm }  = useUserStore()
 const emit = defineEmits(['next'])
-const data: Ref<any> = ref({})
+const data: Ref<any> = ref({ ...currentForm })
 
 const sendData = function () {
   emit('next', data.value)
