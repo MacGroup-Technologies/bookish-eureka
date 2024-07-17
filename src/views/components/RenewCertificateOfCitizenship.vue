@@ -9,17 +9,17 @@ import AppButton from '@/components/Button.vue'
 
 import Information from './forms/RenewCertificate/InformationFromCurrent.vue'
 
-import Current from './forms/RenewCertificate/CurrentInformationAboutYou.vue'
-import TypeofApp from './forms/RenewCertificate/TypeOfApp.vue'
-import Error from './forms/RenewCertificate/TypoOrCLericalError.vue'
-import NewDoc from './forms/RenewCertificate/NewDocumentorNameChange.vue'
-import ChangeofDOB from './forms/RenewCertificate/ChangeDOB.vue'
-import ChangeinGender from './forms/RenewCertificate/ChangeGender.vue'
-import SpecialCertificate from './forms/RenewCertificate/SpecialCertificateOfRecognition.vue'
-import ContactInfoCertificationandSignature from './forms/RenewCertificate/ContactInfoCertificationAndSignature.vue'
-import InterpretersContactInfo from './forms/RenewCertificate/InterpretersContactInfo.vue'
-import DeclarationandSignature from './forms/RenewCertificate/DeclarationAndSignature.vue'
-import AdditionalInfo from './forms/RenewCertificate/AdditionalInfo.vue'
+// import Current from './forms/RenewCertificate/CurrentInformationAboutYou.vue'
+// import TypeofApp from './forms/RenewCertificate/TypeOfApp.vue'
+// import Error from './forms/RenewCertificate/TypoOrCLericalError.vue'
+// import NewDoc from './forms/RenewCertificate/NewDocumentorNameChange.vue'
+// import ChangeofDOB from './forms/RenewCertificate/ChangeDOB.vue'
+// import ChangeinGender from './forms/RenewCertificate/ChangeGender.vue'
+// import SpecialCertificate from './forms/RenewCertificate/SpecialCertificateOfRecognition.vue'
+// import ContactInfoCertificationandSignature from './forms/RenewCertificate/ContactInfoCertificationAndSignature.vue'
+// import InterpretersContactInfo from './forms/RenewCertificate/InterpretersContactInfo.vue'
+// import DeclarationandSignature from './forms/RenewCertificate/DeclarationAndSignature.vue'
+// import AdditionalInfo from './forms/RenewCertificate/AdditionalInfo.vue'
 
 const { notify } = useNotification()
 
