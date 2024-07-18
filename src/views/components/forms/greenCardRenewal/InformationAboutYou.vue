@@ -569,7 +569,7 @@ const sendData = function () {
             >
               <input type="radio" id="male" value="male" name="gender" v-model="data.gender" required />
               <span>Male</span>
-            </label>
+            </label> 
 
             <label
               for="female"
