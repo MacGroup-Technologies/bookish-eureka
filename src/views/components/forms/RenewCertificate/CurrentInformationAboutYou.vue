@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref, type Ref } from 'vue'
-import { isEmpty, Omit } from 'lodash'
+import { isEmpty } from 'lodash'
 
 
 import { COUNTRIES_AND_STATES as COUNTRIES } from '@/utils/countries_and_state'
@@ -30,7 +30,7 @@ const states = computed(()=>{
         </h2>
       
         <!-------------------Form  ------------------------>
-         <form @submit.prevent="sendData" class="py-5 md:w-2/3">
+         <form @submit.prevent="sendData()" class="py-5 md:w-2/3">
             <!-----------form heading  ------------->
             <div class="text-red border-l-2 border-red px-2 mb-5">
              <b>NOTE: Your Full Legal Name (Do not provide a nickname).</b>
@@ -174,42 +174,39 @@ const states = computed(()=>{
           />
         </label>
 <!----------------------apt ftr  ------------->
-        <div class="flex gap-5 mb-5">
-          <label for="apt" class="flex flex-col gap-2 w-1/6">
-            <span>Apt.</span>
-            <input
-              type="text"
-              id="apt"
-              v-model="data.apt"
-              class="p-2 border focus:outline-primary rounded-md"
-              placeholder="02A"
-              required
-            />
-          </label>
+        <div class="flex gap-3 ">
+            <label
+              for="apt"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input type="radio" 
+              id="apt" 
+              v-model="data.apt_ftr_ste"
+               required />
+              <span>Apt</span>
+            </label>
 
-          <label for="street" class="flex flex-col gap-2 w-2/6">
-            <span>Ste.</span>
-            <input
-              type="text"
-              id="street"
-              v-model="data.ste"
-              class="p-2 border focus:outline-primary rounded-md"
-              placeholder="Dover"
-              required
-            />
-          </label>
-
-          <label for="floor" class="flex flex-col gap-2 w-3/6">
-            <span>Flr.</span>
-            <input
-              type="text"
+           <label
+              for="street"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input type="radio" 
+              id="street" 
+              v-model="data.apt_ftr_ste"
+               required />
+              <span>Ste</span>
+            </label>
+          <label
+              for="floor"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input type="radio" 
               id="floor"
-              v-model="data.flr"
-              class="p-2 border focus:outline-primary rounded-md"
-              placeholder="23"
-              required
-            />
-          </label>
+              v-model="data.apt_flr_ste"
+               required />
+              <span>Flr</span>
+            </label>
+
         </div>
 
         <!------------Number  --------------->
@@ -308,6 +305,142 @@ const states = computed(()=>{
           </label>
 
         </div>
+
+        <!-----------marital status  ------------>
+        <span class="block mb-2">Has your marital status changed since your last document was issued? </span>
+          <div class="flex gap-3 mb-2">
+            <label
+              for="marital_status_yes"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input type="radio" 
+              id="marital_status_yes" value="yes" 
+              name="marital_status" 
+              v-model="data.marital_status"
+               required />
+              <span>Yes</span>
+            </label>
+
+            <label
+              for="marital_staus_no"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input type="radio" 
+               id="marital_staus_no" value="No" 
+               name="marital_status"
+               v-model="data.marital_staus" 
+               required />
+              <span>No</span>
+            </label>
+          </div>
+
+          <!---------- marital status yes -------------->
+       <div v-if="data.marital_status === 'yes'" id="5a">
+        <div class="text-red border-l-2 border-red px-2 mb-5">
+          <span class="block mb-2 font-bold"
+            >Provide your current marital status and attach a copy of your marriage certificate, annulment decree, divorce decree, or spouse's death certificate.</span
+          >
+        </div>
+          <span class="block mb-2">Your Current Marital Status </span>
+          <div class="mt-5 flex gap-3">
+          <label
+              for="marital_status_single"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input type="radio" 
+              id="marital_status_single"  
+              name="updated_marital_status" 
+              v-model="data.updated_marital_status"
+               required />
+              <span>Single</span>
+            </label>
+<!--------------------------married  -------------->
+            <label
+              for="marital_status_married"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input type="radio" 
+              id="marital_status_married"  
+              name="updated_marital_status" 
+              v-model="data.updated_marital_status"
+               required />
+              <span>Married</span>
+            </label>
+        <!---------------------divorced  ------->
+        <label
+              for="marital_status_divorced"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input type="radio" 
+              id="marital_status_divorced"  
+              name="updated_marital_status" 
+              v-model="data.updated_marital_status"
+               required />
+              <span>Divorced</span>
+            </label>
+        </div>
+        <!---------------------widowed  ------->
+
+        <div class="mt-5 flex gap-3">
+        <label
+              for="marital_status_widowed"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input type="radio" 
+              id="marital_status_widowed"  
+              name="updated_marital_status" 
+              v-model="data.updated_marital_status"
+               required />
+              <span>Widowed</span>
+            </label>
+        <!---------------------Marriage Annulled  ------->
+        <label
+              for="marital_status_marriage Annulled"
+              class="flex items-center gap-2 border py-1 px-5 rounded-md cursor-pointer"
+            >
+              <input type="radio" 
+              id="marital_status_marriage Annulled"  
+              name="updated_marital_status" 
+              v-model="data.updated_marital_status"
+               required />
+              <span>Marriage Annulled</span>
+            </label>
+
+
+
+          </div>
+        </div>
+
+        <!----------FIX: LINK SECTION TO PART  ----------->
+        <span class="block mb-2">Since becoming a U.S. citizen, have you lost or renounced your U.S. citizenship in any manner?</span>
+        <div class="text-red border-l-2 border-red px-2 mb-5">
+             <b>NOTE:Provide an explanation or attach a seperate sheet of paper</b>
+        </div>
+          <div class="flex gap-3 mb-2">
+            <label
+              for="us_citizen_yes"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input type="radio" 
+              id="us_citizen_yes" value="yes" 
+              name="us_citizen" 
+              v-model="data.us_citizen"
+               required />
+              <span>Yes</span>
+            </label>
+
+            <label
+              for="us_citizen_no"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input type="radio" 
+               id="us_citizen_no" value="No" 
+               name="us_citizen"
+               v-model="data.us_citizen" 
+               required />
+              <span>No</span>
+            </label>
+          </div>
 
         </form>
 

@@ -66,7 +66,7 @@ const updateTab = function (newTab: string) {
 const handleNextSection = function (data: any) {
   console.log(data)
   formData.value = { ...formData.value, ...data }
-  if (accordion.value === 9) {
+  if (accordion.value === 12) {
     submitForm()
   } else {
     accordion.value++
