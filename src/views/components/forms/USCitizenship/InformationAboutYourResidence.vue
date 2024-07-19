@@ -47,7 +47,7 @@ const sendData = function () {
           <input
             type="text"
             id="in_care_of"
-            v-model="data.in_care_of"
+            v-model="data.in_care_of_name"
             class="p-2 border focus:outline-primary rounded-md"
             placeholder="In Care of Name"
           />
@@ -59,7 +59,7 @@ const sendData = function () {
             <input
               type="text"
               id="street_name"
-              v-model="data.street_name"
+              v-model="data.street_name_number"
               class="p-2 border focus:outline-primary rounded-md"
               placeholder="Street Number and Name"
               required
@@ -194,7 +194,7 @@ const sendData = function () {
           <input
             type="date"
             id="date_of_residence"
-            v-model="data.date_of_residence"
+            v-model="data.date_of_residency"
             class="p-2 border focus:outline-primary rounded-md"
             placeholder="MM/DD/YY"
             required
@@ -225,7 +225,7 @@ const sendData = function () {
             <span>Physical Address</span>
             <textarea
               id="street_1"
-              v-model="data.physical_address_1"
+              v-model="data.street_name_number2"
               class="p-2 border w-full mt-2 focus:outline-primary rounded-md"
               placeholder="Street Number and Name"
             ></textarea>
@@ -233,11 +233,11 @@ const sendData = function () {
 
           <div class="flex gap-5 mb-5">
             <label for="zip_code_1" class="flex flex-col gap-2 w-1/2">
-              <span>Zip Code</span>
+              <span>Postal Code</span>
               <input
                 type="text"
                 id="zip_code_1"
-                v-model="data.zip_code_1"
+                v-model="data.postal_code2"
                 class="p-2 border focus:outline-primary rounded-md"
                 placeholder="Zip Code"
               />
@@ -248,7 +248,7 @@ const sendData = function () {
               <input
                 type="text"
                 id="city_or_town_1"
-                v-model="data.city_or_town_1"
+                v-model="data.city_town2"
                 class="p-2 border focus:outline-primary rounded-md"
                 placeholder="City or Town"
               />
@@ -261,7 +261,7 @@ const sendData = function () {
               <input
                 type="text"
                 id="state_1"
-                v-model="data.state_1"
+                v-model="data.province2"
                 class="p-2 border focus:outline-primary rounded-md"
                 placeholder="State/Province"
               />
@@ -271,7 +271,7 @@ const sendData = function () {
               <span>Country</span>
               <select
                 id="country"
-                v-model="data.country_1"
+                v-model="data.country2"
                 class="p-2 border focus:outline-primary rounded-md"
                 placeholder="Please Select your mailing country"
               >
@@ -289,7 +289,7 @@ const sendData = function () {
               <input
                 type="date"
                 id="residence_date_from_1"
-                v-model="data.residence_date_from_1"
+                v-model="data.date_of_residency_start2"
                 class="p-2 border focus:outline-primary rounded-md"
               />
             </label>
@@ -299,7 +299,7 @@ const sendData = function () {
               <input
                 type="date"
                 id="residence_date_to_1"
-                v-model="data.residence_date_to_1"
+                v-model="data.date_of_residency_end2"
                 class="p-2 border focus:outline-primary rounded-md"
               />
             </label>
@@ -311,7 +311,7 @@ const sendData = function () {
             <span>Physical Address</span>
             <textarea
               id="street_2"
-              v-model="data.physical_address_2"
+              v-model="data.street_name_number3"
               class="p-2 border w-full mt-2 focus:outline-primary rounded-md"
               placeholder="Street Number and Name"
             ></textarea>
@@ -319,11 +319,11 @@ const sendData = function () {
 
           <div class="flex gap-5 mb-5">
             <label for="zip_code_2" class="flex flex-col gap-2 w-1/2">
-              <span>Zip Code</span>
+              <span>Postal Code</span>
               <input
                 type="text"
                 id="zip_code_2"
-                v-model="data.zip_code_2"
+                v-model="data.postal_code3"
                 class="p-2 border focus:outline-primary rounded-md"
                 placeholder="Zip Code"
               />
@@ -334,7 +334,7 @@ const sendData = function () {
               <input
                 type="text"
                 id="city_or_town_2"
-                v-model="data.city_or_town_2"
+                v-model="data.city_town3"
                 class="p-2 border focus:outline-primary rounded-md"
                 placeholder="City or Town"
               />
@@ -347,7 +347,7 @@ const sendData = function () {
               <input
                 type="text"
                 id="state_2"
-                v-model="data.state_2"
+                v-model="data.province3"
                 class="p-2 border focus:outline-primary rounded-md"
                 placeholder="State/Province"
               />
@@ -357,7 +357,7 @@ const sendData = function () {
               <span>Country</span>
               <select
                 id="country"
-                v-model="data.country_2"
+                v-model="data.country3"
                 class="p-2 border focus:outline-primary rounded-md"
                 placeholder="Please Select your mailing country"
               >
@@ -375,7 +375,7 @@ const sendData = function () {
               <input
                 type="date"
                 id="residence_date_from_2"
-                v-model="data.residence_date_from_2"
+                v-model="data.date_of_residency_start3"
                 class="p-2 border focus:outline-primary rounded-md"
               />
             </label>
@@ -385,7 +385,7 @@ const sendData = function () {
               <input
                 type="date"
                 id="residence_date_to_2"
-                v-model="data.residence_date_to_2"
+                v-model="data.date_of_residency_end3"
                 class="p-2 border focus:outline-primary rounded-md"
               />
             </label>
@@ -397,7 +397,7 @@ const sendData = function () {
             <span>Physical Address</span>
             <textarea
               id="street_3"
-              v-model="data.physical_address_3"
+              v-model="data.street_name_number4"
               class="p-2 border w-full mt-2 focus:outline-primary rounded-md"
               placeholder="Street Number and Name"
             ></textarea>
@@ -405,13 +405,13 @@ const sendData = function () {
 
           <div class="flex gap-5 mb-5">
             <label for="zip_code_3" class="flex flex-col gap-2 w-1/2">
-              <span>Zip Code</span>
+              <span>Postal Code</span>
               <input
                 type="text"
                 id="zip_code_3"
-                v-model="data.zip_code_3"
+                v-model="data.postal_code4"
                 class="p-2 border focus:outline-primary rounded-md"
-                placeholder="Zip Code"
+                placeholder="Postal Code"
               />
             </label>
 
@@ -420,7 +420,7 @@ const sendData = function () {
               <input
                 type="text"
                 id="city_or_town_3"
-                v-model="data.city_or_town_3"
+                v-model="data.city_town4"
                 class="p-2 border focus:outline-primary rounded-md"
                 placeholder="City or Town"
               />
@@ -433,7 +433,7 @@ const sendData = function () {
               <input
                 type="text"
                 id="state_3"
-                v-model="data.state_3"
+                v-model="data.province4"
                 class="p-2 border focus:outline-primary rounded-md"
                 placeholder="State/Province"
               />
@@ -443,7 +443,7 @@ const sendData = function () {
               <span>Country</span>
               <select
                 id="country"
-                v-model="data.country_3"
+                v-model="data.country4"
                 class="p-2 border focus:outline-primary rounded-md"
                 placeholder="Please Select your mailing country"
               >
@@ -461,7 +461,7 @@ const sendData = function () {
               <input
                 type="date"
                 id="residence_date_from_3"
-                v-model="data.residence_date_from_3"
+                v-model="data.date_of_residency_start4"
                 class="p-2 border focus:outline-primary rounded-md"
               />
             </label>
@@ -471,7 +471,7 @@ const sendData = function () {
               <input
                 type="date"
                 id="residence_date_to_3"
-                v-model="data.residence_date_to_3"
+                v-model="data.date_of_residency_start4"
                 class="p-2 border focus:outline-primary rounded-md"
               />
             </label>
@@ -505,9 +505,15 @@ const sendData = function () {
               <input
                 type="radio"
                 id="yes"
-                :value="true"
                 name="current_address_is_mailing"
-                v-model="data.current_address_is_mailing"
+                v-model="data.physical_address_is_malling_address_yes"
+                :checked="data.physical_address_is_malling_address_yes"
+                :value="data.physical_address_is_malling_address_yes ? false : true"
+                @change="
+                  data.physical_address_is_malling_address_yes
+                    ? (data.physical_address_is_malling_address_no = false)
+                    : (data.physical_address_is_malling_address_no = true)
+                "
                 required
               />
               <span>Yes</span>
@@ -520,9 +526,15 @@ const sendData = function () {
               <input
                 type="radio"
                 id="no"
-                :value="false"
                 name="current_address_is_mailing"
-                v-model="data.current_address_is_mailing"
+                v-model="data.physical_address_is_malling_address_no"
+                :checked="data.physical_address_is_malling_address_no"
+                :value="data.physical_address_is_malling_address_no ? false : true"
+                @change="
+                  data.physical_address_is_malling_address_no
+                    ? (data.physical_address_is_malling_address_yes = false)
+                    : (data.physical_address_is_malling_address_yes = true)
+                "
                 required
               />
               <span>No</span>
@@ -530,13 +542,13 @@ const sendData = function () {
           </div>
         </div>
 
-        <div class="" v-if="data.current_address_is_mailing === false">
+        <div class="" v-if="data.physical_address_is_malling_address_no === true">
           <label for="in_care_of" class="flex flex-col gap-2 mb-5">
             <span>In Care of Name (If any)</span>
             <input
               type="text"
               id="in_care_of"
-              v-model="data.mailing_in_care_of"
+              v-model="data.mailing_in_care_of_name"
               class="p-2 border focus:outline-primary rounded-md"
               placeholder="In Care of Name"
             />
@@ -548,7 +560,7 @@ const sendData = function () {
               <input
                 type="text"
                 id="street_name"
-                v-model="data.mailing_street_name"
+                v-model="data.mailing_street_name_number"
                 class="p-2 border focus:outline-primary rounded-md"
                 placeholder="Street Number and Name"
                 required
