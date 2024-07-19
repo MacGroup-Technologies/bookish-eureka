@@ -14,7 +14,7 @@ import ClericalError from './forms/RenewCertificate/CLericalError.vue'
 import NameChange from './forms/RenewCertificate/NewDocumentorNameChange.vue'
 import ChangeofDOB from './forms/RenewCertificate/ChangeDOB.vue'
 import ChangeGender from './forms/RenewCertificate/ChangeGender.vue'
-import SpecialCertificate from './forms/RenewCertificate/SpecialCertificateofRecognition.vue'
+import SpecialCertificate from './forms/RenewCertificate/SpecialCertificateOfRecognition.vue'
 import ContactInfoCertification from './forms/RenewCertificate/ContactInfoCertification.vue'
 import InterpretersContact from './forms/RenewCertificate/InterpretersContactInfo.vue'
 
@@ -184,7 +184,7 @@ watch(accordion, () => {
             :class="{ '!text-primary': tab === 'application' }"
             @click="tab = 'processing'"
           >
-            Type of Application
+            Application Type
             <svg
               width="30"
               height="31"
@@ -201,8 +201,8 @@ watch(accordion, () => {
 
           <div
             class="bg-primary-10 text-grey font-semibold p-3 flex items-center justify-between cursor-pointer border-b"
-            :class="{ '!text-primary': tab === 'contact' }"
-            @click="tab = 'contact'"
+            :class="{ '!text-primary': tab === 'basis' }"
+            @click="tab = 'basis'"
           >
             Basis for Application
             <svg

@@ -345,7 +345,7 @@ const states = computed(() => {
       <div v-if="data.marital_status === 'yes'" id="5a">
         <div class="text-red border-l-2 border-red px-2 mb-5">
           <span class="block mb-2 font-bold"
-            >Provide your current marital status and attach a copy of your marriage certificate,
+            >NOTE: Provide your current marital status and attach a copy of your marriage certificate,
             annulment decree, divorce decree, or spouse's death certificate.</span
           >
         </div>
@@ -426,13 +426,9 @@ const states = computed(() => {
         </div>
       </div>
 
-      <!---------- NOTE: No need for this  ----------->
-      <span class="block mb-2"
-        >Since becoming a U.S. citizen, have you lost or renounced your U.S. citizenship in any
-        manner?</span
-      >
+    <!----------------------- us citizen -------------------->
       <div class="text-red border-l-2 border-red px-2 mb-5">
-        <b>NOTE:Provide an explanation or attach a seperate sheet of paper</b>
+        <b>NOTE: Provide an explanation or attach a seperate sheet of paper</b>
       </div>
       <div class="flex gap-3 mb-2">
         <label
@@ -466,15 +462,19 @@ const states = computed(() => {
         </label>
       </div>
 
-      <AppButton
-        mode="submit"
-        type="solid"
-        size="large"
-        color="primary"
-        class="mt-5 bg-primary text-white"
-      >
-        Continue
-      </AppButton>
-    </form>
-  </section>
+          <AppButton
+          mode="submit"
+          type="solid"
+          size="large"
+          color="primary"
+          class="mt-5 bg-primary text-white"
+        >
+          Continue
+        </AppButton>
+
+
+        </form>
+
+            
+    </section>
 </template>
