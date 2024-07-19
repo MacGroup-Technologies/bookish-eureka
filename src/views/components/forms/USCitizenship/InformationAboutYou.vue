@@ -2,7 +2,7 @@
 import { ref, type Ref } from 'vue'
 
 import { COUNTRIES_AND_STATES as COUNTRIES } from '@/utils/countries_and_state'
-import { useUserStore } from '@/stores/userStore';
+import { useUserStore } from '@/stores/userStore'
 
 import AppButton from '@/components/Button.vue'
 
@@ -28,7 +28,7 @@ const sendData = function () {
             <input
               type="text"
               id="family_name"
-              v-model="data.last_name"
+              v-model="data.family_name"
               class="p-2 border focus:outline-primary rounded-md"
               placeholder="Last Name"
               required
@@ -41,7 +41,7 @@ const sendData = function () {
               <input
                 type="text"
                 id="first_name"
-                v-model="data.first_name"
+                v-model="data.given_name"
                 class="p-2 border focus:outline-primary rounded-md"
                 placeholder="First Name"
                 required
@@ -69,7 +69,7 @@ const sendData = function () {
               <input
                 type="text"
                 id="family_name"
-                v-model="data.other_last_name_1"
+                v-model="data.other_name_family_name"
                 class="p-2 border focus:outline-primary rounded-md"
                 placeholder="Last Name"
               />
@@ -80,7 +80,7 @@ const sendData = function () {
               <input
                 type="text"
                 id="first_name"
-                v-model="data.other_first_name_1"
+                v-model="data.other_name_given_name"
                 class="p-2 border focus:outline-primary rounded-md"
                 placeholder="First Name"
               />
@@ -91,42 +91,7 @@ const sendData = function () {
               <input
                 type="text"
                 id="middle_name"
-                v-model="data.other_middle_name_1"
-                class="p-2 border focus:outline-primary rounded-md"
-                placeholder="Middle Name"
-              />
-            </label>
-          </div>
-
-          <div class="flex gap-3 items-center">
-            <label for="other_last_name_2" class="flex flex-col gap-2 mb-5">
-              <span>Family Name (Last Name)</span>
-              <input
-                type="text"
-                id="other_last_name_2"
-                v-model="data.other_last_name_2"
-                class="p-2 border focus:outline-primary rounded-md"
-                placeholder="Last Name"
-              />
-            </label>
-
-            <label for="other_first_name_2" class="flex flex-col gap-2 mb-5">
-              <span>Given Name (First Name)</span>
-              <input
-                type="text"
-                id="other_first_name_2"
-                v-model="data.other_first_name_2"
-                class="p-2 border focus:outline-primary rounded-md"
-                placeholder="First Name"
-              />
-            </label>
-
-            <label for="other_middle_name_2" class="flex flex-col gap-2 mb-5">
-              <span>Middle Name</span>
-              <input
-                type="text"
-                id="other_middle_name_2"
-                v-model="data.other_middle_name_2"
+                v-model="data.other_name_middle_name"
                 class="p-2 border focus:outline-primary rounded-md"
                 placeholder="Middle Name"
               />
@@ -151,14 +116,19 @@ const sendData = function () {
               <input
                 type="radio"
                 id="true"
-                :value="true"
                 name="change_name"
-                v-model="data.legally_change_name"
+                v-model="data.change_name_yes"
+                :checked="data.change_name_yes"
+                :value="data.change_name_yes ? false : true"
+                @change="
+                  data.change_name_yes
+                    ? (data.change_name_no = false)
+                    : (data.change_name_no = true)
+                "
                 required
               />
               <span>Yes</span>
             </label>
-
             <label
               for="no"
               class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
@@ -166,9 +136,15 @@ const sendData = function () {
               <input
                 type="radio"
                 id="no"
-                :value="false"
                 name="change_name"
-                v-model="data.legally_change_name"
+                :checked="data.change_name_no"
+                :value="data.change_name_no ? false : true"
+                v-model="data.change_name_no"
+                @change="
+                  data.change_name_no
+                    ? (data.change_name_yes = false)
+                    : (data.change_name_yes = true)
+                "
                 required
               />
               <span>No</span>
@@ -176,7 +152,7 @@ const sendData = function () {
           </div>
         </div>
 
-        <div class="mt-6" v-if="data.legally_change_name">
+        <div class="mt-6" v-if="data.change_name_yes">
           <label for="family_name" class="flex flex-col gap-2 mb-5">
             <span>Family Name (Last Name)</span>
             <input
@@ -236,9 +212,15 @@ const sendData = function () {
               <input
                 type="radio"
                 id="male"
-                value="male"
                 name="gender"
-                v-model="data.gender"
+                v-model="data.gender_male"
+                :checked="data.gender_male"
+                :value="data.gender_male ? false : true"
+                @change="
+                  data.gender_male
+                    ? ((data.gender_female = false), (data.gender_others = false))
+                    : null
+                "
                 required
               />
               <span>Male</span>
@@ -251,9 +233,15 @@ const sendData = function () {
               <input
                 type="radio"
                 id="female"
-                value="female"
                 name="gender"
-                v-model="data.gender"
+                v-model="data.gender_female"
+                :checked="data.gender_female"
+                :value="data.gender_female ? false : true"
+                @change="
+                  data.gender_female
+                    ? ((data.gender_male = false), (data.gender_others = false))
+                    : null
+                "
                 required
               />
               <span>Female</span>
@@ -266,9 +254,15 @@ const sendData = function () {
               <input
                 type="radio"
                 id="other"
-                value="other"
                 name="gender"
-                v-model="data.gender"
+                v-model="data.gender_others"
+                :checked="data.gender_others"
+                :value="data.gender_others ? false : true"
+                @change="
+                  data.gender_others
+                    ? ((data.gender_male = false), (data.gender_female = false))
+                    : null
+                "
                 required
               />
               <span>Another Gender Identity</span>
@@ -309,7 +303,7 @@ const sendData = function () {
             <span>Country of Birth</span>
             <select
               id="country"
-              v-model="data.country_of_birth"
+              v-model="data.birth_country"
               class="p-2 border focus:outline-primary rounded-md"
               placeholder="Please Select your country of birth"
               required
@@ -324,7 +318,7 @@ const sendData = function () {
             <span>Country of Citizenship or Nationality</span>
             <select
               id="country_of_citizenship"
-              v-model="data.country_of_citizenship"
+              v-model="data.country_of_citizinship_nationality"
               class="p-2 border focus:outline-primary rounded-md"
               placeholder="Please Select your country of citizenship"
               required
@@ -348,9 +342,15 @@ const sendData = function () {
               <input
                 type="radio"
                 id="citizens_true"
-                :value="true"
                 name="citizens_of_usa"
-                v-model="data.parents_citizens_of_the_usa"
+                v-model="data.was_parent_us_yes"
+                :checked="data.was_parent_us_yes"
+                :value="data.was_parent_us_yes ? false : true"
+                @change="
+                  data.was_parent_us_yes
+                    ? (data.was_parent_us_no = false)
+                    : (data.was_parent_us_no = true)
+                "
                 required
               />
               <span>Yes</span>
@@ -363,9 +363,15 @@ const sendData = function () {
               <input
                 type="radio"
                 id="citizens_false"
-                :value="false"
                 name="citizens_of_usa"
-                v-model="data.parents_citizens_of_the_usa"
+                v-model="data.was_parent_us_no"
+                :checked="data.was_parent_us_no"
+                :value="data.was_parent_us_no ? false : true"
+                @change="
+                  data.was_parent_us_no
+                    ? (data.was_parent_us_yes = false)
+                    : (data.was_parent_us_yes = true)
+                "
                 required
               />
               <span>No</span>
@@ -394,9 +400,15 @@ const sendData = function () {
               <input
                 type="radio"
                 id="impairment_true"
-                :value="true"
-                name="mental_impairement`"
-                v-model="data.mental_impairment"
+                name="mental_impairement"
+                v-model="data.physical_devlopmental_disability_yes"
+                :checked="data.physical_devlopmental_disability_yes"
+                :value="data.physical_devlopmental_disability_yes ? false : true"
+                @change="
+                  data.physical_devlopmental_disability_yes
+                    ? (data.physical_devlopmental_disability_no = false)
+                    : (data.physical_devlopmental_disability_no = true)
+                "
                 required
               />
               <span>Yes</span>
@@ -409,9 +421,15 @@ const sendData = function () {
               <input
                 type="radio"
                 id="impairment_false"
-                :value="false"
-                name="mental_impairement`"
-                v-model="data.mental_impairment"
+                name="mental_impairement"
+                v-model="data.physical_devlopmental_disability_no"
+                :checked="data.physical_devlopmental_disability_no"
+                :value="data.physical_devlopmental_disability_no ? false : true"
+                @change="
+                  data.physical_devlopmental_disability_no
+                    ? (data.physical_devlopmental_disability_yes = false)
+                    : (data.physical_devlopmental_disability_yes = true)
+                "
                 required
               />
               <span>No</span>
@@ -420,7 +438,7 @@ const sendData = function () {
 
           <p
             class="mt-3 pl-2 text-orange-600 border-l-2 border-orange-500"
-            v-if="data.mental_impairment"
+            v-if="data.physical_devlopmental_disability_yes"
           >
             Please submit a completed <b>Form N-648</b>, Medical Certification for Disability
             Exceptions, when you file your form N-400.
@@ -454,9 +472,11 @@ const sendData = function () {
               <input
                 type="radio"
                 id="ssa_true"
-                :value="true"
                 name="ssa_replacement"
-                v-model="data.ssa_replacement"
+                v-model="data.want_ssn_yes"
+                :checked="data.want_ssn_yes"
+                :value="data.want_ssn_yes ? false : true"
+                @change="data.want_ssn_yes ? (data.want_ssn_no = false) : (data.want_ssn_no = true)"
                 required
               />
               <span>Yes</span>
@@ -469,9 +489,13 @@ const sendData = function () {
               <input
                 type="radio"
                 id="ssa_no"
-                :value="false"
                 name="ssa_replacement"
-                v-model="data.ssa_replacement"
+                v-model="data.want_ssn_no"
+                :checked="data.want_ssn_no"
+                :value="data.want_ssn_no ? false : true"
+                @change="
+                  data.want_ssn_no ? (data.want_ssn_yes = false) : (data.want_ssn_yes = true)
+                "
                 required
               />
               <span>No</span>
@@ -479,7 +503,7 @@ const sendData = function () {
           </div>
         </div>
 
-        <div class="mt-5" v-if="data.ssa_replacement">
+        <div class="mt-5" v-if="data.want_ssn_yes">
           <label for="a_number" class="flex flex-col gap-2 mb-5">
             <span>Provide your Social Security Number (SSN) <i>if any</i></span>
             <input
@@ -507,9 +531,15 @@ const sendData = function () {
                 <input
                   type="radio"
                   id="ssa_closure_true"
-                  :value="true"
                   name="ssa_closure"
-                  v-model="data.ssa_closure"
+                  v-model="data.consent_for_disclosure_yes"
+                  :checked="data.consent_for_disclosure_yes"
+                  :value="data.consent_for_disclosure_yes ? false : true"
+                  @change="
+                    data.consent_for_disclosure_yes
+                      ? (data.consent_for_disclosure_no = false)
+                      : (data.consent_for_disclosure_no = true)
+                  "
                   required
                 />
                 <span>Yes</span>
@@ -522,9 +552,15 @@ const sendData = function () {
                 <input
                   type="radio"
                   id="ssa_closure_no"
-                  :value="false"
                   name="ssa_closure"
-                  v-model="data.ssa_closure"
+                  v-model="data.consent_for_disclosure_no"
+                  :checked="data.consent_for_disclosure_no"
+                  :value="data.consent_for_disclosure_no ? false : true"
+                  @change="
+                    data.consent_for_disclosure_no
+                      ? (data.consent_for_disclosure_yes = false)
+                      : (data.consent_for_disclosure_yes = true)
+                  "
                   required
                 />
                 <span>No</span>

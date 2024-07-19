@@ -13,20 +13,7 @@ const data: Ref<any> = ref({ ...currentForm })
 
 const sendData = function () {
   
-  const payload = omit(data.value, ['ethinic', 'eye', 'hair'])
-
-  switch (data.value.ethinic) {
-    case 'latino':
-      payload.ethnicity_hispanic_latino = true
-      break
-
-    case 'not_latino':
-      payload.ethnicity_not_hispanic_latino = true
-      break
-
-    default:
-      break
-  }
+  const payload = omit(data.value, ['eye', 'hair'])
 
   switch (data.value.eye) {
     case 'black':
@@ -131,9 +118,15 @@ const sendData = function () {
             <input
               type="radio"
               id="hispanic"
-              value="latino"
               name="ethinic"
-              v-model="data.ethinic"
+              v-model="data.ethnicity_hispanic_latino"
+              :checked="data.ethnicity_hispanic_latino"
+              :value="data.ethnicity_hispanic_latino ? false : true"
+              @change="
+                data.ethnicity_hispanic_latino
+                  ? (data.ethnicity_not_hispanic_latino = false)
+                  : (data.ethnicity_not_hispanic_latino = true)
+              "
               required
             />
             <span>Hispanic or Latino</span>
@@ -146,9 +139,15 @@ const sendData = function () {
             <input
               type="radio"
               id="not_latino"
-              value="No"
               name="ethinic"
-              v-model="data.ethinic"
+              v-model="data.ethnicity_not_hispanic_latino"
+              :checked="data.ethnicity_not_hispanic_latino"
+              :value="data.ethnicity_not_hispanic_latino ? false : true"
+              @change="
+                data.ethnicity_not_hispanic_latino
+                  ? (data.ethnicity_hispanic_latino = false)
+                  : (data.ethnicity_hispanic_latino = true)
+              "
               required
             />
             <span>Not Hispanic or Latino</span>
