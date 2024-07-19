@@ -182,7 +182,7 @@ watch(accordion, () => {
           <div
             class="bg-primary-10 text-grey font-semibold p-3 flex items-center justify-between cursor-pointer border-b"
             :class="{ '!text-primary': tab === 'application' }"
-            @click="tab = 'processing'"
+            @click="tab = 'application'"
           >
             Application Type
             <svg
