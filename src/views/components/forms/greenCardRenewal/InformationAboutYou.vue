@@ -88,6 +88,8 @@ const sendData = function () {
             v-model="data.uscis_number"
             class="p-2 border focus:outline-primary rounded-md"
             placeholder="12 Character long USCIS Online Account Number"
+            maxlength="12"
+            minlength="12"
           />
         </label>
 

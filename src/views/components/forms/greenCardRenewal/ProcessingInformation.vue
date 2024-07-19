@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { ref, type Ref } from 'vue'
 import { useRoute } from 'vue-router'
-import { isEmpty, omit } from 'lodash'
+import { omit } from 'lodash'
 
 import AppButton from '@/components/Button.vue'
 
-const props = defineProps<{
+defineProps<{
   tab: string
 }>()
 

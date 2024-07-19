@@ -4,18 +4,20 @@ import { isEmpty } from 'lodash'
 
 import { useNotification } from '@kyvg/vue3-notification'
 import { submit_i90 } from './services/forms'
+import { useUserStore } from '@/stores/userStore';
 
 import AppButton from '@/components/Button.vue'
 
 import InformationAboutYourEligibility from './forms/USCitizenship/InformationAboutYourEligibility.vue'
+import InformationAboutYou from './forms/USCitizenship/InformationAboutYou.vue'
+import BiographicInformation from './forms/USCitizenship/BiographicInformation.vue'
+import InformationAboutYourResidence from './forms/USCitizenship/InformationAboutYourResidence.vue'
+import MaritalHistory from './forms/USCitizenship/MaritalHistory.vue'
 
-import ApplicationType from './forms/greenCardRenewal/ApplicationType.vue'
-import ProcessingInformation from './forms/greenCardRenewal/ProcessingInformation.vue'
-import Accomodations from './forms/greenCardRenewal/Accomodations.vue'
-import ApplicantStatement from './forms/greenCardRenewal/ApplicantStatement.vue'
 import InterpreterContactInformation from './forms/greenCardRenewal/InterpreterContactInformation.vue'
 
 const { notify } = useNotification()
+const { setCurrentForm } = useUserStore()
 
 const accordion = ref(1)
 const tab = ref('name')
@@ -27,13 +29,13 @@ const component = computed(() => {
     case 1:
       return InformationAboutYourEligibility
     case 2:
-      return ApplicationType
+      return InformationAboutYou
     case 3:
-      return ProcessingInformation
+      return BiographicInformation
     case 4:
-      return Accomodations
+      return InformationAboutYourResidence
     case 5:
-      return ApplicantStatement
+      return MaritalHistory
     case 6:
       return InterpreterContactInformation
     default:
@@ -47,8 +49,10 @@ const updateTab = function
 }
 
 const handleNextSection = function (data: any) {
-  console.log(data)
+  
   formData.value = { ...formData.value, ...data }
+  setCurrentForm(formData.value) // store data for other pages to recall
+
   if (accordion.value === 6) {
     submitForm()
   } else {
@@ -57,7 +61,6 @@ const handleNextSection = function (data: any) {
 }
 
 const submitForm = async function () {
-  console.log('Form submitted with: ', formData.value)
   try {
     const response: any = await submit_i90(formData.value)
 
@@ -67,6 +70,7 @@ const submitForm = async function () {
       type: 'success'
     })
 
+    setCurrentForm({}) // nullify the form afterwards
     downloadUrl.value = response.data.data.download_url
   } catch (error: any) {
     notify({
@@ -80,20 +84,14 @@ const submitForm = async function () {
 
 watch(accordion, () => {
   switch (accordion.value) {
-    case 1:
-      tab.value = ''
-      break
     case 2:
-      tab.value = 'status'
-      break
-    case 3:
-      tab.value = 'processing'
+      tab.value = 'info'
       break
     case 4:
-      tab.value = 'disabilities'
+      tab.value = 'current-residence'
       break
     case 5:
-      tab.value = 'statement'
+      tab.value = 'marital-history'
       break
     case 6:
       tab.value = 'interpreter-fullname'
@@ -137,7 +135,7 @@ watch(accordion, () => {
           :class="{ '!bg-primary text-white': accordion === 2 }"
           @click="accordion = 2"
         >
-          Application Type
+          Information About You
           <svg
             :class="{ 'rotate-90': accordion === 2 }"
             width="30"
@@ -155,10 +153,10 @@ watch(accordion, () => {
         <div class="" v-show="accordion === 2">
           <div
             class="bg-primary-10 text-grey font-semibold p-3 flex items-center justify-between cursor-pointer border-b"
-            :class="{ '!text-primary': tab === 'status' }"
-            @click="tab = 'status'"
+            :class="{ '!text-primary': tab === 'info' }"
+            @click="tab = 'info'"
           >
-            Status
+            Information About
             <svg
               width="30"
               height="31"
@@ -175,30 +173,10 @@ watch(accordion, () => {
 
           <div
             class="bg-primary-10 text-grey font-semibold p-3 flex items-center justify-between cursor-pointer border-b"
-            :class="{ '!text-primary': tab === 'reason-a' }"
-            @click="tab = 'reason-a'"
+            :class="{ '!text-primary': tab === 'social-security' }"
+            @click="tab = 'social-security'"
           >
-            Reason for Application (Section A)
-            <svg
-              width="30"
-              height="31"
-              viewBox="0 0 30 31"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M11.6159 24.2004C11.3815 23.966 11.2499 23.6481 11.2499 23.3167C11.2499 22.9852 11.3815 22.6673 11.6159 22.4329L18.2321 15.8167L11.6159 9.20042C11.4965 9.08512 11.4012 8.94718 11.3357 8.79468C11.2702 8.64217 11.2357 8.47815 11.2343 8.31217C11.2329 8.1462 11.2645 7.9816 11.3273 7.82798C11.3902 7.67436 11.483 7.5348 11.6004 7.41743C11.7177 7.30006 11.8573 7.20725 12.0109 7.1444C12.1645 7.08154 12.3291 7.04992 12.4951 7.05136C12.6611 7.0528 12.8251 7.08729 12.9776 7.1528C13.1301 7.21831 13.2681 7.31353 13.3834 7.43292L20.8834 14.9329C21.1177 15.1673 21.2493 15.4852 21.2493 15.8167C21.2493 16.1481 21.1177 16.466 20.8834 16.7004L13.3834 24.2004C13.149 24.4348 12.8311 24.5664 12.4996 24.5664C12.1682 24.5664 11.8503 24.4348 11.6159 24.2004Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-
-          <div
-            class="bg-primary-10 text-grey font-semibold p-3 flex items-center justify-between cursor-pointer border-b"
-            :class="{ '!text-primary': tab === 'reason-b' }"
-            @click="tab = 'reason-b'"
-          >
-            Reason for Application (Section B)
+            Social Security Update
             <svg
               width="30"
               height="31"
@@ -219,9 +197,8 @@ watch(accordion, () => {
           :class="{ '!bg-primary text-white': accordion === 3 }"
           @click="accordion = 3"
         >
-          Processing Information
+          Biographic Information
           <svg
-            :class="{ 'rotate-90': accordion === 3 }"
             width="30"
             height="31"
             viewBox="0 0 30 31"
@@ -233,47 +210,6 @@ watch(accordion, () => {
               fill="currentColor"
             />
           </svg>
-        </div>
-        <div class="" v-show="accordion === 3">
-          <div
-            class="bg-primary-10 text-grey font-semibold p-3 flex items-center justify-between cursor-pointer border-b"
-            :class="{ '!text-primary': tab === 'processing' }"
-            @click="tab = 'processing'"
-          >
-            Processing Information
-            <svg
-              width="30"
-              height="31"
-              viewBox="0 0 30 31"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M11.6159 24.2004C11.3815 23.966 11.2499 23.6481 11.2499 23.3167C11.2499 22.9852 11.3815 22.6673 11.6159 22.4329L18.2321 15.8167L11.6159 9.20042C11.4965 9.08512 11.4012 8.94718 11.3357 8.79468C11.2702 8.64217 11.2357 8.47815 11.2343 8.31217C11.2329 8.1462 11.2645 7.9816 11.3273 7.82798C11.3902 7.67436 11.483 7.5348 11.6004 7.41743C11.7177 7.30006 11.8573 7.20725 12.0109 7.1444C12.1645 7.08154 12.3291 7.04992 12.4951 7.05136C12.6611 7.0528 12.8251 7.08729 12.9776 7.1528C13.1301 7.21831 13.2681 7.31353 13.3834 7.43292L20.8834 14.9329C21.1177 15.1673 21.2493 15.4852 21.2493 15.8167C21.2493 16.1481 21.1177 16.466 20.8834 16.7004L13.3834 24.2004C13.149 24.4348 12.8311 24.5664 12.4996 24.5664C12.1682 24.5664 11.8503 24.4348 11.6159 24.2004Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-
-          <div
-            class="bg-primary-10 text-grey font-semibold p-3 flex items-center justify-between cursor-pointer border-b"
-            :class="{ '!text-primary': tab === 'biographic' }"
-            @click="tab = 'biographic'"
-          >
-            Biographic Information
-            <svg
-              width="30"
-              height="31"
-              viewBox="0 0 30 31"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M11.6159 24.2004C11.3815 23.966 11.2499 23.6481 11.2499 23.3167C11.2499 22.9852 11.3815 22.6673 11.6159 22.4329L18.2321 15.8167L11.6159 9.20042C11.4965 9.08512 11.4012 8.94718 11.3357 8.79468C11.2702 8.64217 11.2357 8.47815 11.2343 8.31217C11.2329 8.1462 11.2645 7.9816 11.3273 7.82798C11.3902 7.67436 11.483 7.5348 11.6004 7.41743C11.7177 7.30006 11.8573 7.20725 12.0109 7.1444C12.1645 7.08154 12.3291 7.04992 12.4951 7.05136C12.6611 7.0528 12.8251 7.08729 12.9776 7.1528C13.1301 7.21831 13.2681 7.31353 13.3834 7.43292L20.8834 14.9329C21.1177 15.1673 21.2493 15.4852 21.2493 15.8167C21.2493 16.1481 21.1177 16.466 20.8834 16.7004L13.3834 24.2004C13.149 24.4348 12.8311 24.5664 12.4996 24.5664C12.1682 24.5664 11.8503 24.4348 11.6159 24.2004Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
         </div>
 
         <div
@@ -281,9 +217,9 @@ watch(accordion, () => {
           :class="{ '!bg-primary text-white': accordion === 4 }"
           @click="accordion = 4"
         >
-          Accomodations for Individuals with Disabilities and/or Impairements
+          Information About Your Residence
           <svg
-            :class="{ 'rotate-90': accordion === 4 }"
+            :class="{'rotate-90' : accordion === 4}"
             width="30"
             height="31"
             viewBox="0 0 30 31"
@@ -296,13 +232,55 @@ watch(accordion, () => {
             />
           </svg>
         </div>
+        
         <div class="" v-show="accordion === 4">
+
           <div
             class="bg-primary-10 text-grey font-semibold p-3 flex items-center justify-between cursor-pointer border-b"
-            :class="{ '!text-primary': tab === 'disabilities' }"
-            @click="tab = 'disabilities'"
+            :class="{ '!text-primary': tab === 'current-residence' }"
+            @click="tab = 'current-residence'"
           >
-            Disablities and/or Impairment
+            Current Residence
+            <svg
+              width="30"
+              height="31"
+              viewBox="0 0 30 31"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.6159 24.2004C11.3815 23.966 11.2499 23.6481 11.2499 23.3167C11.2499 22.9852 11.3815 22.6673 11.6159 22.4329L18.2321 15.8167L11.6159 9.20042C11.4965 9.08512 11.4012 8.94718 11.3357 8.79468C11.2702 8.64217 11.2357 8.47815 11.2343 8.31217C11.2329 8.1462 11.2645 7.9816 11.3273 7.82798C11.3902 7.67436 11.483 7.5348 11.6004 7.41743C11.7177 7.30006 11.8573 7.20725 12.0109 7.1444C12.1645 7.08154 12.3291 7.04992 12.4951 7.05136C12.6611 7.0528 12.8251 7.08729 12.9776 7.1528C13.1301 7.21831 13.2681 7.31353 13.3834 7.43292L20.8834 14.9329C21.1177 15.1673 21.2493 15.4852 21.2493 15.8167C21.2493 16.1481 21.1177 16.466 20.8834 16.7004L13.3834 24.2004C13.149 24.4348 12.8311 24.5664 12.4996 24.5664C12.1682 24.5664 11.8503 24.4348 11.6159 24.2004Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+
+          <div
+            class="bg-primary-10 text-grey font-semibold p-3 flex items-center justify-between cursor-pointer border-b"
+            :class="{ '!text-primary': tab === 'residence-history' }"
+            @click="tab = 'residence-history'"
+          >
+            Residence History
+            <svg
+              width="30"
+              height="31"
+              viewBox="0 0 30 31"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M11.6159 24.2004C11.3815 23.966 11.2499 23.6481 11.2499 23.3167C11.2499 22.9852 11.3815 22.6673 11.6159 22.4329L18.2321 15.8167L11.6159 9.20042C11.4965 9.08512 11.4012 8.94718 11.3357 8.79468C11.2702 8.64217 11.2357 8.47815 11.2343 8.31217C11.2329 8.1462 11.2645 7.9816 11.3273 7.82798C11.3902 7.67436 11.483 7.5348 11.6004 7.41743C11.7177 7.30006 11.8573 7.20725 12.0109 7.1444C12.1645 7.08154 12.3291 7.04992 12.4951 7.05136C12.6611 7.0528 12.8251 7.08729 12.9776 7.1528C13.1301 7.21831 13.2681 7.31353 13.3834 7.43292L20.8834 14.9329C21.1177 15.1673 21.2493 15.4852 21.2493 15.8167C21.2493 16.1481 21.1177 16.466 20.8834 16.7004L13.3834 24.2004C13.149 24.4348 12.8311 24.5664 12.4996 24.5664C12.1682 24.5664 11.8503 24.4348 11.6159 24.2004Z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+
+          <div
+            class="bg-primary-10 text-grey font-semibold p-3 flex items-center justify-between cursor-pointer border-b"
+            :class="{ '!text-primary': tab === 'mailing' }"
+            @click="tab = 'mailing'"
+          >
+            Mailing Address
             <svg
               width="30"
               height="31"
@@ -323,7 +301,7 @@ watch(accordion, () => {
           :class="{ '!bg-primary text-white': accordion === 5 }"
           @click="accordion = 5"
         >
-          Applicant's Statement, Contact Information, Certification, and Signature
+          Marital History
           <svg
             :class="{ 'rotate-90': accordion === 5 }"
             width="30"
@@ -341,10 +319,10 @@ watch(accordion, () => {
         <div class="" v-show="accordion === 5">
           <div
             class="bg-primary-10 text-grey font-semibold p-3 flex items-center justify-between cursor-pointer border-b"
-            :class="{ '!text-primary': tab === 'statement' }"
-            @click="tab = 'statement'"
+            :class="{ '!text-primary': tab === 'marital-history' }"
+            @click="tab = 'marital-history'"
           >
-            Applicant's Statement
+            Marital History
             <svg
               width="30"
               height="31"
@@ -361,50 +339,10 @@ watch(accordion, () => {
 
           <div
             class="bg-primary-10 text-grey font-semibold p-3 flex items-center justify-between cursor-pointer border-b"
-            :class="{ '!text-primary': tab === 'contact' }"
-            @click="tab = 'contact'"
+            :class="{ '!text-primary': tab === 'current-marriage' }"
+            @click="tab = 'current-marriage'"
           >
-            Applicant's Contact Information
-            <svg
-              width="30"
-              height="31"
-              viewBox="0 0 30 31"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M11.6159 24.2004C11.3815 23.966 11.2499 23.6481 11.2499 23.3167C11.2499 22.9852 11.3815 22.6673 11.6159 22.4329L18.2321 15.8167L11.6159 9.20042C11.4965 9.08512 11.4012 8.94718 11.3357 8.79468C11.2702 8.64217 11.2357 8.47815 11.2343 8.31217C11.2329 8.1462 11.2645 7.9816 11.3273 7.82798C11.3902 7.67436 11.483 7.5348 11.6004 7.41743C11.7177 7.30006 11.8573 7.20725 12.0109 7.1444C12.1645 7.08154 12.3291 7.04992 12.4951 7.05136C12.6611 7.0528 12.8251 7.08729 12.9776 7.1528C13.1301 7.21831 13.2681 7.31353 13.3834 7.43292L20.8834 14.9329C21.1177 15.1673 21.2493 15.4852 21.2493 15.8167C21.2493 16.1481 21.1177 16.466 20.8834 16.7004L13.3834 24.2004C13.149 24.4348 12.8311 24.5664 12.4996 24.5664C12.1682 24.5664 11.8503 24.4348 11.6159 24.2004Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-
-          <div
-            class="bg-primary-10 text-grey font-semibold p-3 flex items-center justify-between cursor-pointer border-b"
-            :class="{ '!text-primary': tab === 'certification' }"
-            @click="tab = 'certification'"
-          >
-            Applicant's Certification
-            <svg
-              width="30"
-              height="31"
-              viewBox="0 0 30 31"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M11.6159 24.2004C11.3815 23.966 11.2499 23.6481 11.2499 23.3167C11.2499 22.9852 11.3815 22.6673 11.6159 22.4329L18.2321 15.8167L11.6159 9.20042C11.4965 9.08512 11.4012 8.94718 11.3357 8.79468C11.2702 8.64217 11.2357 8.47815 11.2343 8.31217C11.2329 8.1462 11.2645 7.9816 11.3273 7.82798C11.3902 7.67436 11.483 7.5348 11.6004 7.41743C11.7177 7.30006 11.8573 7.20725 12.0109 7.1444C12.1645 7.08154 12.3291 7.04992 12.4951 7.05136C12.6611 7.0528 12.8251 7.08729 12.9776 7.1528C13.1301 7.21831 13.2681 7.31353 13.3834 7.43292L20.8834 14.9329C21.1177 15.1673 21.2493 15.4852 21.2493 15.8167C21.2493 16.1481 21.1177 16.466 20.8834 16.7004L13.3834 24.2004C13.149 24.4348 12.8311 24.5664 12.4996 24.5664C12.1682 24.5664 11.8503 24.4348 11.6159 24.2004Z"
-                fill="currentColor"
-              />
-            </svg>
-          </div>
-
-          <div
-            class="bg-primary-10 text-grey font-semibold p-3 flex items-center justify-between cursor-pointer border-b"
-            :class="{ '!text-primary': tab === 'signature' }"
-            @click="tab = 'signature'"
-          >
-            Applicant's Signature
+            Current Marriage
             <svg
               width="30"
               height="31"
