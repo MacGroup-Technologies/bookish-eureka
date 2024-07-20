@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { computed, ref, type Ref } from 'vue'
-import { isEmpty } from 'lodash'
 import AppButton from '@/components/Button.vue'
 
 const props = defineProps<{
@@ -142,9 +141,9 @@ const sendData = function () {
           <span>Provide an explanation of when, where, and how this happened.</span>
          </label>
             <textarea
-            class="border rounded-md" 
+            class="border rounded-md p-3" 
             rows="4"
-            cols="60"
+            cols="58"
             id="explanation_stolen_certificate"
             v-model="data.explanation_stolen_certificate"
              required 
@@ -235,14 +234,25 @@ const sendData = function () {
           <span>Provide an explanation</span>
          </label>
             <textarea
-            class="border rounded-md" 
+            class="border rounded-md p-3" 
             rows="4"
-            cols="60"
+            cols="58"
             id="explanation_reason_not_listed"
             v-model="data.explanation_reason_not_listed"
              required 
              ></textarea>
         </div>
+
+        <!-- btn -->
+        <AppButton
+          mode="submit"
+          type="solid"
+          size="large"
+          color="primary"
+          class="mt-5 bg-primary text-white"
+        >
+          Continue
+        </AppButton>
       </form>
     </div>
   </section>
