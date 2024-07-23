@@ -113,6 +113,16 @@ const sendData = function () {
           <span>Female</span>
         </label>
       </div>
+
+      <AppButton
+        mode="submit"
+        type="solid"
+        size="large"
+        color="primary"
+        class="mt-5 bg-primary text-white"
+      >
+        Continue
+      </AppButton>
       </form>
 
     </section>
