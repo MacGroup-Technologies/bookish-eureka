@@ -54,7 +54,7 @@ const states = computed(() => {
               >NOTE:Provide the following information about the official of a foreign country who
               has requested this certificate (if known).</b
             >
-          </div>
+          </div>         
 
           <!---------------Names ------------------->
           <!---------------Lastname -------------------------->
