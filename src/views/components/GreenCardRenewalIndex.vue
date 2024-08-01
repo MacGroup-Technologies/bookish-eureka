@@ -105,8 +105,8 @@ watch(accordion, () => {
     <div class="text-white font-bold text-xl bg-primary p-5">
       Application for Green Card Renewal / Replacement [I-90]
     </div>
-    <div class="flex items-start md:h-[80vh] overflow-auto" v-if="isEmpty(downloadUrl)">
-      <div class="hidden md:block md:w-1/4">
+    <div class="flex items-start md:h-[80vh] overflow-hidden" v-if="isEmpty(downloadUrl)">
+      <div class="hidden md:block md:w-1/4 h-full overflow-auto">
         <div
           class="bg-primary-10 text-grey font-semibold p-3 flex items-center justify-between cursor-pointer text-lg"
           :class="{ '!bg-primary text-white': accordion === 1 }"
@@ -619,7 +619,7 @@ watch(accordion, () => {
           </div>
         </div>
       </div>
-      <div class="md:w-3/4 p-5">
+      <div class="md:w-3/4 p-5 h-full overflow-auto">
         <component :is="component" :tab="tab" @update-tab="updateTab" @next="handleNextSection" />
       </div>
     </div>
