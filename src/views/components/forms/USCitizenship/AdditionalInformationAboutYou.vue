@@ -1866,7 +1866,8 @@ const sendData = function () {
         <div class="">Have you <b>EVER</b></div>
         <div class="pl-3 border-l">
           <div class="my-5">
-            Engaged in prostitution, attempted to procure or import prostitutes or persons for the purpose of prostitution, or received any proceeds or money from prostitution?
+            Engaged in prostitution, attempted to procure or import prostitutes or persons for the
+            purpose of prostitution, or received any proceeds or money from prostitution?
 
             <div class="flex gap-3 mt-2">
               <label
@@ -1906,7 +1907,10 @@ const sendData = function () {
           </div>
 
           <div class="my-5">
-            Manufactured, cultivated, produced, distributed, dispensed, sold, or smuggled (trafficked) any controlled substances, illegal drugs, narcotics, or drug paraphernalia in violation of any law or regulation of a U.S state, the United States, or foreign country?
+            Manufactured, cultivated, produced, distributed, dispensed, sold, or smuggled
+            (trafficked) any controlled substances, illegal drugs, narcotics, or drug paraphernalia
+            in violation of any law or regulation of a U.S state, the United States, or foreign
+            country?
 
             <div class="flex gap-3 mt-2">
               <label
@@ -2106,7 +2110,8 @@ const sendData = function () {
           </div>
 
           <div class="my-5">
-            Failed to support your dependents (pay child support) or pay alimony (court-ordered financial support after divorce or seperation)?
+            Failed to support your dependents (pay child support) or pay alimony (court-ordered
+            financial support after divorce or seperation)?
 
             <div class="flex gap-3 mt-2">
               <label
@@ -2184,6 +2189,1066 @@ const sendData = function () {
               </label>
             </div>
           </div>
+        </div>
+      </div>
+
+      <div class="my-5">
+        Have you <b>EVER</b> given any US Governemtnofficials <b>any</b> information or
+        documentation that was false, fraudulent, or misleading?
+
+        <div class="flex gap-3 mt-2">
+          <label
+            for="Q18_true"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q18_true"
+              name="Q18"
+              v-model="data.Q18_yes"
+              :checked="data.Q18_yes"
+              :value="data.Q18_yes ? false : true"
+              @change="data.Q18_yes ? (data.Q18_no = false) : (data.Q18_no = true)"
+              required
+            />
+            <span>Yes</span>
+          </label>
+
+          <label
+            for="Q18_false"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q18_false"
+              name="Q18"
+              v-model="data.Q18_no"
+              :checked="data.Q18_no"
+              :value="data.Q18_no ? false : true"
+              @change="data.Q18_no ? (data.Q18_yes = false) : (data.Q18_yes = true)"
+              required
+            />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="my-5">
+        Have you <b>EVER</b> lied to any U.S Governement officials to gain entry or admission into
+        the United States or to gain immigration benefits while in the United States?
+
+        <div class="flex gap-3 mt-2">
+          <label
+            for="Q19_true"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q19_true"
+              name="Q19"
+              v-model="data.Q19_yes"
+              :checked="data.Q19_yes"
+              :value="data.Q19_yes ? false : true"
+              @change="data.Q19_yes ? (data.Q19_no = false) : (data.Q19_no = true)"
+              required
+            />
+            <span>Yes</span>
+          </label>
+
+          <label
+            for="Q19_false"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q19_false"
+              name="Q19"
+              v-model="data.Q19_no"
+              :checked="data.Q19_no"
+              :value="data.Q19_no ? false : true"
+              @change="data.Q19_no ? (data.Q19_yes = false) : (data.Q19_yes = true)"
+              required
+            />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="my-5">
+        Have you <b>EVER</b> been placed in removal, recission, or deportation proceedings?
+
+        <div class="flex gap-3 mt-2">
+          <label
+            for="Q20_true"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q20_true"
+              name="Q20"
+              v-model="data.Q20_yes"
+              :checked="data.Q20_yes"
+              :value="data.Q20_yes ? false : true"
+              @change="data.Q20_yes ? (data.Q20_no = false) : (data.Q20_no = true)"
+              required
+            />
+            <span>Yes</span>
+          </label>
+
+          <label
+            for="Q20_false"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q20_false"
+              name="Q20"
+              v-model="data.Q20_no"
+              :checked="data.Q20_no"
+              :value="data.Q20_no ? false : true"
+              @change="data.Q20_no ? (data.Q20_yes = false) : (data.Q20_yes = true)"
+              required
+            />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="my-5">
+        Have you <b>EVER</b> been removed or deported from the United States?
+
+        <div class="flex gap-3 mt-2">
+          <label
+            for="Q21_true"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q21_true"
+              name="Q21"
+              v-model="data.Q21_yes"
+              :checked="data.Q21_yes"
+              :value="data.Q21_yes ? false : true"
+              @change="data.Q21_yes ? (data.Q21_no = false) : (data.Q21_no = true)"
+              required
+            />
+            <span>Yes</span>
+          </label>
+
+          <label
+            for="Q21_false"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q21_false"
+              name="Q21"
+              v-model="data.Q21_no"
+              :checked="data.Q21_no"
+              :value="data.Q21_no ? false : true"
+              @change="data.Q21_no ? (data.Q21_yes = false) : (data.Q21_yes = true)"
+              required
+            />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="my-5">
+        <div class="">
+          Federal Law requires nearly all people born as male who are wither U.S citizens or
+          immigrants, 18 through 25 years of age, to register with Selective Service.
+          <br />
+          See
+          <a href="https://www.sss.gov" class="text-primary underline" target="_blank"
+            >https://www.sss.gov</a
+          >
+        </div>
+        <div class="pl-3 border-l">
+          <div class="my-5">
+            Are you a person born as male who lived in the United States at any time between your
+            18th and 26th birthdays? (Do not select "Yes" if you were a lawful nonimmigrant for all
+            of that period)
+
+            <div class="flex gap-3 mt-2">
+              <label
+                for="Q22a_true"
+                class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  id="Q22a_true"
+                  name="Q22a"
+                  v-model="data.Q22a_yes"
+                  :checked="data.Q22a_yes"
+                  :value="data.Q22a_yes ? false : true"
+                  @change="data.Q22a_yes ? (data.Q22a_no = false) : (data.Q22a_no = true)"
+                  required
+                />
+                <span>Yes</span>
+              </label>
+
+              <label
+                for="Q22a_false"
+                class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  id="Q22a_false"
+                  name="Q22a"
+                  v-model="data.Q22a_no"
+                  :checked="data.Q22a_no"
+                  :value="data.Q22a_no ? false : true"
+                  @change="data.Q22a_no ? (data.Q22a_yes = false) : (data.Q22a_yes = true)"
+                  required
+                />
+                <span>No</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="my-5" v-if="data.Q22a_yes">
+            Did you register for the Selective Service?
+
+            <div class="flex gap-3 mt-2">
+              <label
+                for="Q22b_true"
+                class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  id="Q22b_true"
+                  name="Q22b"
+                  v-model="data.Q22b_yes"
+                  :checked="data.Q22b_yes"
+                  :value="data.Q22b_yes ? false : true"
+                  @change="data.Q22b_yes ? (data.Q22b_no = false) : (data.Q22b_no = true)"
+                  required
+                />
+                <span>Yes</span>
+              </label>
+
+              <label
+                for="Q22b_false"
+                class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  id="Q22b_false"
+                  name="Q22b"
+                  v-model="data.Q22b_no"
+                  :checked="data.Q22b_no"
+                  :value="data.Q22b_no ? false : true"
+                  @change="data.Q22b_no ? (data.Q22b_yes = false) : (data.Q22b_yes = true)"
+                  required
+                />
+                <span>No</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="my-5" v-if="data.Q22b_yes">
+            Provide information about your registration
+
+            <div class="flex gap-3 mt-2">
+              <label for="date_registered" class="flex flex-col gap-2 w-1/2">
+                <span>Date Registered</span>
+                <input
+                  type="date"
+                  id="date_registered"
+                  v-model="data.date_registered"
+                  class="p-2 border focus:outline-primary rounded-md"
+                />
+              </label>
+
+              <label for="selective_service_number" class="flex flex-col gap-2 w-1/2">
+                <span>Selective Service Number</span>
+                <input
+                  type="number"
+                  id="selective_service_number"
+                  v-model="data.selective_service_number"
+                  class="p-2 border focus:outline-primary rounded-md"
+                />
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="my-5">
+        Have you <b>EVER</b> left the United States to avoid being drafted in the U.S Armed Forces
+
+        <div class="flex gap-3 mt-2">
+          <label
+            for="Q23_true"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q23_true"
+              name="Q23"
+              v-model="data.Q23_yes"
+              :checked="data.Q23_yes"
+              :value="data.Q23_yes ? false : true"
+              @change="data.Q23_yes ? (data.Q23_no = false) : (data.Q23_no = true)"
+              required
+            />
+            <span>Yes</span>
+          </label>
+
+          <label
+            for="Q23_false"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q23_false"
+              name="Q23"
+              v-model="data.Q23_no"
+              :checked="data.Q23_no"
+              :value="data.Q23_no ? false : true"
+              @change="data.Q23_no ? (data.Q23_yes = false) : (data.Q23_yes = true)"
+              required
+            />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="my-5">
+        Have you <b>EVER</b> applied for any kind of exemption from the military service in the U.S
+        Armed Forces?
+
+        <div class="flex gap-3 mt-2">
+          <label
+            for="Q24_true"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q24_true"
+              name="Q24"
+              v-model="data.Q24_yes"
+              :checked="data.Q24_yes"
+              :value="data.Q24_yes ? false : true"
+              @change="data.Q24_yes ? (data.Q24_no = false) : (data.Q24_no = true)"
+              required
+            />
+            <span>Yes</span>
+          </label>
+
+          <label
+            for="Q24_false"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q24_false"
+              name="Q24"
+              v-model="data.Q24_no"
+              :checked="data.Q24_no"
+              :value="data.Q24_no ? false : true"
+              @change="data.Q24_no ? (data.Q24_yes = false) : (data.Q24_yes = true)"
+              required
+            />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="my-5">
+        Have you <b>EVER</b> served in the U.S Armed Forces?
+
+        <div class="flex gap-3 mt-2">
+          <label
+            for="Q25_true"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q25_true"
+              name="Q25"
+              v-model="data.Q25_yes"
+              :checked="data.Q25_yes"
+              :value="data.Q25_yes ? false : true"
+              @change="data.Q25_yes ? (data.Q25_no = false) : (data.Q25_no = true)"
+              required
+            />
+            <span>Yes</span>
+          </label>
+
+          <label
+            for="Q25_false"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q25_false"
+              name="Q25"
+              v-model="data.Q25_no"
+              :checked="data.Q25_no"
+              :value="data.Q25_no ? false : true"
+              @change="data.Q25_no ? (data.Q25_yes = false) : (data.Q25_yes = true)"
+              required
+            />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+
+      <template v-if="data.Q25_yes">
+        <div class="my-5">
+          Are you <b>currently</b> a member of the U.S Armed Forces?
+
+          <div class="flex gap-3 mt-2">
+            <label
+              for="Q26a_true"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input
+                type="radio"
+                id="Q26a_true"
+                name="Q26a"
+                v-model="data.Q26a_yes"
+                :checked="data.Q26a_yes"
+                :value="data.Q26a_yes ? false : true"
+                @change="data.Q26a_yes ? (data.Q26a_no = false) : (data.Q26a_no = true)"
+                required
+              />
+              <span>Yes</span>
+            </label>
+
+            <label
+              for="Q26a_false"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input
+                type="radio"
+                id="Q26a_false"
+                name="Q26a"
+                v-model="data.Q26a_no"
+                :checked="data.Q26a_no"
+                :value="data.Q26a_no ? false : true"
+                @change="data.Q26a_no ? (data.Q26a_yes = false) : (data.Q26a_yes = true)"
+                required
+              />
+              <span>No</span>
+            </label>
+          </div>
+        </div>
+
+        <template v-if="data.Q26a_yes">
+          <div class="my-5">
+            Are you scheduled to deploy outside the United States, including to a vessel, within the
+            next 3 months?
+            <br />
+            <small>
+              (Call the Military Help Line at <b>877-247-4645</b> if you transfer to a new duty
+              station after you file your Form N-400, including if you are deployed outside the
+              United States or a vessel)
+            </small>
+
+            <div class="flex gap-3 mt-2">
+              <label
+                for="Q26b_true"
+                class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  id="Q26b_true"
+                  name="Q26b"
+                  v-model="data.Q26b_yes"
+                  :checked="data.Q26b_yes"
+                  :value="data.Q26b_yes ? false : true"
+                  @change="data.Q26b_yes ? (data.Q26b_no = false) : (data.Q26b_no = true)"
+                  required
+                />
+                <span>Yes</span>
+              </label>
+
+              <label
+                for="Q26b_false"
+                class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  id="Q26b_false"
+                  name="Q26b"
+                  v-model="data.Q26b_no"
+                  :checked="data.Q26b_no"
+                  :value="data.Q26b_no ? false : true"
+                  @change="data.Q26b_no ? (data.Q26b_yes = false) : (data.Q26b_yes = true)"
+                  required
+                />
+                <span>No</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="my-5">
+            Are you <b>currently</b> stationed outside the United States?
+
+            <div class="flex gap-3 mt-2">
+              <label
+                for="Q26c_true"
+                class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  id="Q26c_true"
+                  name="Q26c"
+                  v-model="data.Q26c_yes"
+                  :checked="data.Q26c_yes"
+                  :value="data.Q26c_yes ? false : true"
+                  @change="data.Q26c_yes ? (data.Q26c_no = false) : (data.Q26c_no = true)"
+                  required
+                />
+                <span>Yes</span>
+              </label>
+
+              <label
+                for="Q26c_false"
+                class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+              >
+                <input
+                  type="radio"
+                  id="Q26c_false"
+                  name="Q26c"
+                  v-model="data.Q26c_no"
+                  :checked="data.Q26c_no"
+                  :value="data.Q26c_no ? false : true"
+                  @change="data.Q26c_no ? (data.Q26c_yes = false) : (data.Q26c_yes = true)"
+                  required
+                />
+                <span>No</span>
+              </label>
+            </div>
+          </div>
+        </template>
+
+        <div class="my-5" v-if="data.Q26a_no">
+          Are you a former US military service member who is currently residing outside of the U.S?
+
+          <div class="flex gap-3 mt-2">
+            <label
+              for="Q26d_true"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input
+                type="radio"
+                id="Q26d_true"
+                name="Q26d"
+                v-model="data.Q26d_yes"
+                :checked="data.Q26d_yes"
+                :value="data.Q26d_yes ? false : true"
+                @change="data.Q26d_yes ? (data.Q26d_no = false) : (data.Q26d_no = true)"
+                required
+              />
+              <span>Yes</span>
+            </label>
+
+            <label
+              for="Q26d_false"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input
+                type="radio"
+                id="Q26d_false"
+                name="Q26d"
+                v-model="data.Q26d_no"
+                :checked="data.Q26d_no"
+                :value="data.Q26d_no ? false : true"
+                @change="data.Q26d_no ? (data.Q26d_yes = false) : (data.Q26d_yes = true)"
+                required
+              />
+              <span>No</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="my-5">
+          Have you <b>EVER</b> been court-martialed or have you received a discharge characterized
+          as other than honorable, bad conduct, or dishonorable, while in the U.S Armed Forces?
+
+          <div class="flex gap-3 mt-2">
+            <label
+              for="Q27_true"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input
+                type="radio"
+                id="Q27_true"
+                name="Q27"
+                v-model="data.Q27_yes"
+                :checked="data.Q27_yes"
+                :value="data.Q27_yes ? false : true"
+                @change="data.Q27_yes ? (data.Q27_no = false) : (data.Q27_no = true)"
+                required
+              />
+              <span>Yes</span>
+            </label>
+
+            <label
+              for="Q27_false"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input
+                type="radio"
+                id="Q27_false"
+                name="Q27"
+                v-model="data.Q27_no"
+                :checked="data.Q27_no"
+                :value="data.Q27_no ? false : true"
+                @change="data.Q27_no ? (data.Q27_yes = false) : (data.Q27_yes = true)"
+                required
+              />
+              <span>No</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="my-5">
+          Have you <b>EVER</b> been discharged from training or service in the U.S Armed Forces
+          because you were an alien?
+
+          <div class="flex gap-3 mt-2">
+            <label
+              for="Q28_true"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input
+                type="radio"
+                id="Q28_true"
+                name="Q28"
+                v-model="data.Q28_yes"
+                :checked="data.Q28_yes"
+                :value="data.Q28_yes ? false : true"
+                @change="data.Q28_yes ? (data.Q28_no = false) : (data.Q28_no = true)"
+                required
+              />
+              <span>Yes</span>
+            </label>
+
+            <label
+              for="Q28_false"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input
+                type="radio"
+                id="Q28_false"
+                name="Q28"
+                v-model="data.Q28_no"
+                :checked="data.Q28_no"
+                :value="data.Q28_no ? false : true"
+                @change="data.Q28_no ? (data.Q28_yes = false) : (data.Q28_yes = true)"
+                required
+              />
+              <span>No</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="my-5">
+          Have you <b>EVER</b> deserted from the U.S Armed Forces?
+
+          <div class="flex gap-3 mt-2">
+            <label
+              for="Q29_true"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input
+                type="radio"
+                id="Q29_true"
+                name="Q29"
+                v-model="data.Q29_yes"
+                :checked="data.Q29_yes"
+                :value="data.Q29_yes ? false : true"
+                @change="data.Q29_yes ? (data.Q29_no = false) : (data.Q29_no = true)"
+                required
+              />
+              <span>Yes</span>
+            </label>
+
+            <label
+              for="Q29_false"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input
+                type="radio"
+                id="Q29_false"
+                name="Q29"
+                v-model="data.Q29_no"
+                :checked="data.Q29_no"
+                :value="data.Q29_no ? false : true"
+                @change="data.Q29_no ? (data.Q29_yes = false) : (data.Q29_yes = true)"
+                required
+              />
+              <span>No</span>
+            </label>
+          </div>
+        </div>
+      </template>
+
+      <div class="my-5">
+        Do you now have, or did you <b>EVER</b> have, a hereditary title or an order of nobility in
+        any foreign country?
+
+        <div class="flex gap-3 mt-2">
+          <label
+            for="Q30a_true"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q30a_true"
+              name="Q30a"
+              v-model="data.Q30a_yes"
+              :checked="data.Q30a_yes"
+              :value="data.Q30a_yes ? false : true"
+              @change="data.Q30a_yes ? (data.Q30a_no = false) : (data.Q30a_no = true)"
+              required
+            />
+            <span>Yes</span>
+          </label>
+
+          <label
+            for="Q30a_false"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q30a_false"
+              name="Q30a"
+              v-model="data.Q30a_no"
+              :checked="data.Q30a_no"
+              :value="data.Q30a_no ? false : true"
+              @change="data.Q30a_no ? (data.Q30a_yes = false) : (data.Q30a_yes = true)"
+              required
+            />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="my-5" v-if="data.Q30a_yes">
+        Are you willing to give up any inherited titles or orders of nobility,
+        <input type="text" v-model="data.Q30b_text" placeholder="Titles" class="border-b-2" />, that
+        you have in a foreign country at your naturalization ceremony?
+
+        <div class="flex gap-3 mt-2">
+          <label
+            for="Q30b_true"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q30b_true"
+              name="Q30b"
+              v-model="data.Q30b_yes"
+              :checked="data.Q30b_yes"
+              :value="data.Q30b_yes ? false : true"
+              @change="data.Q30b_yes ? (data.Q30b_no = false) : (data.Q30b_no = true)"
+              required
+            />
+            <span>Yes</span>
+          </label>
+
+          <label
+            for="Q30b_false"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q30b_false"
+              name="Q30b"
+              v-model="data.Q30b_no"
+              :checked="data.Q30b_no"
+              :value="data.Q30b_no ? false : true"
+              @change="data.Q30b_no ? (data.Q30b_yes = false) : (data.Q30b_yes = true)"
+              required
+            />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+      
+      <div class="my-5">
+        Do you support the Constitution and Governement of the United States?
+
+        <div class="flex gap-3 mt-2">
+          <label
+            for="Q31_true"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q31_true"
+              name="Q31"
+              v-model="data.Q31_yes"
+              :checked="data.Q31_yes"
+              :value="data.Q31_yes ? false : true"
+              @change="data.Q31_yes ? (data.Q31_no = false) : (data.Q31_no = true)"
+              required
+            />
+            <span>Yes</span>
+          </label>
+
+          <label
+            for="Q31_false"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q31_false"
+              name="Q31"
+              v-model="data.Q31_no"
+              :checked="data.Q31_no"
+              :value="data.Q31_no ? false : true"
+              @change="data.Q31_no ? (data.Q31_yes = false) : (data.Q31_yes = true)"
+              required
+            />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+      
+      <div class="my-5">
+        Do you understand the Oath of Allegiance of the United States?
+
+        <div class="flex gap-3 mt-2">
+          <label
+            for="Q32_true"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q32_true"
+              name="Q32"
+              v-model="data.Q32_yes"
+              :checked="data.Q32_yes"
+              :value="data.Q32_yes ? false : true"
+              @change="data.Q32_yes ? (data.Q32_no = false) : (data.Q32_no = true)"
+              required
+            />
+            <span>Yes</span>
+          </label>
+
+          <label
+            for="Q32_false"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q32_false"
+              name="Q32"
+              v-model="data.Q32_no"
+              :checked="data.Q32_no"
+              :value="data.Q32_no ? false : true"
+              @change="data.Q32_no ? (data.Q32_yes = false) : (data.Q32_yes = true)"
+              required
+            />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+      
+      <div class="my-5">
+        Are you unable to take the Oath of Allegiance because of a physical or developmental disability or mental impairment?
+
+        <div class="flex gap-3 mt-2">
+          <label
+            for="Q33_true"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q33_true"
+              name="Q33"
+              v-model="data.Q33_yes"
+              :checked="data.Q33_yes"
+              :value="data.Q33_yes ? false : true"
+              @change="data.Q33_yes ? (data.Q33_no = false) : (data.Q33_no = true)"
+              required
+            />
+            <span>Yes</span>
+          </label>
+
+          <label
+            for="Q33_false"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q33_false"
+              name="Q33"
+              v-model="data.Q33_no"
+              :checked="data.Q33_no"
+              :value="data.Q33_no ? false : true"
+              @change="data.Q33_no ? (data.Q33_yes = false) : (data.Q33_yes = true)"
+              required
+            />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+      
+      <div class="my-5">
+        Are you willing to take the full Oath of Allegiance to the United States?
+
+        <div class="flex gap-3 mt-2">
+          <label
+            for="Q34_true"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q34_true"
+              name="Q34"
+              v-model="data.Q34_yes"
+              :checked="data.Q34_yes"
+              :value="data.Q34_yes ? false : true"
+              @change="data.Q34_yes ? (data.Q34_no = false) : (data.Q34_no = true)"
+              required
+            />
+            <span>Yes</span>
+          </label>
+
+          <label
+            for="Q34_false"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q34_false"
+              name="Q34"
+              v-model="data.Q34_no"
+              :checked="data.Q34_no"
+              :value="data.Q34_no ? false : true"
+              @change="data.Q34_no ? (data.Q34_yes = false) : (data.Q34_yes = true)"
+              required
+            />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+      
+      <div class="my-5">
+        If the law requires it, are you willing to bear arms (carry weapons) on behalf od the United States?
+
+        <div class="flex gap-3 mt-2">
+          <label
+            for="Q35_true"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q35_true"
+              name="Q35"
+              v-model="data.Q35_yes"
+              :checked="data.Q35_yes"
+              :value="data.Q35_yes ? false : true"
+              @change="data.Q35_yes ? (data.Q35_no = false) : (data.Q35_no = true)"
+              required
+            />
+            <span>Yes</span>
+          </label>
+
+          <label
+            for="Q35_false"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q35_false"
+              name="Q35"
+              v-model="data.Q35_no"
+              :checked="data.Q35_no"
+              :value="data.Q35_no ? false : true"
+              @change="data.Q35_no ? (data.Q35_yes = false) : (data.Q35_yes = true)"
+              required
+            />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+      
+      <div class="my-5">
+        If the law requires it, are you willing to perform noncombantant services (do something that does not include fighting in a war) in the U.S Armed Forces?
+
+        <div class="flex gap-3 mt-2">
+          <label
+            for="Q36_true"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q36_true"
+              name="Q36"
+              v-model="data.Q36_yes"
+              :checked="data.Q36_yes"
+              :value="data.Q36_yes ? false : true"
+              @change="data.Q36_yes ? (data.Q36_no = false) : (data.Q36_no = true)"
+              required
+            />
+            <span>Yes</span>
+          </label>
+
+          <label
+            for="Q36_false"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q36_false"
+              name="Q36"
+              v-model="data.Q36_no"
+              :checked="data.Q36_no"
+              :value="data.Q36_no ? false : true"
+              @change="data.Q36_no ? (data.Q36_yes = false) : (data.Q36_yes = true)"
+              required
+            />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+      
+      <div class="my-5">
+        If the law requires it, are you willing to perform work of national importance under civilian direction (do non-military work that the US Government says is important to the country)?
+
+        <div class="flex gap-3 mt-2">
+          <label
+            for="Q37_true"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q37_true"
+              name="Q37"
+              v-model="data.Q37_yes"
+              :checked="data.Q37_yes"
+              :value="data.Q37_yes ? false : true"
+              @change="data.Q37_yes ? (data.Q37_no = false) : (data.Q37_no = true)"
+              required
+            />
+            <span>Yes</span>
+          </label>
+
+          <label
+            for="Q37_false"
+            class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+          >
+            <input
+              type="radio"
+              id="Q37_false"
+              name="Q37"
+              v-model="data.Q37_no"
+              :checked="data.Q37_no"
+              :value="data.Q37_no ? false : true"
+              @change="data.Q37_no ? (data.Q37_yes = false) : (data.Q37_yes = true)"
+              required
+            />
+            <span>No</span>
+          </label>
         </div>
       </div>
 
