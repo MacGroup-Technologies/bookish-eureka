@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import { computed, ref, type Ref } from 'vue'
+import { isEmpty } from 'lodash'
+
 import AppButton from '@/components/Button.vue'
 import { COUNTRIES_AND_STATES as COUNTRIES } from '@/utils/countries_and_state'
 
@@ -11,6 +13,22 @@ const props = defineProps<{
 const emit = defineEmits(['add-tabs', 'next'])
 
 const data: Ref<any> = ref({})
+
+    const states = computed(() => {
+  if (props.tab === 'mailing') {
+    if (isEmpty(data.value.country)) {
+      return []
+    } else {
+      return COUNTRIES.find((item) => item.name === data.value.country)
+    }
+  } else {
+    if (isEmpty(data.value.physical_country)) {
+      return []
+    } else {
+      return COUNTRIES.find((item) => item.name === data.value.physical_country)
+    }
+  }
+})
 
 const sendData = function () {
   emit('next', data.value)
@@ -284,6 +302,135 @@ const sendData = function () {
           />
         </label>
 
+        <div class="flex gap-3 w-1/3">
+          <label
+            for="apt"
+            class="flex flex-col-reverse items-center gap-2 border py-1 px-3 rounded-md cursor-pointer w-1/3"
+          >
+            <input type="checkbox" id="apt" v-model="data.apt" required />
+            <span>Apt.</span>
+          </label>
+
+          <label
+            for="street"
+            class="flex flex-col-reverse items-center gap-2 border py-1 px-3 rounded-md cursor-pointer w-1/3"
+          >
+            <input type="checkbox" id="str" v-model="data.ste" required />
+            <span>Ste.</span>
+          </label>
+          <label
+            for="floor"
+            class="flex flex-col-reverse items-center gap-2 border py-1 px-3 rounded-md cursor-pointer w-1/3"
+          >
+            <input type="checkbox" id="flr" v-model="data.flr" required />
+            <span>Flr.</span>
+          </label>
+        </div>
+
+        <div class="flex gap-3 w-full">
+          <label for="mailingcity" class="flex flex-col gap-2 mt-5 mb-5 md:w-1/3">
+            <span>City or Town</span>
+            <input
+              type="text"
+              id="mailingcity"
+              v-model="data.mailingcity_town"
+              class="p-2 border focus:outline-primary rounded-md"
+              placeholder="City [eg. Brooklyn]"
+              required
+            />
+          </label>
+
+
+        <label for="country" class="flex flex-col gap-2 mt-5 w-1/3">
+          <span>Country</span>
+          <select
+            id="country"
+            v-model="data.country"
+            class="p-2 border focus:outline-primary rounded-md"
+            placeholder="Please Select your mailing country"
+            required
+          >
+            <option v-for="(country, index) in COUNTRIES" :key="index" :value="country.name">
+              {{ country.name }}
+            </option>
+          </select>
+        </label>
+
+          <!-------------state  -------------->
+          <label for="state" class="flex flex-col gap-2 mt-5 md:w-1/3">
+          <span>State</span>
+          <select
+            id="state"
+            v-model="data.state"
+            class="p-2 border focus:outline-primary rounded-md"
+            placeholder="Please Select"
+            required
+            :disabled="isEmpty(data.country)"
+          >
+            <option v-for="(state, index) in states!.states!" :key="index" :value="state.name">
+              {{ state.name }}
+            </option>
+          </select>
+        </label>
+       </div>
+
+       <div class="flex gap-5 mb-5">
+          <label for="postal_code" class="flex flex-col gap-2 w-1/2">
+            <span>Postal Code</span>
+            <input
+              type="text"
+              id="postal_code"
+              v-model="data.postal_code"
+              class="p-2 border focus:outline-primary rounded-md"
+              placeholder="Postal Code"
+            />
+          </label>
+
+          <label for="zip_code" class="flex flex-col gap-2 w-1/2">
+            <span>Zip Code</span>
+            <input
+              type="text"
+              id="zip_code"
+              v-model="data.zip_code"
+              class="p-2 border focus:outline-primary rounded-md"
+              placeholder="Zip Code"
+            />
+          </label>
+
+          <label for="province" class="flex flex-col gap-2 w-1/2">
+            <span>Province</span>
+            <input
+              type="text"
+              id="province"
+              v-model="data.province"
+              class="p-2 border focus:outline-primary rounded-md"
+              placeholder="Province"
+            />
+          </label>
+        </div>
+
+        <!---------current mailing address ---------->
+        <span class="block mb-5">Is your current mailing address the same as your physical address</span>
+         <div class="flex gap-3">
+            <label
+              for="mailingyes"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input type="radio" id="mailingyes" value="yes" name="mailingaddress" v-model="data.mailingaddress" required />
+              <span>Yes</span>
+            </label> 
+
+
+        <!-----Note!! No in this section is linked to 12a-13b  ---->
+            <label
+              for="mailingno"
+              class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer"
+            >
+              <input type="radio" id="mailingno" value="no" name="mailingaddress" v-model="data.mailingadress" required />
+              <span>No</span>
+            </label>
+
+          </div>
         <AppButton
           mode="submit"
           type="solid"
@@ -293,7 +440,442 @@ const sendData = function () {
         >
           Continue
         </AppButton> 
+
       </form>
      </div>
+
+     <!-- Address History -->
+     <div class="" v-else-if="tab === 'address'">
+        <h2 class="border-b font-bold text-2xl text-primary pb-2">Address History</h2>
+        <form @submit.prevent="emit('add-tabs', 'maritalinfo')" class="py-5 md:w-2/3">
+            <span class="block font-bold mb-5">Physical Address</span>
+            <label for="street_number_and_name" class="flex flex-col gap-2 mb-5">
+           <span>Street Number and Name</span>
+          <input
+            type="text"
+            id="street_number_and_name"
+            v-model="data.street_name_number"
+            class="p-2 border focus:outline-primary rounded-md"
+            placeholder="Street Number and Name"
+            required
+          />
+        </label> 
+        
+        <div class="flex gap-3 w-1/3">
+          <label
+            for="apt"
+            class="flex flex-col-reverse items-center gap-2 border py-1 px-3 rounded-md cursor-pointer w-1/3"
+          >
+            <input type="checkbox" id="apt" v-model="data.apt" required />
+            <span>Apt.</span>
+          </label>
+
+          <label
+            for="street"
+            class="flex flex-col-reverse items-center gap-2 border py-1 px-3 rounded-md cursor-pointer w-1/3"
+          >
+            <input type="checkbox" id="str" v-model="data.ste" required />
+            <span>Ste.</span>
+          </label>
+          <label
+            for="floor"
+            class="flex flex-col-reverse items-center gap-2 border py-1 px-3 rounded-md cursor-pointer w-1/3"
+          >
+            <input type="checkbox" id="flr" v-model="data.flr" required />
+            <span>Flr.</span>
+          </label>
+        </div>
+
+        <div class="flex gap-3 w-full">
+          <label for="mailingcity" class="flex flex-col gap-2 mt-5 mb-5 md:w-1/3">
+            <span>City or Town</span>
+            <input
+              type="text"
+              id="mailingcity"
+              v-model="data.mailingcity_town"
+              class="p-2 border focus:outline-primary rounded-md"
+              placeholder="City [eg. Brooklyn]"
+              required
+            />
+          </label>
+
+
+        <label for="country" class="flex flex-col gap-2 mt-5 w-1/3">
+          <span>Country</span>
+          <select
+            id="country"
+            v-model="data.country"
+            class="p-2 border focus:outline-primary rounded-md"
+            placeholder="Please Select your mailing country"
+            required
+          >
+            <option v-for="(country, index) in COUNTRIES" :key="index" :value="country.name">
+              {{ country.name }}
+            </option>
+          </select>
+        </label>
+
+          <!-------------state  -------------->
+          <label for="state" class="flex flex-col gap-2 mt-5 md:w-1/3">
+          <span>State</span>
+          <select
+            id="state"
+            v-model="data.state"
+            class="p-2 border focus:outline-primary rounded-md"
+            placeholder="Please Select"
+            required
+            :disabled="isEmpty(data.country)"
+          >
+            <option v-for="(state, index) in states!.states!" :key="index" :value="state.name">
+              {{ state.name }}
+            </option>
+          </select>
+        </label>
+       </div>
+
+       <div class="flex gap-5 mb-5">
+          <label for="postal_code" class="flex flex-col gap-2 w-1/2">
+            <span>Postal Code</span>
+            <input
+              type="text"
+              id="postal_code"
+              v-model="data.postal_code"
+              class="p-2 border focus:outline-primary rounded-md"
+              placeholder="Postal Code"
+            />
+          </label>
+
+          <label for="zip_code" class="flex flex-col gap-2 w-1/2">
+            <span>Zip Code</span>
+            <input
+              type="text"
+              id="zip_code"
+              v-model="data.zip_code"
+              class="p-2 border focus:outline-primary rounded-md"
+              placeholder="Zip Code"
+            />
+          </label>
+
+          <label for="province" class="flex flex-col gap-2 w-1/2">
+            <span>Province</span>
+            <input
+              type="text"
+              id="province"
+              v-model="data.province"
+              class="p-2 border focus:outline-primary rounded-md"
+              placeholder="Province"
+            />
+          </label>
+        </div>
+
+        
+     
+       <div class="flex gap-5 mb-5">
+        <label for="date_from" class="flex flex-col gap-2 mb-5">
+          <span>Date From:</span>
+          <input
+            type="date"
+            id="date_from"
+            v-model="data.dobfrom"
+            class="p-2 border focus:outline-primary rounded-md"
+            placeholder="MM/DD/YY"
+            required
+          />
+        </label>
+
+        <label for="date_of_birth" class="flex flex-col gap-2 mb-5">
+          <span>Date To:</span>
+          <input
+            type="date"
+            id="date_to"
+            v-model="data.dobto"
+            class="p-2 border focus:outline-primary rounded-md"
+            placeholder="MM/DD/YY"
+            required
+          />
+        </label>
+       </div>
+
+       <span class="block font-bold mb-5">Physical Address 2</span>
+            <label for="street_number_and_name" class="flex flex-col gap-2 mb-5">
+           <span>Street Number and Name</span>
+          <input
+            type="text"
+            id="street_number_and_name"
+            v-model="data.street_name_number"
+            class="p-2 border focus:outline-primary rounded-md"
+            placeholder="Street Number and Name"
+            required
+          />
+        </label> 
+        
+        <div class="flex gap-3 w-1/3">
+          <label
+            for="apt"
+            class="flex flex-col-reverse items-center gap-2 border py-1 px-3 rounded-md cursor-pointer w-1/3"
+          >
+            <input type="checkbox" id="apt" v-model="data.apt" required />
+            <span>Apt.</span>
+          </label>
+
+          <label
+            for="street"
+            class="flex flex-col-reverse items-center gap-2 border py-1 px-3 rounded-md cursor-pointer w-1/3"
+          >
+            <input type="checkbox" id="str" v-model="data.ste" required />
+            <span>Ste.</span>
+          </label>
+          <label
+            for="floor"
+            class="flex flex-col-reverse items-center gap-2 border py-1 px-3 rounded-md cursor-pointer w-1/3"
+          >
+            <input type="checkbox" id="flr" v-model="data.flr" required />
+            <span>Flr.</span>
+          </label>
+        </div>
+
+        <div class="flex gap-3 w-full">
+          <label for="mailingcity" class="flex flex-col gap-2 mt-5 mb-5 md:w-1/3">
+            <span>City or Town</span>
+            <input
+              type="text"
+              id="mailingcity"
+              v-model="data.mailingcity_town"
+              class="p-2 border focus:outline-primary rounded-md"
+              placeholder="City [eg. Brooklyn]"
+              required
+            />
+          </label>
+
+
+        <label for="country" class="flex flex-col gap-2 mt-5 w-1/3">
+          <span>Country</span>
+          <select
+            id="country"
+            v-model="data.country"
+            class="p-2 border focus:outline-primary rounded-md"
+            placeholder="Please Select your mailing country"
+            required
+          >
+            <option v-for="(country, index) in COUNTRIES" :key="index" :value="country.name">
+              {{ country.name }}
+            </option>
+          </select>
+        </label>
+
+          <!-------------state  -------------->
+          <label for="state" class="flex flex-col gap-2 mt-5 md:w-1/3">
+          <span>State</span>
+          <select
+            id="state"
+            v-model="data.state"
+            class="p-2 border focus:outline-primary rounded-md"
+            placeholder="Please Select"
+            required
+            :disabled="isEmpty(data.country)"
+          >
+            <option v-for="(state, index) in states!.states!" :key="index" :value="state.name">
+              {{ state.name }}
+            </option>
+          </select>
+        </label>
+       </div>
+
+       <div class="flex gap-5 mb-5">
+          <label for="postal_code" class="flex flex-col gap-2 w-1/2">
+            <span>Postal Code</span>
+            <input
+              type="text"
+              id="postal_code"
+              v-model="data.postal_code"
+              class="p-2 border focus:outline-primary rounded-md"
+              placeholder="Postal Code"
+            />
+          </label>
+
+          <label for="zip_code" class="flex flex-col gap-2 w-1/2">
+            <span>Zip Code</span>
+            <input
+              type="text"
+              id="zip_code"
+              v-model="data.zip_code"
+              class="p-2 border focus:outline-primary rounded-md"
+              placeholder="Zip Code"
+            />
+          </label>
+
+          <label for="province" class="flex flex-col gap-2 w-1/2">
+            <span>Province</span>
+            <input
+              type="text"
+              id="province"
+              v-model="data.province"
+              class="p-2 border focus:outline-primary rounded-md"
+              placeholder="Province"
+            />
+          </label>
+        </div>
+
+        
+     
+       <div class="flex gap-5 mb-5">
+        <label for="date_from" class="flex flex-col gap-2 mb-5">
+          <span>Date From:</span>
+          <input
+            type="date"
+            id="date_from"
+            v-model="data.dobfrom"
+            class="p-2 border focus:outline-primary rounded-md"
+            placeholder="MM/DD/YY"
+            required
+          />
+        </label>
+
+        <label for="date_of_birth" class="flex flex-col gap-2 mb-5">
+          <span>Date To:</span>
+          <input
+            type="date"
+            id="date_to"
+            v-model="data.dobto"
+            class="p-2 border focus:outline-primary rounded-md"
+            placeholder="MM/DD/YY"
+            required
+          />
+        </label>
+       </div>
+
+       <AppButton
+          mode="submit"
+          type="solid"
+          size="large"
+          color="primary"
+          class="mt-5 bg-primary text-white"
+        >
+          Continue
+        </AppButton> 
+
+        </form>
+        </div>
+
+         <!-- Your Marital Info-->
+     <div class="" v-else-if="tab === 'maritalinfo'">
+        <h2 class="border-b block font-bold text-2xl text-primary pb-2">Marital Information</h2>
+      <form @submit.prevent="emit('add-tabs', 'currentmarriage')" class="py-5 md:w-2/3">
+
+        <div class="flex gap-5 mb-5">
+          <label for="marital_status" class="flex flex-col gap-2 w-1/2">
+            <span>How Many Times Have You Been Married</span>
+            <input
+              type="number"
+              id="marital_status"
+              v-model="data.times_marital_status"
+              class="p-2 border focus:outline-primary rounded-md"
+            />
+          </label>
+        </div>
+    <!---------current marital status  -->
+    <span class="block font-bold mb-5">Current Marital Status</span>
+    <div class="flex gap-5 mb-5">
+        <label for="single_status" class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer">
+          <input
+            type="radio"
+            id="single_status"
+            name="data.marital_status"
+            v-model="data.marital_status"
+            class="p-2 border focus:outline-primary rounded-md"
+            required
+          />
+          <span>Single, Never Married</span>
+        </label>
+
+        <label for="married_status" class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer">
+          <input
+            type="radio"
+            id="married_status"
+            name="data.marital_status"
+            v-model="data.marital_status"
+            class="p-2 border focus:outline-primary rounded-md"
+            required
+          />
+          <span>Married</span>
+        </label>
+
+        <label for="divorced_status" class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer">
+          <input
+            type="radio"
+            id="divorced_status"
+            name="data.marital_status"
+            v-model="data.marital_status"
+            class="p-2 border focus:outline-primary rounded-md"
+            required
+          />
+          <span>Divorced</span>
+        </label>
+        </div>
+
+        <!---widowed seperated annulled  -->
+        <div class="flex gap-5 mb-5">
+        <label for="widowed_status" class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer">
+          <input
+            type="radio"
+            id="widowed_status"
+            name="data.marital_status"
+            v-model="data.marital_status"
+            class="p-2 border focus:outline-primary rounded-md"
+            required
+          />
+          <span>Widowed</span>
+        </label>
+
+        <label for="seperated_status" class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer">
+          <input
+            type="radio"
+            id="seperated_status"
+            name="data.marital_status"
+            v-model="data.marital_status"
+            class="p-2 border focus:outline-primary rounded-md"
+            required
+          />
+          <span>Seperated</span>
+        </label>
+
+        <label for="annulled_status" class="flex items-center gap-2 border py-1 px-3 rounded-md cursor-pointer">
+          <input
+            type="radio"
+            id="annulled_status"
+            name="data.marital_status"
+            v-model="data.marital_status"
+            class="p-2 border focus:outline-primary rounded-md"
+            required
+          />
+          <span>Annulled</span>
+        </label>
+        </div>
+
+        <!---date of current marriage --------->
+        <label for="date_of_current_marriage" class="flex flex-col gap-2 mb-5">
+          <span>Date of Current Marriage</span>
+          <input
+            type="date"
+            id="date_of"
+            v-model="data.date_of"
+            class="p-2 border focus:outline-primary rounded-md"
+            placeholder="MM/DD/YY"
+            required
+          />
+        </label>
+        <AppButton
+          mode="submit"
+          type="solid"
+          size="large"
+          color="primary"
+          class="mt-5 bg-primary text-white"
+        >
+          Continue
+        </AppButton> 
+     </form>
+    </div>
+    
   </section>
 </template>
+
